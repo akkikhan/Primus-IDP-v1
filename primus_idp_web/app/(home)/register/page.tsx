@@ -153,7 +153,7 @@ export default function RegisterPage() {
 									animate={{ opacity: 1, y: 0, scale: 1 }}
 									exit={{ opacity: 0, y: -10, scale: 0.95 }}
 									transition={{ duration: 0.3 }}
-									className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-900 shadow-sm dark:border-red-900/30 dark:bg-red-900/20 dark:text-red-200"
+									className="rounded-xl border border-red-200 bg-red-50 p-4 text-red-900 shadow-sm dark:border-red-900/30 dark:bg-red-900/20 dark:text-red-200"
 								>
 									<div className="flex items-start gap-3">
 										<svg
@@ -220,7 +220,7 @@ export default function RegisterPage() {
 								required
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
-								className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+								className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
 									error
 										? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
 										: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
@@ -242,7 +242,7 @@ export default function RegisterPage() {
 								required
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
-								className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+								className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
 									error
 										? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
 										: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
@@ -264,7 +264,7 @@ export default function RegisterPage() {
 								required
 								value={confirmPassword}
 								onChange={(e) => setConfirmPassword(e.target.value)}
-								className={`mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+								className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
 									error
 										? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
 										: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
@@ -276,7 +276,7 @@ export default function RegisterPage() {
 						<button
 							type="submit"
 							disabled={isLoading}
-							className="w-full rounded-md bg-gradient-to-r from-[#A11218] to-[#E24632] px-4 py-2 text-white shadow-lg hover:from-[#E24632] hover:to-[#A11218] focus:outline-none focus:ring-2 focus:ring-[#A11218] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300"
+							className="w-full rounded-xl bg-gradient-to-r from-[#A11218] to-[#E24632] px-4 py-2 text-white shadow-lg hover:from-[#E24632] hover:to-[#A11218] focus:outline-none focus:ring-2 focus:ring-[#A11218] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300"
 						>
 							{isLoading ? t('creating_account_btn') : t('register')}
 						</button>

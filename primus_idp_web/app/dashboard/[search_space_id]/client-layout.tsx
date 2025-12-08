@@ -95,13 +95,13 @@ export function DashboardClientLayout({
 	if (!hasCheckedOnboarding && loading && !isOnboardingPage) {
 		return (
 			<div className="flex flex-col items-center justify-center min-h-screen space-y-4">
-				<Card className="w-[350px] bg-background/60 backdrop-blur-sm">
+				<Card className="w-[350px] bg-background/60 backdrop-blur-md rounded-2xl border-border/40 shadow-lg">
 					<CardHeader className="pb-2">
-						<CardTitle className="text-xl font-medium">{t('loading_config')}</CardTitle>
-						<CardDescription>{t('checking_llm_prefs')}</CardDescription>
+						<CardTitle className="text-xl font-semibold">{t('loading_config')}</CardTitle>
+						<CardDescription className="text-muted-foreground">{t('checking_llm_prefs')}</CardDescription>
 					</CardHeader>
 					<CardContent className="flex justify-center py-6">
-						<Loader2 className="h-12 w-12 text-primary animate-spin" />
+						<Loader2 className="h-10 w-10 text-primary animate-spin" />
 					</CardContent>
 				</Card>
 			</div>
@@ -112,12 +112,12 @@ export function DashboardClientLayout({
 	if (error && !hasCheckedOnboarding && !isOnboardingPage) {
 		return (
 			<div className="flex flex-col items-center justify-center min-h-screen space-y-4">
-				<Card className="w-[400px] bg-background/60 backdrop-blur-sm border-destructive/20">
+				<Card className="w-[400px] bg-background/60 backdrop-blur-md rounded-2xl border-destructive/30 shadow-lg">
 					<CardHeader className="pb-2">
-						<CardTitle className="text-xl font-medium text-destructive">
+						<CardTitle className="text-xl font-semibold text-destructive">
 							{t('config_error')}
 						</CardTitle>
-						<CardDescription>{t('failed_load_llm_config')}</CardDescription>
+						<CardDescription className="text-muted-foreground">{t('failed_load_llm_config')}</CardDescription>
 					</CardHeader>
 					<CardContent>
 						<p className="text-sm text-muted-foreground">{error}</p>
@@ -136,11 +136,11 @@ export function DashboardClientLayout({
 				navMain={translatedNavMain}
 			/>
 			<SidebarInset>
-				<header className="sticky top-0 z-50 flex h-16 shrink-0 items-center gap-2 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
-					<div className="flex items-center justify-between w-full gap-2 px-4">
-						<div className="flex items-center gap-2">
-							<SidebarTrigger className="-ml-1" />
-							<Separator orientation="vertical" className="h-6" />
+				<header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
+					<div className="flex items-center justify-between w-full gap-3 px-4">
+						<div className="flex items-center gap-3">
+							<SidebarTrigger className="-ml-1 rounded-lg hover:bg-muted/80 transition-colors" />
+							<Separator orientation="vertical" className="h-5 bg-border/50" />
 							<DashboardBreadcrumb />
 						</div>
 						<div className="flex items-center gap-2">

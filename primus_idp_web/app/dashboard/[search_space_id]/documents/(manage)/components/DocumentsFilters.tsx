@@ -89,7 +89,7 @@ export function DocumentsFilters({
 					<Input
 						id={`${id}-input`}
 						ref={inputRef}
-						className="peer min-w-60 ps-9"
+						className="peer min-w-60 ps-9 rounded-xl"
 						value={searchValue}
 						onChange={(e) => onSearch(e.target.value)}
 						placeholder={t('filter_placeholder')}
@@ -150,7 +150,7 @@ export function DocumentsFilters({
 							</Button>
 						</motion.div>
 					</PopoverTrigger>
-					<PopoverContent className="min-w-36 p-3" align="start">
+					<PopoverContent className="min-w-36 p-3 rounded-xl" align="start">
 						<motion.div initial="hidden" animate="visible" exit="exit" variants={fadeInScale}>
 							<div className="space-y-3">
 								<div className="text-xs font-medium text-muted-foreground">Filters</div>
@@ -247,7 +247,7 @@ export function DocumentsFilters({
 								</span>
 							</Button>
 						</AlertDialogTrigger>
-						<AlertDialogContent>
+						<AlertDialogContent className="rounded-2xl">
 							<div className="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
 								<div
 									className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border"
@@ -264,8 +264,8 @@ export function DocumentsFilters({
 								</AlertDialogHeader>
 							</div>
 							<AlertDialogFooter>
-								<AlertDialogCancel>Cancel</AlertDialogCancel>
-								<AlertDialogAction onClick={onBulkDelete}>Delete</AlertDialogAction>
+								<AlertDialogCancel className="rounded-xl">Cancel</AlertDialogCancel>
+								<AlertDialogAction className="rounded-xl" onClick={onBulkDelete}>Delete</AlertDialogAction>
 							</AlertDialogFooter>
 						</AlertDialogContent>
 					</AlertDialog>

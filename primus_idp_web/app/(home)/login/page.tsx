@@ -124,7 +124,7 @@ function LoginContent() {
 							animate={{ opacity: 1, y: 0, scale: 1 }}
 							exit={{ opacity: 0, y: -10, scale: 0.95 }}
 							transition={{ duration: 0.3 }}
-							className="mb-6 w-full max-w-md rounded-lg border border-red-200 bg-red-50 p-4 text-red-900 shadow-sm dark:border-red-900/30 dark:bg-red-900/20 dark:text-red-200"
+							className="mb-6 w-full max-w-md rounded-xl border border-red-200 bg-red-50 p-4 text-red-900 shadow-sm dark:border-red-900/30 dark:bg-red-900/20 dark:text-red-200"
 						>
 							<div className="flex items-start gap-3">
 								<svg

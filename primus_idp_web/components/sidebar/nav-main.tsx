@@ -35,7 +35,9 @@ export function NavMain({ items }: { items: NavItem[] }) {
 	const translateTitle = (title: string): string => {
 		const titleMap: Record<string, string> = {
 			'Researcher': 'researcher',
+			'Chat': 'researcher',
 			'Manage LLMs': 'manage_llms',
+			'LLMs': 'manage_llms',
 			'Documents': 'documents',
 			'Upload Documents': 'upload_documents',
 			'Add Webpages': 'add_webpages',

@@ -94,7 +94,7 @@ export function DocumentsTableShell({
 
 	return (
 		<motion.div
-			className="rounded-md border mt-6 overflow-hidden"
+			className="rounded-xl border mt-6 overflow-hidden"
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.2 }}

@@ -139,10 +139,10 @@ function MessageDetails({
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
-			<AlertDialogContent className="max-w-3xl w-full">
+			<AlertDialogContent className="max-w-3xl w-full rounded-2xl">
 				<div className="flex items-start justify-between gap-4">
 					<div>
-						<AlertDialogTitle className="text-lg">Log details</AlertDialogTitle>
+						<AlertDialogTitle className="text-lg font-semibold">Log details</AlertDialogTitle>
 						{createdAt && (
 							<p className="text-xs text-muted-foreground mt-1">
 								{new Date(createdAt).toLocaleString()}
@@ -150,18 +150,18 @@ function MessageDetails({
 						)}
 					</div>
 					<div className="shrink-0">
-						<AlertDialogCancel className="text-sm">Close</AlertDialogCancel>
+						<AlertDialogCancel className="text-sm rounded-xl">Close</AlertDialogCancel>
 					</div>
 				</div>
 
 				<div className="mt-4 space-y-4">
 					{taskName && (
-						<div className="text-xs text-muted-foreground font-mono bg-muted/50 px-2 py-1 rounded inline-block">
+						<div className="text-xs text-muted-foreground font-mono bg-muted/50 px-2 py-1 rounded-lg inline-block">
 							{taskName}
 						</div>
 					)}
 
-					<div className="bg-muted p-3 rounded max-h-[40vh] overflow-auto text-sm whitespace-pre-wrap">
+					<div className="bg-muted p-4 rounded-xl max-h-[40vh] overflow-auto text-sm whitespace-pre-wrap">
 						{message}
 					</div>
 				</div>
@@ -555,12 +555,12 @@ function LogsSummaryDashboard({
 				animate={{ opacity: 1 }}
 			>
 				{[...Array(4)].map((_, i) => (
-					<Card key={i}>
+					<Card key={i} className="rounded-2xl border-border/50">
 						<CardHeader className="pb-2">
-							<div className="h-4 bg-muted rounded animate-pulse" />
+							<div className="h-4 bg-muted rounded-lg animate-pulse" />
 						</CardHeader>
 						<CardContent>
-							<div className="h-8 bg-muted rounded animate-pulse" />
+							<div className="h-8 bg-muted rounded-lg animate-pulse" />
 						</CardContent>
 					</Card>
 				))}
@@ -570,12 +570,14 @@ function LogsSummaryDashboard({
 
 	if (error || !summary) {
 		return (
-			<Card>
+			<Card className="rounded-2xl border-border/50">
 				<CardContent className="flex items-center justify-center h-32">
 					<div className="flex flex-col items-center gap-2">
-						<AlertCircle className="h-8 w-8 text-destructive" />
+						<div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 dark:bg-red-900/20">
+							<AlertCircle className="h-6 w-6 text-destructive" />
+						</div>
 						<p className="text-sm text-destructive">{t('failed_load_summary')}</p>
-						<Button variant="outline" size="sm" onClick={onRefresh}>
+						<Button variant="outline" size="sm" className="rounded-xl" onClick={onRefresh}>
 							{t('retry')}
 						</Button>
 					</div>
@@ -593,10 +595,12 @@ function LogsSummaryDashboard({
 		>
 			{/* Total Logs */}
 			<motion.div variants={fadeInScale}>
-				<Card>
+				<Card className="rounded-2xl border-border/50 shadow-sm">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium">{t('total_logs')}</CardTitle>
-						<Activity className="h-4 w-4 text-muted-foreground" />
+						<CardTitle className="text-sm font-semibold">{t('total_logs')}</CardTitle>
+						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted/50">
+							<Activity className="h-4 w-4 text-muted-foreground" />
+						</div>
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold">{summary.total_logs}</div>
@@ -607,10 +611,12 @@ function LogsSummaryDashboard({
 
 			{/* Active Tasks */}
 			<motion.div variants={fadeInScale}>
-				<Card>
+				<Card className="rounded-2xl border-border/50 shadow-sm">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium">{t('active_tasks')}</CardTitle>
-						<Clock className="h-4 w-4 text-[#3D2B1F]" />
+						<CardTitle className="text-sm font-semibold">{t('active_tasks')}</CardTitle>
+						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#DDD5C7]">
+							<Clock className="h-4 w-4 text-[#3D2B1F]" />
+						</div>
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold text-[#3D2B1F]">
@@ -623,10 +629,12 @@ function LogsSummaryDashboard({
 
 			{/* Success Rate */}
 			<motion.div variants={fadeInScale}>
-				<Card>
+				<Card className="rounded-2xl border-border/50 shadow-sm">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium">{t('success_rate')}</CardTitle>
-						<CheckCircle2 className="h-4 w-4 text-green-600" />
+						<CardTitle className="text-sm font-semibold">{t('success_rate')}</CardTitle>
+						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-green-50 dark:bg-green-900/20">
+							<CheckCircle2 className="h-4 w-4 text-green-600" />
+						</div>
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold text-green-600">
@@ -644,10 +652,12 @@ function LogsSummaryDashboard({
 
 			{/* Recent Failures */}
 			<motion.div variants={fadeInScale}>
-				<Card>
+				<Card className="rounded-2xl border-border/50 shadow-sm">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium">{t('recent_failures')}</CardTitle>
-						<AlertCircle className="h-4 w-4 text-red-600" />
+						<CardTitle className="text-sm font-semibold">{t('recent_failures')}</CardTitle>
+						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-red-50 dark:bg-red-900/20">
+							<AlertCircle className="h-4 w-4 text-red-600" />
+						</div>
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold text-red-600">
@@ -689,7 +699,7 @@ function LogsFilters({
 					<Input
 						ref={inputRef}
 						className={cn(
-							"peer min-w-60 ps-9",
+							"peer min-w-60 ps-9 rounded-xl",
 							Boolean(table.getColumn("message")?.getFilterValue()) && "pe-9"
 						)}
 						value={(table.getColumn("message")?.getFilterValue() ?? "") as string}
@@ -702,7 +712,7 @@ function LogsFilters({
 					</div>
 					{Boolean(table.getColumn("message")?.getFilterValue()) && (
 						<Button
-							className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/80 hover:text-foreground"
+							className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-xl text-muted-foreground/80 hover:text-foreground"
 							variant="ghost"
 							size="icon"
 							onClick={() => {
@@ -856,7 +866,7 @@ function LogsTable({
 	if (loading) {
 		return (
 			<motion.div
-				className="rounded-md border"
+				className="rounded-xl border"
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 			>
@@ -873,7 +883,7 @@ function LogsTable({
 	if (error) {
 		return (
 			<motion.div
-				className="rounded-md border"
+				className="rounded-xl border"
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 			>
@@ -893,7 +903,7 @@ function LogsTable({
 	if (logs.length === 0) {
 		return (
 			<motion.div
-				className="rounded-md border"
+				className="rounded-xl border"
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 			>
@@ -910,7 +920,7 @@ function LogsTable({
 	return (
 		<>
 			<motion.div
-				className="rounded-md border overflow-hidden"
+				className="rounded-xl border overflow-hidden"
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 0.3 }}

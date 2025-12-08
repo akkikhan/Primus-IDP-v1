@@ -53,8 +53,8 @@ export default function PrivacyPolicy() {
 							services.
 						</li>
 						<li>
-							<strong>Surf Data</strong> includes information about surf sessions, preferences, and
-							equipment settings.
+							<strong>Primus Knowledge Hub Data</strong> includes information about workspace
+							sessions, preferences, and configuration settings.
 						</li>
 						<li>
 							<strong>Marketing and Communications Data</strong> includes your preferences in

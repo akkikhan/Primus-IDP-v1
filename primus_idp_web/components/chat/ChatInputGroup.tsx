@@ -60,21 +60,21 @@ const DocumentSelector = React.memo(
 		return (
 			<Dialog open={isOpen} onOpenChange={handleOpenChange}>
 				<DialogTrigger asChild>
-					<Button variant="outline" className="relative">
+					<Button variant="outline" className="relative rounded-xl h-9 px-3 border-border/60 hover:bg-muted/50 transition-colors">
 						<FolderOpen className="w-4 h-4" />
 						{selectedCount > 0 && (
-							<span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center">
+							<span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium shadow-sm">
 								{selectedCount}
 							</span>
 						)}
 					</Button>
 				</DialogTrigger>
 
-				<DialogContent className="max-w-[95vw] md:max-w-5xl h-[90vh] md:h-[85vh] p-0 flex flex-col">
+				<DialogContent className="max-w-[95vw] md:max-w-5xl h-[90vh] md:h-[85vh] p-0 flex flex-col rounded-2xl">
 					<div className="flex flex-col h-full">
-						<div className="px-4 md:px-6 py-4 border-b flex-shrink-0">
-							<DialogTitle className="text-lg md:text-xl">Select Documents</DialogTitle>
-							<DialogDescription className="mt-1 text-sm">
+						<div className="px-4 md:px-6 py-4 border-b border-border/60 flex-shrink-0">
+							<DialogTitle className="text-lg md:text-xl font-semibold">Select Documents</DialogTitle>
+							<DialogDescription className="mt-1 text-sm text-muted-foreground">
 								Choose documents to include in your research context
 							</DialogDescription>
 						</div>
@@ -149,14 +149,14 @@ const ConnectorSelector = React.memo(
 					/>
 				</DialogTrigger>
 
-				<DialogContent className="sm:max-w-md">
-					<DialogTitle>Select Connectors</DialogTitle>
-					<DialogDescription>
+				<DialogContent className="sm:max-w-md rounded-2xl">
+					<DialogTitle className="font-semibold">Select Connectors</DialogTitle>
+					<DialogDescription className="text-muted-foreground">
 						Choose which data sources to include in your research
 					</DialogDescription>
 
 					{/* Connector selection grid */}
-					<div className="grid grid-cols-2 gap-4 py-4">
+					<div className="grid grid-cols-2 gap-3 py-4">
 						{isLoading ? (
 							<div className="col-span-2 flex justify-center py-4">
 								<div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
@@ -168,7 +168,7 @@ const ConnectorSelector = React.memo(
 								return (
 									<Button
 										key={connector.id}
-										className={`flex items-center gap-2 p-2 rounded-md border cursor-pointer transition-colors`}
+										className={`flex items-center gap-2 p-3 rounded-xl border cursor-pointer transition-all duration-200`}
 										onClick={() => handleConnectorToggle(connector.type)}
 										variant={isSelected ? "default" : "outline"}
 										size="sm"
@@ -182,12 +182,12 @@ const ConnectorSelector = React.memo(
 						)}
 					</div>
 
-					<DialogFooter className="flex justify-between items-center">
+					<DialogFooter className="flex justify-between items-center gap-2">
 						<div className="flex gap-2">
-							<Button variant="outline" onClick={handleClearAll}>
+							<Button variant="outline" onClick={handleClearAll} className="rounded-xl">
 								Clear All
 							</Button>
-							<Button onClick={handleSelectAll}>Select All</Button>
+							<Button onClick={handleSelectAll} className="rounded-xl">Select All</Button>
 						</div>
 					</DialogFooter>
 				</DialogContent>
@@ -216,12 +216,12 @@ const SearchModeSelector = React.memo(
 
 		return (
 			<div className="flex items-center gap-1 sm:gap-2">
-				<span className="text-xs text-muted-foreground hidden sm:block">Scope:</span>
-				<div className="flex rounded-md border border-border overflow-hidden">
+				<span className="text-xs text-muted-foreground hidden sm:block font-medium">Scope:</span>
+				<div className="flex rounded-xl border border-border/60 overflow-hidden bg-muted/30">
 					<Button
 						variant={searchMode === "DOCUMENTS" ? "default" : "ghost"}
 						size="sm"
-						className="rounded-none border-r h-8 px-2 sm:px-3 text-xs transition-all duration-200 hover:bg-muted/80"
+						className="rounded-none border-r border-border/40 h-8 px-2 sm:px-3 text-xs transition-all duration-200 hover:bg-muted/80"
 						onClick={handleDocumentsClick}
 					>
 						<span className="hidden sm:inline">Documents</span>
@@ -283,20 +283,20 @@ const ResearchModeSelector = React.memo(
 
 		return (
 			<div className="flex items-center gap-1 sm:gap-2">
-				<span className="text-xs text-muted-foreground hidden sm:block">Mode:</span>
+				<span className="text-xs text-muted-foreground hidden sm:block font-medium">Mode:</span>
 				<Select value={researchMode} onValueChange={handleValueChange}>
-					<SelectTrigger className="w-auto min-w-[80px] sm:min-w-[120px] h-8 text-xs border-border bg-background hover:bg-muted/50 transition-colors duration-200 focus:ring-2 focus:ring-primary/20">
+					<SelectTrigger className="w-auto min-w-[80px] sm:min-w-[120px] h-8 text-xs rounded-xl border-border/60 bg-background hover:bg-muted/50 transition-all duration-200 focus:ring-2 focus:ring-primary/20">
 						<SelectValue placeholder="Mode" className="text-xs" />
 					</SelectTrigger>
-					<SelectContent align="end" className="min-w-[140px]">
-						<div className="px-2 py-1.5 text-xs font-medium text-muted-foreground border-b bg-muted/30">
+					<SelectContent align="end" className="min-w-[140px] rounded-xl">
+						<div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground border-b bg-muted/30">
 							Research Mode
 						</div>
 						{modeOptions.map((option) => (
 							<SelectItem
 								key={option.value}
 								value={option.value}
-								className="px-3 py-2 cursor-pointer hover:bg-accent/50 focus:bg-accent"
+								className="px-3 py-2 cursor-pointer hover:bg-accent/50 focus:bg-accent rounded-lg mx-1"
 							>
 								<span className="hidden sm:inline">{option.label}</span>
 								<span className="sm:hidden">{option.shortLabel}</span>
@@ -356,7 +356,7 @@ const LLMSelector = React.memo(() => {
 	if (isLoading) {
 		return (
 			<div className="h-8 min-w-[100px] sm:min-w-[120px]">
-				<div className="h-8 rounded-md bg-muted animate-pulse flex items-center px-3">
+				<div className="h-8 rounded-xl bg-muted animate-pulse flex items-center px-3">
 					<div className="w-3 h-3 rounded bg-muted-foreground/20 mr-2" />
 					<div className="h-3 w-16 rounded bg-muted-foreground/20" />
 				</div>
@@ -371,7 +371,7 @@ const LLMSelector = React.memo(() => {
 				<Button
 					variant="outline"
 					size="sm"
-					className="h-8 px-3 text-xs text-destructive border-destructive/50 hover:bg-destructive/10"
+					className="h-8 px-3 text-xs rounded-xl text-destructive border-destructive/50 hover:bg-destructive/10"
 					disabled
 				>
 					<span className="text-xs">Error</span>
@@ -387,7 +387,7 @@ const LLMSelector = React.memo(() => {
 				onValueChange={handleValueChange}
 				disabled={isLoading}
 			>
-				<SelectTrigger className="h-8 w-auto min-w-[100px] sm:min-w-[120px] px-3 text-xs border-border bg-background hover:bg-muted/50 transition-colors duration-200 focus:ring-2 focus:ring-primary/20">
+				<SelectTrigger className="h-8 w-auto min-w-[100px] sm:min-w-[120px] px-3 text-xs rounded-xl border-border/60 bg-background hover:bg-muted/50 transition-all duration-200 focus:ring-2 focus:ring-primary/20">
 					<div className="flex items-center gap-2 min-w-0">
 						<Zap className="h-3 w-3 text-primary flex-shrink-0" />
 						<SelectValue placeholder="Fast LLM" className="text-xs">
@@ -396,8 +396,8 @@ const LLMSelector = React.memo(() => {
 					</div>
 				</SelectTrigger>
 
-				<SelectContent align="end" className="w-[300px] max-h-[400px]">
-					<div className="px-3 py-2 text-xs font-medium text-muted-foreground border-b bg-muted/30">
+				<SelectContent align="end" className="w-[300px] max-h-[400px] rounded-xl">
+					<div className="px-3 py-2 text-xs font-semibold text-muted-foreground border-b bg-muted/30">
 						<div className="flex items-center gap-2">
 							<Zap className="h-3 w-3" />
 							Fast LLM Selection
@@ -406,17 +406,17 @@ const LLMSelector = React.memo(() => {
 
 					{llmConfigs.length === 0 ? (
 						<div className="px-4 py-6 text-center">
-							<div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center mb-3">
+							<div className="mx-auto w-12 h-12 rounded-xl bg-muted flex items-center justify-center mb-3">
 								<Brain className="h-5 w-5 text-muted-foreground" />
 							</div>
-							<h4 className="text-sm font-medium mb-1">No LLM configurations</h4>
+							<h4 className="text-sm font-semibold mb-1">No LLM configurations</h4>
 							<p className="text-xs text-muted-foreground mb-3">
 								Configure AI models to get started
 							</p>
 							<Button
 								variant="outline"
 								size="sm"
-								className="text-xs"
+								className="text-xs rounded-xl"
 								onClick={() => window.open("/settings", "_blank")}
 							>
 								Open Settings
@@ -428,17 +428,17 @@ const LLMSelector = React.memo(() => {
 								<SelectItem
 									key={config.id}
 									value={config.id.toString()}
-									className="px-3 py-2 cursor-pointer hover:bg-accent/50 focus:bg-accent"
+									className="px-3 py-2 cursor-pointer hover:bg-accent/50 focus:bg-accent rounded-lg mx-1"
 								>
 									<div className="flex items-center justify-between w-full min-w-0">
 										<div className="flex items-center gap-3 min-w-0 flex-1">
-											<div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary/10 flex-shrink-0">
+											<div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 flex-shrink-0">
 												<Brain className="h-4 w-4 text-primary" />
 											</div>
 											<div className="min-w-0 flex-1">
 												<div className="flex items-center gap-2 mb-1">
 													<span className="font-medium text-sm truncate">{config.name}</span>
-													<Badge variant="outline" className="text-xs px-1.5 py-0.5 flex-shrink-0">
+													<Badge variant="outline" className="text-xs px-1.5 py-0.5 flex-shrink-0 rounded-md">
 														{config.provider}
 													</Badge>
 												</div>
@@ -487,12 +487,12 @@ const CustomChatInputOptions = React.memo(
 	}) => {
 		// Memoize the loading fallback to prevent recreation
 		const loadingFallback = React.useMemo(
-			() => <div className="h-8 min-w-[100px] animate-pulse bg-muted rounded-md" />,
+			() => <div className="h-9 min-w-[100px] animate-pulse bg-muted rounded-xl" />,
 			[]
 		);
 
 		return (
-			<div className="flex flex-wrap gap-2 sm:gap-3 items-center justify-start">
+			<div className="flex flex-wrap gap-2 sm:gap-3 items-center justify-start px-1">
 				<Suspense fallback={loadingFallback}>
 					<DocumentSelector
 						onSelectionChange={onDocumentSelectionChange}
@@ -505,11 +505,13 @@ const CustomChatInputOptions = React.memo(
 						selectedConnectors={selectedConnectors}
 					/>
 				</Suspense>
+				<div className="h-6 w-px bg-border/60 hidden sm:block" />
 				<SearchModeSelector searchMode={searchMode} onSearchModeChange={onSearchModeChange} />
 				<ResearchModeSelector
 					researchMode={researchMode}
 					onResearchModeChange={onResearchModeChange}
 				/>
+				<div className="h-6 w-px bg-border/60 hidden sm:block" />
 				<LLMSelector />
 			</div>
 		);
@@ -539,10 +541,10 @@ export const ChatInputUI = React.memo(
 		onResearchModeChange?: (mode: ResearchMode) => void;
 	}) => {
 		return (
-			<ChatInput>
-				<ChatInput.Form className="flex gap-2">
-					<ChatInput.Field className="flex-1" />
-					<ChatInput.Submit />
+			<ChatInput className="space-y-4">
+				<ChatInput.Form className="flex gap-3 items-center bg-card/50 backdrop-blur-sm border border-border/60 rounded-2xl px-4 py-3 shadow-sm hover:shadow-md transition-shadow duration-200">
+					<ChatInput.Field className="flex-1 bg-transparent border-none focus:ring-0 text-base placeholder:text-muted-foreground/60" />
+					<ChatInput.Submit className="rounded-xl px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-sm transition-all duration-200" />
 				</ChatInput.Form>
 				<CustomChatInputOptions
 					onDocumentSelectionChange={onDocumentSelectionChange}

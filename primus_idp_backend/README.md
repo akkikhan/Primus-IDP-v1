@@ -1,4 +1,4 @@
-# Surf Backend
+# Primus Knowledge Hub Backend
 
 ## Technology Stack Overview
 

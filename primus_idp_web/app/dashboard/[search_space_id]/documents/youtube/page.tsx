@@ -162,16 +162,18 @@ export default function YouTubeVideoAdder() {
 	};
 
 	return (
-		<div className="container mx-auto py-8">
+		<div className="container mx-auto py-8 px-4">
 			<motion.div initial="hidden" animate="visible" variants={containerVariants}>
-				<Card className="max-w-2xl mx-auto">
+				<Card className="max-w-2xl mx-auto rounded-2xl border-border/50 shadow-sm">
 					<motion.div variants={itemVariants}>
-						<CardHeader>
-							<CardTitle className="flex items-center gap-2">
-								<IconBrandYoutube className="h-5 w-5" />
+						<CardHeader className="pb-4">
+							<CardTitle className="flex items-center gap-3 text-xl font-semibold">
+								<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10">
+									<IconBrandYoutube className="h-5 w-5 text-red-500" />
+								</div>
 								{t('title')}
 							</CardTitle>
-							<CardDescription>
+							<CardDescription className="text-muted-foreground">
 								{t('subtitle')}
 							</CardDescription>
 						</CardHeader>
@@ -190,10 +192,10 @@ export default function YouTubeVideoAdder() {
 										onAddTag={handleAddTag}
 										styleClasses={{
 											inlineTagsContainer:
-												"border-input rounded-lg bg-background shadow-sm shadow-black/5 transition-shadow focus-within:border-ring focus-within:outline-none focus-within:ring-[3px] focus-within:ring-ring/20 p-1 gap-1",
+												"border-input rounded-xl bg-background shadow-sm shadow-black/5 transition-shadow focus-within:border-ring focus-within:outline-none focus-within:ring-[3px] focus-within:ring-ring/20 p-1 gap-1",
 											input: "w-full min-w-[80px] focus-visible:outline-none shadow-none px-2 h-7",
 											tag: {
-												body: "h-7 relative bg-background border border-input hover:bg-background rounded-md font-medium text-xs ps-2 pe-7 flex",
+												body: "h-7 relative bg-background border border-input hover:bg-background rounded-lg font-medium text-xs ps-2 pe-7 flex",
 												closeButton:
 													"absolute -inset-y-px -end-px p-0 rounded-e-lg flex size-7 transition-colors outline-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 text-muted-foreground/80 hover:text-foreground",
 											},
@@ -208,7 +210,7 @@ export default function YouTubeVideoAdder() {
 
 								{error && (
 									<motion.div
-										className="text-sm text-red-500 mt-2"
+										className="text-sm text-red-500 mt-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/30 rounded-xl"
 										initial={{ opacity: 0, scale: 0.9 }}
 										animate={{ opacity: 1, scale: 1 }}
 										transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -217,7 +219,7 @@ export default function YouTubeVideoAdder() {
 									</motion.div>
 								)}
 
-								<motion.div variants={itemVariants} className="bg-muted/50 rounded-lg p-4 text-sm">
+								<motion.div variants={itemVariants} className="bg-muted/50 rounded-xl p-4 text-sm">
 									<h4 className="font-medium mb-2">{t('tips_title')}</h4>
 									<ul className="list-disc pl-5 space-y-1 text-muted-foreground">
 										<li>{t('tip_1')}</li>
@@ -239,8 +241,8 @@ export default function YouTubeVideoAdder() {
 														initial={{ opacity: 0, y: 10 }}
 														animate={{ opacity: 1, y: 0 }}
 														transition={{ delay: index * 0.1 }}
-														className="relative aspect-video rounded-lg overflow-hidden border"
-													>
+													className="relative aspect-video rounded-xl overflow-hidden border"
+												>
 														<iframe
 															width="100%"
 															height="100%"
@@ -263,6 +265,7 @@ export default function YouTubeVideoAdder() {
 						<CardFooter className="flex justify-between">
 							<Button
 								variant="outline"
+								className="rounded-xl"
 								onClick={() => router.push(`/dashboard/${search_space_id}/documents`)}
 							>
 								{t('cancel')}
@@ -270,7 +273,7 @@ export default function YouTubeVideoAdder() {
 							<Button
 								onClick={handleSubmit}
 								disabled={isSubmitting || videoTags.length === 0}
-								className="relative overflow-hidden"
+								className="relative overflow-hidden rounded-xl"
 							>
 								{isSubmitting ? (
 									<>

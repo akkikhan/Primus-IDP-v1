@@ -1,3 +1,15 @@
+// Temporarily using a simple redirect until Fumadocs/Zod compatibility is resolved
+// The AI SDK requires Zod v3 while Fumadocs v15+ requires Zod v4
+import { redirect } from "next/navigation";
+
+export default async function Page() {
+	// Redirect to external docs until compatibility is fixed
+	redirect("https://www.primusidp.net/docs/");
+}
+
+export const dynamic = 'force-dynamic';
+
+/* Original Fumadocs implementation - disabled due to Zod v3/v4 incompatibility
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import { source } from "@/lib/source";
@@ -35,3 +47,4 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
 		description: page.data.description,
 	};
 }
+*/

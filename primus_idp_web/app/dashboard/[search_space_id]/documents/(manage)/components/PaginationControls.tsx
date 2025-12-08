@@ -55,10 +55,10 @@ export function PaginationControls({
 					{t('rows_per_page')}
 				</Label>
 				<Select value={String(pageSize)} onValueChange={(v) => onPageSizeChange(Number(v))}>
-					<SelectTrigger id={id} className="w-fit whitespace-nowrap">
+					<SelectTrigger id={id} className="w-fit whitespace-nowrap rounded-xl">
 						<SelectValue placeholder="Select number of results" />
 					</SelectTrigger>
-					<SelectContent>
+					<SelectContent className="rounded-xl">
 						{[5, 10, 25, 50].map((s) => (
 							<SelectItem key={s} value={String(s)}>
 								{s}
@@ -94,7 +94,7 @@ export function PaginationControls({
 								<Button
 									size="icon"
 									variant="outline"
-									className="disabled:pointer-events-none disabled:opacity-50"
+									className="disabled:pointer-events-none disabled:opacity-50 rounded-xl"
 									onClick={onFirst}
 									disabled={!canPrev}
 									aria-label="Go to first page"
@@ -112,7 +112,7 @@ export function PaginationControls({
 								<Button
 									size="icon"
 									variant="outline"
-									className="disabled:pointer-events-none disabled:opacity-50"
+									className="disabled:pointer-events-none disabled:opacity-50 rounded-xl"
 									onClick={onPrev}
 									disabled={!canPrev}
 									aria-label="Go to previous page"
@@ -130,7 +130,7 @@ export function PaginationControls({
 								<Button
 									size="icon"
 									variant="outline"
-									className="disabled:pointer-events-none disabled:opacity-50"
+									className="disabled:pointer-events-none disabled:opacity-50 rounded-xl"
 									onClick={onNext}
 									disabled={!canNext}
 									aria-label="Go to next page"
@@ -148,7 +148,7 @@ export function PaginationControls({
 								<Button
 									size="icon"
 									variant="outline"
-									className="disabled:pointer-events-none disabled:opacity-50"
+									className="disabled:pointer-events-none disabled:opacity-50 rounded-xl"
 									onClick={onLast}
 									disabled={!canNext}
 									aria-label="Go to last page"

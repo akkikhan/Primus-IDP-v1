@@ -33,17 +33,19 @@ export default function ChatInterface({
 		<LlamaIndexChatSection handler={handler} className="flex h-full">
 			<div className="flex flex-1 flex-col">
 				<ChatMessagesUI />
-				<div className="border-t p-4">
-					<ChatInputUI
-						onDocumentSelectionChange={onDocumentSelectionChange}
-						selectedDocuments={selectedDocuments}
-						onConnectorSelectionChange={onConnectorSelectionChange}
-						selectedConnectors={selectedConnectors}
-						searchMode={searchMode}
-						onSearchModeChange={onSearchModeChange}
-						researchMode={researchMode}
-						onResearchModeChange={onResearchModeChange}
-					/>
+				<div className="border-t border-border/40 bg-background/50 backdrop-blur-sm p-4 md:p-6">
+					<div className="max-w-4xl mx-auto">
+						<ChatInputUI
+							onDocumentSelectionChange={onDocumentSelectionChange}
+							selectedDocuments={selectedDocuments}
+							onConnectorSelectionChange={onConnectorSelectionChange}
+							selectedConnectors={selectedConnectors}
+							searchMode={searchMode}
+							onSearchModeChange={onSearchModeChange}
+							researchMode={researchMode}
+							onResearchModeChange={onResearchModeChange}
+						/>
+					</div>
 				</div>
 			</div>
 		</LlamaIndexChatSection>

@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Install system dependencies including SSL tools, CUDA dependencies, and Tesseract OCR
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    bash \
     gcc \
     python3-dev \
     ca-certificates \

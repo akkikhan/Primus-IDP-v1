@@ -53,16 +53,22 @@ export const iconMap: Record<string, LucideIcon> = {
 
 const defaultData = {
 	user: {
-		name: "Surf",
+		name: "Primus Hub",
 		email: "m@example.com",
 		avatar: "/logo.svg",
 	},
 	navMain: [
 		{
-			title: "Researcher",
+			title: "Chat",
 			url: "#",
-			icon: "SquareTerminal",
+			icon: "MessageSquare",
 			isActive: true,
+			items: [],
+		},
+		{
+			title: "LLMs",
+			url: "#",
+			icon: "Settings2",
 			items: [],
 		},
 		{
@@ -96,24 +102,15 @@ const defaultData = {
 			],
 		},
 		{
-			title: "Research Synthesizer's",
+			title: "Logs",
 			url: "#",
-			icon: "SquareLibrary",
-			items: [
-				{
-					title: "Podcast Creator",
-					url: "#",
-				},
-				{
-					title: "Presentation Creator",
-					url: "#",
-				},
-			],
+			icon: "FileText",
+			items: [],
 		},
 	],
 	navSecondary: [
 		{
-			title: "SEARCH SPACE",
+			title: "WORKSPACE",
 			url: "#",
 			icon: "LifeBuoy",
 		},
@@ -210,17 +207,17 @@ export const AppSidebar = memo(function AppSidebar({
 
 	return (
 		<Sidebar variant="inset" collapsible="icon" aria-label="Main navigation" {...props}>
-			<SidebarHeader>
+			<SidebarHeader className="pb-2">
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton size="lg" asChild aria-label="Go to home page">
-							<div>
-								<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+							<div className="flex items-center gap-3">
+								<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-9 items-center justify-center rounded-xl shadow-sm">
 									<Logo className="rounded-lg" />
 								</div>
 								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-medium">Primus IDP</span>
-									<span className="truncate text-xs">beta v0.0.1</span>
+									<span className="truncate font-semibold tracking-tight">Primus IDP</span>
+									<span className="truncate text-xs text-muted-foreground">beta v0.0.1</span>
 								</div>
 							</div>
 						</SidebarMenuButton>
@@ -228,16 +225,16 @@ export const AppSidebar = memo(function AppSidebar({
 				</SidebarMenu>
 			</SidebarHeader>
 
-			<SidebarContent className="space-y-6">
+			<SidebarContent className="space-y-4 px-1">
 				<NavMain items={processedNavMain} />
 
 				{processedRecentChats.length > 0 && (
-					<div className="space-y-2">
+					<div className="space-y-2 pt-2">
 						<NavProjects chats={processedRecentChats} />
 					</div>
 				)}
 			</SidebarContent>
-			<SidebarFooter>
+			<SidebarFooter className="pt-2 border-t border-border/40">
 				<NavSecondary items={processedNavSecondary} className="mt-auto" />
 			</SidebarFooter>
 		</Sidebar>

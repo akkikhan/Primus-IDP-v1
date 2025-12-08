@@ -7,8 +7,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-	--font-sans: var(--font-inter);
-	--font-mono: var(--font-geist-mono);
+	--font-sans: var(--font-dm-sans);
+	--font-mono: var(--font-jetbrains-mono);
 	
 	/* Primus IDP Cinematic Brand Colors */
 	--color-primus-blood-red: #A11218;
@@ -46,7 +46,7 @@
 	--chart-3: #D36B3C;
 	--chart-4: #A7E4FF;
 	--chart-5: #533025;
-	--radius: 0.75rem;
+	--radius: 1rem;
 	--sidebar: #F5EDE6;
 	--sidebar-foreground: #0A0A0F;
 	--sidebar-primary: #A11218;

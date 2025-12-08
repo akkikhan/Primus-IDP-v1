@@ -55,9 +55,9 @@
 		"dotenv": "^17.2.3",
 		"drizzle-orm": "^0.44.5",
 		"emblor": "^1.4.8",
-		"fumadocs-core": "^15.6.6",
-		"fumadocs-mdx": "^11.7.1",
-		"fumadocs-ui": "^15.6.6",
+		"fumadocs-core": "^15.8.5",
+		"fumadocs-mdx": "^11.10.1",
+		"fumadocs-ui": "^15.8.5",
 		"geist": "^1.4.2",
 		"lucide-react": "^0.477.0",
 		"motion": "^12.23.22",
@@ -83,7 +83,8 @@
 		"sonner": "^2.0.6",
 		"tailwind-merge": "^3.3.1",
 		"tailwindcss-animate": "^1.0.7",
-		"zod": "^3.25.76"
+		"zod": "^3.25.76",
+		"zod4": "npm:zod@^4.1.13"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.2",
@@ -102,6 +103,12 @@
 		"tailwindcss": "^4.1.11",
 		"tsx": "^4.20.6",
 		"typescript": "^5.8.3"
+	},
+	"pnpm": {
+		"overrides": {
+			"fumadocs-core>zod": "npm:zod@^4",
+			"fumadocs-mdx>zod": "npm:zod@^4",
+			"fumadocs-ui>zod": "npm:zod@^4"
+		}
 	}
 }
-

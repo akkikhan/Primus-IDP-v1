@@ -1,6 +1,14 @@
-import { createFromSource } from "fumadocs-core/search/server";
-import { source } from "@/lib/source";
+// Temporarily disabled due to Fumadocs/Zod v3 incompatibility
+// import { createFromSource } from "fumadocs-core/search/server";
+// import { source } from "@/lib/source";
+// export const { GET } = createFromSource(source);
 
-export const { GET } = createFromSource(source);
+import { NextResponse } from "next/server";
+
+export async function GET() {
+  return NextResponse.json({ 
+    error: "Search temporarily disabled. Documentation is being migrated." 
+  }, { status: 503 });
+}
 
 

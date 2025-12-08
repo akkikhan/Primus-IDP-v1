@@ -15,12 +15,12 @@ export default function DashboardLayout({
 
 	const customNavSecondary = [
 		{
-			title: `All Search Spaces`,
+			title: `All Workspaces`,
 			url: `#`,
 			icon: "Info",
 		},
 		{
-			title: `All Search Spaces`,
+			title: `All Workspaces`,
 			url: "/dashboard",
 			icon: "Undo2",
 		},
@@ -28,18 +28,17 @@ export default function DashboardLayout({
 
 	const customNavMain = [
 		{
-			title: "Researcher",
+			title: "Chat",
 			url: `/dashboard/${search_space_id}/researcher`,
-			icon: "SquareTerminal",
+			icon: "MessageSquare",
 			items: [],
 		},
 		{
-			title: "Manage LLMs",
+			title: "LLMs",
 			url: `/dashboard/${search_space_id}/settings`,
 			icon: "Settings2",
 			items: [],
 		},
-
 		{
 			title: "Documents",
 			url: "#",
@@ -48,14 +47,6 @@ export default function DashboardLayout({
 				{
 					title: "Upload Documents",
 					url: `/dashboard/${search_space_id}/documents/upload`,
-				},
-				// { TODO: FIX THIS AND ADD IT BACK
-				//   title: "Add Webpages",
-				//   url: `/dashboard/${search_space_id}/documents/webpage`,
-				// },
-				{
-					title: "Add Youtube Videos",
-					url: `/dashboard/${search_space_id}/documents/youtube`,
 				},
 				{
 					title: "Manage Documents",

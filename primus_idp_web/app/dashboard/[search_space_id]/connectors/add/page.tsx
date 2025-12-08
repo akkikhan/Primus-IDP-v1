@@ -285,17 +285,17 @@ export default function ConnectorsPage() {
 					<motion.div
 						key={category.id}
 						variants={fadeIn}
-						className="rounded-lg border bg-card text-card-foreground shadow-sm"
+						className="rounded-2xl border bg-card/50 backdrop-blur-sm text-card-foreground shadow-sm"
 					>
 						<Collapsible
 							open={expandedCategories.includes(category.id)}
 							onOpenChange={() => toggleCategory(category.id)}
 							className="w-full"
 						>
-							<div className="flex items-center justify-between space-x-4 p-4">
+							<div className="flex items-center justify-between space-x-4 p-5">
 								<h3 className="text-xl font-semibold">{t(category.title)}</h3>
 								<CollapsibleTrigger asChild>
-									<Button variant="ghost" size="sm" className="w-9 p-0 hover:bg-muted">
+									<Button variant="ghost" size="sm" className="w-9 p-0 hover:bg-muted rounded-xl">
 										<motion.div
 											animate={{
 												rotate: expandedCategories.includes(category.id) ? 180 : 0,
@@ -312,7 +312,7 @@ export default function ConnectorsPage() {
 							<CollapsibleContent>
 								<AnimatePresence>
 									<motion.div
-										className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-4"
+										className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 p-5"
 										variants={staggerContainer}
 										initial="hidden"
 										animate="visible"
@@ -325,9 +325,9 @@ export default function ConnectorsPage() {
 												whileHover="hover"
 												className="col-span-1"
 											>
-												<Card className="h-full flex flex-col overflow-hidden border-transparent transition-all duration-200 hover:border-primary/50">
+												<Card className="h-full flex flex-col overflow-hidden border-transparent transition-all duration-200 hover:border-primary/50 rounded-xl">
 													<CardHeader className="flex-row items-center gap-4 pb-2">
-														<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 dark:bg-primary/20">
+														<div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 dark:bg-primary/20">
 															<motion.div
 																whileHover={{ rotate: 5, scale: 1.1 }}
 																className="text-primary"
@@ -368,7 +368,7 @@ export default function ConnectorsPage() {
 																href={`/dashboard/${searchSpaceId}/connectors/add/${connector.id}`}
 																className="w-full"
 															>
-																<Button variant="default" className="w-full group">
+																<Button variant="default" className="w-full group rounded-xl">
 																	<span>{t('connect')}</span>
 																	<motion.div
 																		className="ml-1"
@@ -386,14 +386,14 @@ export default function ConnectorsPage() {
 															</Link>
 														)}
 														{connector.status === "coming-soon" && (
-															<Button variant="outline" disabled className="w-full opacity-70">
+															<Button variant="outline" disabled className="w-full opacity-70 rounded-xl">
 																{t('coming_soon')}
 															</Button>
 														)}
 														{connector.status === "connected" && (
 															<Button
 																variant="outline"
-																className="w-full border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-950"
+																className="w-full border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-950 rounded-xl"
 															>
 																{t('manage')}
 															</Button>

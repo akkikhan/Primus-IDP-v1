@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Inter } from "next/font/google";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { I18nProvider } from "@/components/providers/I18nProvider";
 
-const inter = Inter({
+const dmSans = DM_Sans({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700"],
 	display: "swap",
-	variable: "--font-inter",
+	variable: "--font-dm-sans",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+	subsets: ["latin"],
+	weight: ["400", "500", "600"],
+	display: "swap",
+	variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = {
@@ -88,7 +95,7 @@ export default function RootLayout({
 	// Locale state is fixed to English after removal of the language switcher
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={cn(inter.className, "bg-[#FDFBF7] dark:bg-[#1A1614] antialiased h-full w-full")}>
+			<body className={cn(dmSans.variable, jetbrainsMono.variable, "font-sans bg-[#FDFBF7] dark:bg-[#1A1614] antialiased h-full w-full")}>
 				<LocaleProvider>
 					<I18nProvider>
 						<ThemeProvider

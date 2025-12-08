@@ -1,19 +1,10 @@
 "use client";
 
-import { useInView } from "motion/react";
-import { Manrope } from "next/font/google";
+import { motion, useInView } from "motion/react";
+import { Sparkles } from "lucide-react";
 import { useEffect, useMemo, useReducer, useRef } from "react";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
-import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
-
-// Font configuration - could be moved to a global font config file
-const manrope = Manrope({
-	subsets: ["latin"],
-	weight: ["400", "700"],
-	display: "swap", // Optimize font loading
-	variable: "--font-manrope",
-});
 
 // Constants for timing - makes it easier to adjust and more maintainable
 const TIMING = {
@@ -27,14 +18,14 @@ const ANIMATION_CONFIG = {
 		type: "highlight" as const,
 		animationDuration: 2000,
 		iterations: 3,
-		color: "#3b82f680",
+		color: "var(--primary)",
 		multiline: true,
 	},
 	UNDERLINE: {
 		type: "underline" as const,
 		animationDuration: 2000,
 		iterations: 3,
-		color: "#10b981",
+		color: "var(--accent)",
 	},
 } as const;
 
@@ -94,14 +85,13 @@ export function AnimatedEmptyState() {
 	const headingClassName = useMemo(
 		() =>
 			cn(
-				"text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-neutral-900 dark:text-neutral-50 mb-6",
-				manrope.className
+				"text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-4"
 			),
 		[]
 	);
 
 	const paragraphClassName = useMemo(
-		() => "text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 mb-8 max-w-2xl mx-auto",
+		() => "text-base sm:text-lg text-muted-foreground mb-8 max-w-xl mx-auto leading-relaxed",
 		[]
 	);
 
@@ -131,21 +121,42 @@ export function AnimatedEmptyState() {
 	}, [layoutStable, isInView]);
 
 	return (
-		<div ref={ref} className="flex-1 flex items-center justify-center w-full min-h-[400px]">
-			<div className="max-w-4xl mx-auto px-4 py-10 text-center">
+		<div ref={ref} className="flex-1 flex items-center justify-center w-full min-h-[450px]">
+			<motion.div 
+				className="max-w-3xl mx-auto px-6 py-12 text-center"
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.5, ease: "easeOut" }}
+			>
+				{/* Icon/Logo Section */}
+				<motion.div 
+					className="mb-8 flex justify-center"
+					initial={{ scale: 0.8, opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+					transition={{ duration: 0.4, delay: 0.1 }}
+				>
+					<div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center shadow-lg shadow-primary/10">
+						<Sparkles className="w-8 h-8 text-primary" />
+					</div>
+				</motion.div>
+
 				<RoughNotationGroup show={shouldShowHighlight}>
 					<h1 className={headingClassName}>
+						Welcome To{" "}
 						<RoughNotation {...ANIMATION_CONFIG.HIGHLIGHT}>
-							<span>Primus IDP</span>
+							<span className="text-primary">Primus IDP</span>
 						</RoughNotation>
 					</h1>
 
 					<p className={paragraphClassName}>
-						<RoughNotation {...ANIMATION_CONFIG.UNDERLINE}>Let's Start Exploring</RoughNotation>{" "}
-						through your knowledge base.
+						Get started by asking a question and let AI explore{" "}
+						<RoughNotation {...ANIMATION_CONFIG.UNDERLINE}>
+							your knowledge base
+						</RoughNotation>
+						. Not sure where to start?
 					</p>
 				</RoughNotationGroup>
-			</div>
+			</motion.div>
 		</div>
 	);
 }

@@ -249,17 +249,17 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 							<Input
 								type="text"
 								placeholder="Search chats..."
-								className="pl-8"
+								className="pl-8 rounded-xl"
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 							/>
 						</div>
 
 						<Select value={selectedType} onValueChange={setSelectedType}>
-							<SelectTrigger className="w-full md:w-40">
+							<SelectTrigger className="w-full md:w-40 rounded-xl">
 								<SelectValue placeholder="Filter by type" />
 							</SelectTrigger>
-							<SelectContent>
+							<SelectContent className="rounded-xl">
 								<SelectGroup>
 									{chatTypes.map((type) => (
 										<SelectItem key={type} value={type}>
@@ -273,10 +273,10 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 
 					<div className="flex items-center gap-2">
 						<Select value={sortOrder} onValueChange={setSortOrder}>
-							<SelectTrigger className="w-40">
+							<SelectTrigger className="w-40 rounded-xl">
 								<SelectValue placeholder="Sort order" />
 							</SelectTrigger>
-							<SelectContent>
+							<SelectContent className="rounded-xl">
 								<SelectGroup>
 									<SelectItem value="newest">Newest First</SelectItem>
 									<SelectItem value="oldest">Oldest First</SelectItem>
@@ -297,14 +297,14 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 				)}
 
 				{error && !isLoading && (
-					<div className="border border-destructive/50 text-destructive p-4 rounded-md">
+					<div className="border border-destructive/50 text-destructive p-4 rounded-xl bg-destructive/10">
 						<h3 className="font-medium">Error loading chats</h3>
 						<p className="text-sm">{error}</p>
 					</div>
 				)}
 
 				{!isLoading && !error && filteredChats.length === 0 && (
-					<div className="flex flex-col items-center justify-center h-40 gap-2 text-center">
+					<div className="flex flex-col items-center justify-center h-40 gap-2 text-center rounded-2xl border bg-card/50 backdrop-blur-sm p-8">
 						<MessageCircleMore className="h-8 w-8 text-muted-foreground" />
 						<h3 className="font-medium">No chats found</h3>
 						<p className="text-sm text-muted-foreground">
@@ -319,7 +319,7 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 				{!isLoading && !error && filteredChats.length > 0 && (
 					<AnimatePresence mode="wait">
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-						{currentChats.map((chat, index) => (
+						{paginatedChats.map((chat, index) => (
 							<MotionCard
 								key={chat.id}
 								variants={chatCardVariants}
@@ -327,7 +327,7 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 								animate="animate"
 								exit="exit"
 								transition={{ duration: 0.2, delay: index * 0.05 }}
-								className="overflow-hidden hover:shadow-md transition-shadow"
+								className="overflow-hidden hover:shadow-md transition-shadow rounded-2xl border bg-card/50 backdrop-blur-sm"
 							>
 								<CardHeader className="pb-3">
 									<div className="flex justify-between items-start">
@@ -344,12 +344,12 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 										</div>
 										<DropdownMenu>
 											<DropdownMenuTrigger asChild>
-												<Button variant="ghost" size="icon" className="h-8 w-8">
+												<Button variant="ghost" size="icon" className="h-8 w-8 rounded-xl">
 													<MoreHorizontal className="h-4 w-4" />
 													<span className="sr-only">Open menu</span>
 												</Button>
 											</DropdownMenuTrigger>
-											<DropdownMenuContent align="end">
+											<DropdownMenuContent align="end" className="rounded-xl">
 												<DropdownMenuItem
 													onClick={() =>
 														router.push(
@@ -380,12 +380,13 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 								</CardHeader>
 
 								<CardFooter className="flex items-center justify-between gap-2 w-full">
-									<Badge variant="secondary" className="text-xs">
+									<Badge variant="secondary" className="text-xs rounded-lg">
 										<Tag className="mr-1 h-3 w-3" />
 										{chat.type || "Unknown"}
 									</Badge>
 									<Button
 										size="sm"
+										className="rounded-xl"
 										onClick={() =>
 											router.push(`/dashboard/${chat.search_space_id}/researcher/${chat.id}`)
 										}
@@ -467,7 +468,7 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 
 			{/* Delete Confirmation Dialog */}
 			<Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
-				<DialogContent className="sm:max-w-md">
+				<DialogContent className="sm:max-w-md rounded-2xl">
 					<DialogHeader>
 						<DialogTitle className="flex items-center gap-2">
 							<Trash2 className="h-5 w-5 text-destructive" />
@@ -484,6 +485,7 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 							variant="outline"
 							onClick={() => setDeleteDialogOpen(false)}
 							disabled={isDeleting}
+							className="rounded-xl"
 						>
 							Cancel
 						</Button>
@@ -491,7 +493,7 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 							variant="destructive"
 							onClick={handleDeleteChat}
 							disabled={isDeleting}
-							className="gap-2"
+							className="gap-2 rounded-xl"
 						>
 							{isDeleting ? (
 								<>

@@ -129,14 +129,16 @@ export default function WebpageCrawler() {
 	};
 
 	return (
-		<div className="container mx-auto py-8">
-			<Card className="max-w-2xl mx-auto">
-				<CardHeader>
-					<CardTitle className="flex items-center gap-2">
-						<Globe className="h-5 w-5" />
+		<div className="container mx-auto py-8 px-4">
+			<Card className="max-w-2xl mx-auto rounded-2xl border-border/50 shadow-sm">
+				<CardHeader className="pb-4">
+					<CardTitle className="flex items-center gap-3 text-xl font-semibold">
+						<div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+							<Globe className="h-5 w-5 text-primary" />
+						</div>
 						{t('title')}
 					</CardTitle>
-					<CardDescription>{t('subtitle')}</CardDescription>
+					<CardDescription className="text-muted-foreground">{t('subtitle')}</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-4">
@@ -150,10 +152,10 @@ export default function WebpageCrawler() {
 								onAddTag={handleAddTag}
 								styleClasses={{
 									inlineTagsContainer:
-										"border-input rounded-lg bg-background shadow-sm shadow-black/5 transition-shadow focus-within:border-ring focus-within:outline-none focus-within:ring-[3px] focus-within:ring-ring/20 p-1 gap-1",
+										"border-input rounded-xl bg-background shadow-sm shadow-black/5 transition-shadow focus-within:border-ring focus-within:outline-none focus-within:ring-[3px] focus-within:ring-ring/20 p-1 gap-1",
 									input: "w-full min-w-[80px] focus-visible:outline-none shadow-none px-2 h-7",
 									tag: {
-										body: "h-7 relative bg-background border border-input hover:bg-background rounded-md font-medium text-xs ps-2 pe-7 flex",
+										body: "h-7 relative bg-background border border-input hover:bg-background rounded-lg font-medium text-xs ps-2 pe-7 flex",
 										closeButton:
 											"absolute -inset-y-px -end-px p-0 rounded-e-lg flex size-7 transition-colors outline-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 text-muted-foreground/80 hover:text-foreground",
 									},
@@ -166,9 +168,9 @@ export default function WebpageCrawler() {
 							</p>
 						</div>
 
-						{error && <div className="text-sm text-red-500 mt-2">{error}</div>}
+						{error && <div className="text-sm text-red-500 mt-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-900/30 rounded-xl">{error}</div>}
 
-						<div className="bg-muted/50 rounded-lg p-4 text-sm">
+						<div className="bg-muted/50 rounded-xl p-4 text-sm">
 							<h4 className="font-medium mb-2">{t('tips_title')}</h4>
 							<ul className="list-disc pl-5 space-y-1 text-muted-foreground">
 								<li>{t('tip_1')}</li>
@@ -182,11 +184,12 @@ export default function WebpageCrawler() {
 				<CardFooter className="flex justify-between">
 					<Button
 						variant="outline"
+						className="rounded-xl"
 						onClick={() => router.push(`/dashboard/${search_space_id}/documents`)}
 					>
 						{t('cancel')}
 					</Button>
-					<Button onClick={handleSubmit} disabled={isSubmitting || urlTags.length === 0}>
+					<Button className="rounded-xl" onClick={handleSubmit} disabled={isSubmitting || urlTags.length === 0}>
 						{isSubmitting ? (
 							<>
 								<Loader2 className="mr-2 h-4 w-4 animate-spin" />

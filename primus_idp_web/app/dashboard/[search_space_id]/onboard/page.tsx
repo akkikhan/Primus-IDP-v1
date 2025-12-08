@@ -103,7 +103,7 @@ const OnboardPage = () => {
 	if (configsLoading || preferencesLoading) {
 		return (
 			<div className="flex flex-col items-center justify-center min-h-screen">
-				<Card className="w-[350px] bg-background/60 backdrop-blur-sm">
+				<Card className="w-[350px] bg-background/60 backdrop-blur-md rounded-2xl border-border/40 shadow-lg">
 					<CardContent className="flex flex-col items-center justify-center py-12">
 						<Bot className="h-12 w-12 text-primary animate-pulse mb-4" />
 						<p className="text-sm text-muted-foreground">{t('loading_config')}</p>
@@ -124,8 +124,8 @@ const OnboardPage = () => {
 				{/* Header */}
 				<div className="text-center mb-8">
 					<div className="flex items-center justify-center mb-4">
-						<Logo className="w-12 h-12 mr-3 rounded-full" />
-						<h1 className="text-3xl font-bold">{t('welcome_title')}</h1>
+						<Logo className="w-12 h-12 mr-3 rounded-xl" />
+						<h1 className="text-3xl font-semibold">{t('welcome_title')}</h1>
 					</div>
 					<p className="text-muted-foreground text-lg">
 						{t('welcome_subtitle')}
@@ -133,7 +133,7 @@ const OnboardPage = () => {
 				</div>
 
 				{/* Progress */}
-				<Card className="mb-8 bg-background/60 backdrop-blur-sm">
+				<Card className="mb-8 bg-background/60 backdrop-blur-md rounded-2xl border-border/40 shadow-sm">
 					<CardContent className="pt-6">
 						<div className="flex items-center justify-between mb-4">
 							<div className="text-sm font-medium">
@@ -141,7 +141,7 @@ const OnboardPage = () => {
 							</div>
 							<div className="text-sm text-muted-foreground">{t('percent_complete', { percent: Math.round(progress) })}</div>
 						</div>
-						<Progress value={progress} className="mb-4" />
+						<Progress value={progress} className="mb-4 h-2 rounded-full" />
 						<div className="grid grid-cols-3 gap-4">
 							{Array.from({ length: TOTAL_STEPS }, (_, i) => {
 								const stepNum = i + 1;
@@ -151,7 +151,7 @@ const OnboardPage = () => {
 								return (
 									<div key={stepNum} className="flex items-center space-x-2">
 										<div
-											className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+											className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-medium transition-all duration-200 ${
 												isCompleted
 													? "bg-primary text-primary-foreground"
 													: isCurrent
@@ -178,15 +178,15 @@ const OnboardPage = () => {
 				</Card>
 
 				{/* Step Content */}
-				<Card className="min-h-[500px] bg-background/60 backdrop-blur-sm">
+				<Card className="min-h-[500px] bg-background/60 backdrop-blur-md rounded-2xl border-border/40 shadow-sm">
 					<CardHeader className="text-center">
-						<CardTitle className="text-2xl flex items-center justify-center gap-2">
+						<CardTitle className="text-2xl flex items-center justify-center gap-2 font-semibold">
 							{currentStep === 1 && <Bot className="w-6 h-6" />}
 							{currentStep === 2 && <Sparkles className="w-6 h-6" />}
 							{currentStep === 3 && <CheckCircle className="w-6 h-6" />}
 							{stepTitles[currentStep - 1]}
 						</CardTitle>
-						<CardDescription className="text-base">
+						<CardDescription className="text-base text-muted-foreground">
 							{stepDescriptions[currentStep - 1]}
 						</CardDescription>
 					</CardHeader>
@@ -224,7 +224,7 @@ const OnboardPage = () => {
 						variant="outline"
 						onClick={handlePrevious}
 						disabled={currentStep === 1}
-						className="flex items-center gap-2"
+						className="flex items-center gap-2 rounded-xl"
 					>
 						<ArrowLeft className="w-4 h-4" />
 						{t('previous')}
@@ -238,7 +238,7 @@ const OnboardPage = () => {
 									(currentStep === 1 && !canProceedToStep2) ||
 									(currentStep === 2 && !canProceedToStep3)
 								}
-								className="flex items-center gap-2"
+								className="flex items-center gap-2 rounded-xl"
 							>
 								{t('next')}
 								<ArrowRight className="w-4 h-4" />
@@ -246,7 +246,7 @@ const OnboardPage = () => {
 						)}
 
 						{currentStep === TOTAL_STEPS && (
-							<Button onClick={handleComplete} className="flex items-center gap-2">
+							<Button onClick={handleComplete} className="flex items-center gap-2 rounded-xl">
 								{t('complete_setup')}
 								<CheckCircle className="w-4 h-4" />
 							</Button>

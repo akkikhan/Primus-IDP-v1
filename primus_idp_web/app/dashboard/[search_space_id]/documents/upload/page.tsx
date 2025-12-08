@@ -358,7 +358,7 @@ export default function FileUploader() {
 						<CardContent className="p-10 relative z-10">
 							<div
 								{...getRootProps()}
-								className="flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed border-muted-foreground/25 rounded-lg hover:border-primary/50 transition-colors cursor-pointer"
+								className="flex flex-col items-center justify-center min-h-[300px] border-2 border-dashed border-muted-foreground/25 rounded-xl hover:border-primary/50 transition-colors cursor-pointer"
 							>
 								<input {...getInputProps()} className="hidden" />
 
@@ -445,7 +445,7 @@ export default function FileUploader() {
 													initial="hidden"
 													animate="visible"
 													exit="exit"
-													className="flex items-center justify-between p-4 rounded-lg border bg-card hover:bg-accent/50 transition-colors"
+													className="flex items-center justify-between p-4 rounded-xl border bg-card hover:bg-accent/50 transition-colors"
 												>
 													<div className="flex items-center gap-3 flex-1 min-w-0">
 														<div className="flex-shrink-0">
@@ -502,11 +502,11 @@ export default function FileUploader() {
 										animate={{ opacity: 1, y: 0 }}
 										transition={{ delay: 0.2 }}
 									>
-										<Button
-											className="w-full py-6 text-base font-medium"
-											onClick={handleUpload}
-											disabled={isUploading || files.length === 0}
-										>
+									<Button
+										className="w-full py-6 text-base font-medium rounded-xl"
+										onClick={handleUpload}
+										disabled={isUploading || files.length === 0}
+									>
 											{isUploading ? (
 												<motion.div
 													className="flex items-center gap-2"

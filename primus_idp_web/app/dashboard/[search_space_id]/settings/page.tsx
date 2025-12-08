@@ -22,35 +22,35 @@ export default function SettingsPage() {
 							{/* Back Button */}
 							<button
 								onClick={() => router.push(`/dashboard/${searchSpaceId}`)}
-								className="flex items-center justify-center h-10 w-10 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors"
+								className="flex items-center justify-center h-10 w-10 rounded-xl bg-primary/10 hover:bg-primary/20 transition-all duration-200"
 								aria-label="Back to Dashboard"
 								type="button"
 							>
 								<ArrowLeft className="h-5 w-5 text-primary" />
 							</button>
-							<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+							<div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
 								<Settings className="h-6 w-6 text-primary" />
 							</div>
 							<div className="space-y-1">
-								<h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-								<p className="text-lg text-muted-foreground">
+								<h1 className="text-3xl font-semibold tracking-tight">Settings</h1>
+								<p className="text-base text-muted-foreground">
 									Manage your LLM configurations and role assignments for this search space.
 								</p>
 							</div>
 						</div>
-						<Separator className="my-6" />
+						<Separator className="my-6 bg-border/40" />
 					</div>
 
 					{/* Settings Content */}
 					<Tabs defaultValue="models" className="space-y-8">
 						<div className="overflow-x-auto">
-							<TabsList className="grid w-full min-w-fit grid-cols-2 lg:w-auto lg:inline-grid">
-								<TabsTrigger value="models" className="flex items-center gap-2 text-sm">
+							<TabsList className="grid w-full min-w-fit grid-cols-2 lg:w-auto lg:inline-grid rounded-xl bg-muted/50 p-1">
+								<TabsTrigger value="models" className="flex items-center gap-2 text-sm rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all">
 									<Bot className="h-4 w-4" />
 									<span className="hidden sm:inline">Model Configs</span>
 									<span className="sm:hidden">Models</span>
 								</TabsTrigger>
-								<TabsTrigger value="roles" className="flex items-center gap-2 text-sm">
+								<TabsTrigger value="roles" className="flex items-center gap-2 text-sm rounded-lg data-[state=active]:bg-background data-[state=active]:shadow-sm transition-all">
 									<Brain className="h-4 w-4" />
 									<span className="hidden sm:inline">LLM Roles</span>
 									<span className="sm:hidden">Roles</span>
