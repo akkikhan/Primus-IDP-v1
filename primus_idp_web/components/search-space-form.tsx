@@ -138,7 +138,7 @@ export function SearchSpaceForm({
 						size={18}
 						className="text-muted-foreground group-hover:text-foreground transition-colors duration-200"
 					/>
-					<div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#3D2B1F]/10 to-[#A89F91]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+					<div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/10 to-violet-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 				</Button>
 			</motion.div>
 
@@ -154,7 +154,7 @@ export function SearchSpaceForm({
 					className="group relative rounded-lg"
 				>
 					<Spotlight
-						className="z-10 from-[#3D2B1F]/20 via-[#5C524C]/10 to-[#A89F91]/5 blur-2xl"
+						className="z-10 from-indigo-500/20 via-violet-500/10 to-indigo-400/5 blur-2xl"
 						size={300}
 						springOptions={{
 							stiffness: 26.7,
@@ -165,8 +165,8 @@ export function SearchSpaceForm({
 					<div className="flex flex-col p-8 rounded-xl border-2 bg-muted/30 backdrop-blur-sm transition-all hover:border-primary/50 shadow-sm">
 						<div className="flex items-center justify-between mb-4">
 							<div className="flex items-center space-x-4">
-								<span className="p-3 rounded-full bg-[#DDD5C7] dark:bg-[#3D2B1F]/50">
-									<Search className="size-6 text-[#3D2B1F]" />
+								<span className="p-3 rounded-full bg-indigo-100 dark:bg-indigo-900/50">
+									<Search className="size-6 text-indigo-600 dark:text-indigo-400" />
 								</span>
 								<h3 className="text-xl font-semibold">Search Space</h3>
 							</div>

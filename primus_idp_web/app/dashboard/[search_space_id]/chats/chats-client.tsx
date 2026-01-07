@@ -237,29 +237,29 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 		>
 			<div className="flex flex-col space-y-4 md:space-y-6">
 				<div className="flex flex-col space-y-2">
-					<h1 className="text-3xl font-bold tracking-tight">All Chats</h1>
-					<p className="text-muted-foreground">View, search, and manage all your chats.</p>
+					<h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-violet-200 to-violet-300 bg-clip-text text-transparent">All Chats</h1>
+					<p className="text-zinc-400">View, search, and manage all your chats.</p>
 				</div>
 
 				{/* Filter and Search Bar */}
 				<div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
 					<div className="flex flex-1 items-center gap-2">
 						<div className="relative w-full md:w-80">
-							<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+							<Search className="absolute left-2.5 top-2.5 h-4 w-4 text-zinc-500" />
 							<Input
 								type="text"
 								placeholder="Search chats..."
-								className="pl-8 rounded-xl"
+								className="pl-8 rounded-xl bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500/20"
 								value={searchQuery}
 								onChange={(e) => setSearchQuery(e.target.value)}
 							/>
 						</div>
 
 						<Select value={selectedType} onValueChange={setSelectedType}>
-							<SelectTrigger className="w-full md:w-40 rounded-xl">
+							<SelectTrigger className="w-full md:w-40 rounded-xl bg-zinc-800/50 border-zinc-700 text-zinc-300">
 								<SelectValue placeholder="Filter by type" />
 							</SelectTrigger>
-							<SelectContent className="rounded-xl">
+							<SelectContent className="rounded-xl bg-zinc-900 border-zinc-700">
 								<SelectGroup>
 									{chatTypes.map((type) => (
 										<SelectItem key={type} value={type}>
@@ -273,10 +273,10 @@ export default function ChatsPageClient({ searchSpaceId }: ChatsPageClientProps)
 
 					<div className="flex items-center gap-2">
 						<Select value={sortOrder} onValueChange={setSortOrder}>
-							<SelectTrigger className="w-40 rounded-xl">
+							<SelectTrigger className="w-40 rounded-xl bg-zinc-800/50 border-zinc-700 text-zinc-300">
 								<SelectValue placeholder="Sort order" />
 							</SelectTrigger>
-							<SelectContent className="rounded-xl">
+							<SelectContent className="rounded-xl bg-zinc-900 border-zinc-700">
 								<SelectGroup>
 									<SelectItem value="newest">Newest First</SelectItem>
 									<SelectItem value="oldest">Oldest First</SelectItem>

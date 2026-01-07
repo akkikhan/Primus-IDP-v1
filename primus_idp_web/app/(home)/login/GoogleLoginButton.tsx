@@ -33,7 +33,7 @@ export function GoogleLoginButton() {
 			<AmbientBackground />
 			<div className="mx-auto flex h-screen max-w-lg flex-col items-center justify-center">
 				<Logo className="rounded-md" />
-				<h1 className="my-8 text-xl font-bold text-neutral-800 dark:text-neutral-100 md:text-4xl">
+				<h1 className="my-8 text-xl font-bold text-slate-900 dark:text-white md:text-4xl">
 					{t('welcome_back')}
 				</h1>
 
@@ -41,7 +41,7 @@ export function GoogleLoginButton() {
 					initial={{ opacity: 0, y: -5 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.3 }}
-					className="mb-4 w-full overflow-hidden rounded-lg border border-yellow-200 bg-yellow-50 text-yellow-900 shadow-sm dark:border-yellow-900/30 dark:bg-yellow-900/20 dark:text-yellow-200"
+					className="mb-4 w-full overflow-hidden rounded-lg border border-indigo-200 bg-indigo-50 text-indigo-900 shadow-sm dark:border-indigo-800/30 dark:bg-indigo-900/20 dark:text-indigo-200"
 				>
 					<motion.div
 						className="flex items-center gap-2 p-4"
@@ -71,7 +71,7 @@ export function GoogleLoginButton() {
 								{t('cloud_dev_notice')}{" "}
 								<a
 									href="/docs"
-									className="text-[#3D2B1F] underline dark:text-[#A89F91] hover:text-[#5C524C] dark:hover:text-[#DDD5C7]"
+									className="text-indigo-700 underline dark:text-indigo-300 hover:text-indigo-800 dark:hover:text-indigo-200"
 								>
 									{t('docs')}
 								</a>{" "}
@@ -84,16 +84,16 @@ export function GoogleLoginButton() {
 				<motion.button
 					whileHover={{ scale: 1.02 }}
 					whileTap={{ scale: 0.98 }}
-					className="group/btn relative flex w-full items-center justify-center space-x-2 rounded-lg bg-white px-6 py-4 text-neutral-700 shadow-lg transition-all duration-200 hover:shadow-xl dark:bg-neutral-800 dark:text-neutral-200"
+					className="group/btn relative flex w-full items-center justify-center space-x-2 rounded-xl border border-slate-200 bg-white px-6 py-4 text-slate-700 shadow-lg transition-all duration-200 hover:shadow-xl hover:border-indigo-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-indigo-600"
 					onClick={handleGoogleLogin}
 				>
 					<div className="absolute inset-0 h-full w-full transform opacity-0 transition duration-200 group-hover/btn:opacity-100">
-						<div className="absolute -left-px -top-px h-4 w-4 rounded-tl-lg border-l-2 border-t-2 border-[#3D2B1F] bg-transparent transition-all duration-200 group-hover/btn:-left-2 group-hover/btn:-top-2"></div>
-						<div className="absolute -right-px -top-px h-4 w-4 rounded-tr-lg border-r-2 border-t-2 border-[#3D2B1F] bg-transparent transition-all duration-200 group-hover/btn:-right-2 group-hover/btn:-top-2"></div>
-						<div className="absolute -bottom-px -left-px h-4 w-4 rounded-bl-lg border-b-2 border-l-2 border-[#3D2B1F] bg-transparent transition-all duration-200 group-hover/btn:-bottom-2 group-hover/btn:-left-2"></div>
-						<div className="absolute -bottom-px -right-px h-4 w-4 rounded-br-lg border-b-2 border-r-2 border-[#3D2B1F] bg-transparent transition-all duration-200 group-hover/btn:-bottom-2 group-hover/btn:-right-2"></div>
+						<div className="absolute -left-px -top-px h-4 w-4 rounded-tl-lg border-l-2 border-t-2 border-indigo-500 bg-transparent transition-all duration-200 group-hover/btn:-left-2 group-hover/btn:-top-2"></div>
+						<div className="absolute -right-px -top-px h-4 w-4 rounded-tr-lg border-r-2 border-t-2 border-indigo-500 bg-transparent transition-all duration-200 group-hover/btn:-right-2 group-hover/btn:-top-2"></div>
+						<div className="absolute -bottom-px -left-px h-4 w-4 rounded-bl-lg border-b-2 border-l-2 border-indigo-500 bg-transparent transition-all duration-200 group-hover/btn:-bottom-2 group-hover/btn:-left-2"></div>
+						<div className="absolute -bottom-px -right-px h-4 w-4 rounded-br-lg border-b-2 border-r-2 border-indigo-500 bg-transparent transition-all duration-200 group-hover/btn:-bottom-2 group-hover/btn:-right-2"></div>
 					</div>
-					<IconBrandGoogleFilled className="h-5 w-5 text-neutral-700 dark:text-neutral-200" />
+					<IconBrandGoogleFilled className="h-5 w-5 text-slate-700 dark:text-slate-200" />
 					<span className="text-base font-medium">{t('continue_with_google')}</span>
 				</motion.button>
 			</div>

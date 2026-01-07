@@ -92,22 +92,22 @@ export function NavProjects({ chats }: { chats: ChatItem[] }) {
 					<SidebarMenuButton
 						onClick={() => router.push(chat.url)}
 						disabled={isDeletingChat}
-						className={isDeletingChat ? "opacity-50" : ""}
+						className={`text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors ${isDeletingChat ? "opacity-50" : ""}`}
 					>
-						<chat.icon />
+						<chat.icon className="h-4 w-4" />
 						<span className={isDeletingChat ? "opacity-50" : ""}>{chat.name}</span>
 					</SidebarMenuButton>
 
 					{chat.actions && chat.actions.length > 0 && (
 						<DropdownMenu>
 							<DropdownMenuTrigger asChild>
-								<SidebarMenuAction showOnHover>
-									<MoreHorizontal />
+								<SidebarMenuAction showOnHover className="text-zinc-500 hover:text-white">
+									<MoreHorizontal className="h-4 w-4" />
 									<span className="sr-only">More</span>
 								</SidebarMenuAction>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent
-								className="w-48"
+								className="w-48 bg-zinc-900/95 backdrop-blur-xl border-zinc-800/50"
 								side={isMobile ? "bottom" : "right"}
 								align={isMobile ? "end" : "start"}
 							>
@@ -126,9 +126,9 @@ export function NavProjects({ chats }: { chats: ChatItem[] }) {
 												}
 											}}
 											disabled={isDeletingChat}
-											className={isDeleteAction ? "text-destructive" : ""}
+											className={`${isDeleteAction ? "text-rose-400 focus:text-rose-400" : "text-zinc-300"} focus:bg-zinc-800/50`}
 										>
-											<ActionIcon className="text-muted-foreground" />
+											<ActionIcon className="h-4 w-4 text-zinc-500" />
 											<span>{isDeletingChat && isDeleteAction ? "Deleting..." : action.name}</span>
 										</DropdownMenuItem>
 									);
@@ -147,7 +147,7 @@ export function NavProjects({ chats }: { chats: ChatItem[] }) {
 
 	return (
 		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
-			<SidebarGroupLabel>{t('recent_chats')}</SidebarGroupLabel>
+			<SidebarGroupLabel className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{t('recent_chats')}</SidebarGroupLabel>
 
 			{/* Search Input */}
 			{showSearch && (
@@ -156,7 +156,7 @@ export function NavProjects({ chats }: { chats: ChatItem[] }) {
 						placeholder={t('search_chats')}
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
-						className="h-8"
+						className="h-8 bg-zinc-800/50 border-zinc-700/50 text-zinc-300 placeholder:text-zinc-500 focus:border-violet-500/50 focus:ring-violet-500/20"
 					/>
 				</div>
 			)}
@@ -168,7 +168,7 @@ export function NavProjects({ chats }: { chats: ChatItem[] }) {
 				) : (
 					/* No results state */
 					<SidebarMenuItem>
-						<SidebarMenuButton disabled className="text-muted-foreground">
+						<SidebarMenuButton disabled className="text-zinc-500">
 							<Search className="h-4 w-4" />
 							<span>{searchQuery ? t('no_chats_found') : t('no_recent_chats')}</span>
 						</SidebarMenuButton>
@@ -178,8 +178,8 @@ export function NavProjects({ chats }: { chats: ChatItem[] }) {
 				{/* View All Chats */}
 				{chats.length > 0 && (
 					<SidebarMenuItem>
-						<SidebarMenuButton onClick={() => router.push(`/dashboard/${searchSpaceId}/chats`)}>
-							<MoreHorizontal />
+						<SidebarMenuButton onClick={() => router.push(`/dashboard/${searchSpaceId}/chats`)} className="text-zinc-400 hover:text-white hover:bg-zinc-800/50">
+							<MoreHorizontal className="h-4 w-4" />
 							<span>{t('view_all_chats')}</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>

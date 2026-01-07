@@ -40,7 +40,7 @@ export function ThemeTogglerComponent() {
 							ease: "easeOut",
 						}}
 					>
-						<SunIcon className="h-4 w-4 flex-shrink-0  dark:text-neutral-500 text-neutral-700" />
+						<SunIcon className="h-4 w-4 flex-shrink-0 dark:text-slate-400 text-slate-600" />
 					</motion.div>
 				)}
 

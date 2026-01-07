@@ -110,15 +110,15 @@ const fadeInScale: Variants = {
 // Log level icons and colors
 const logLevelConfig = {
 	DEBUG: { icon: Bug, color: "text-muted-foreground", bgColor: "bg-muted/50" },
-	INFO: { icon: Info, color: "text-[#3D2B1F]", bgColor: "bg-[#DDD5C7]" },
+	INFO: { icon: Info, color: "text-indigo-700 dark:text-indigo-300", bgColor: "bg-indigo-100 dark:bg-indigo-900/30" },
 	WARNING: { icon: AlertTriangle, color: "text-yellow-600", bgColor: "bg-yellow-50" },
 	ERROR: { icon: AlertCircle, color: "text-red-600", bgColor: "bg-red-50" },
-	CRITICAL: { icon: Zap, color: "text-[#5C524C]", bgColor: "bg-[#A89F91]/30" },
+	CRITICAL: { icon: Zap, color: "text-violet-700 dark:text-violet-300", bgColor: "bg-violet-100 dark:bg-violet-900/30" },
 } as const;
 
 // Log status icons and colors
 const logStatusConfig = {
-	IN_PROGRESS: { icon: Clock, color: "text-[#3D2B1F]", bgColor: "bg-[#DDD5C7]" },
+	IN_PROGRESS: { icon: Clock, color: "text-indigo-700 dark:text-indigo-300", bgColor: "bg-indigo-100 dark:bg-indigo-900/30" },
 	SUCCESS: { icon: CheckCircle2, color: "text-green-600", bgColor: "bg-green-50" },
 	FAILED: { icon: X, color: "text-red-600", bgColor: "bg-red-50" },
 } as const;
@@ -614,12 +614,12 @@ function LogsSummaryDashboard({
 				<Card className="rounded-2xl border-border/50 shadow-sm">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-semibold">{t('active_tasks')}</CardTitle>
-						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#DDD5C7]">
-							<Clock className="h-4 w-4 text-[#3D2B1F]" />
+						<div className="flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-100 dark:bg-indigo-900/30">
+							<Clock className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
 						</div>
 					</CardHeader>
 					<CardContent>
-						<div className="text-2xl font-bold text-[#3D2B1F]">
+						<div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
 							{summary.active_tasks?.length || 0}
 						</div>
 						<p className="text-xs text-muted-foreground">{t('currently_running')}</p>

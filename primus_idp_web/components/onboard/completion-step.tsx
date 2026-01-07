@@ -35,10 +35,10 @@ export function CompletionStep({ searchSpaceId }: CompletionStepProps) {
 				transition={{ duration: 0.5 }}
 				className="text-center"
 			>
-				<div className="w-20 h-20 mx-auto mb-6 bg-green-100 rounded-full flex items-center justify-center">
-					<CheckCircle className="w-10 h-10 text-green-600" />
+				<div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/30">
+					<CheckCircle className="w-10 h-10 text-white" />
 				</div>
-				<h2 className="text-2xl font-bold mb-2">Setup Complete!</h2>
+				<h2 className="text-2xl font-bold mb-2 text-white">Setup Complete!</h2>
 			</motion.div>
 
 			{/* Configuration Summary */}
@@ -47,13 +47,13 @@ export function CompletionStep({ searchSpaceId }: CompletionStepProps) {
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 0.2 }}
 			>
-				<Card>
+				<Card className="bg-zinc-800/50 border-zinc-700/50">
 					<CardHeader>
-						<CardTitle className="flex items-center gap-2">
-							<Sparkles className="w-5 h-5" />
+						<CardTitle className="flex items-center gap-2 text-white">
+							<Sparkles className="w-5 h-5 text-violet-400" />
 							Your LLM Configuration
 						</CardTitle>
-						<CardDescription>Here's a summary of your setup</CardDescription>
+						<CardDescription className="text-zinc-400">Here's a summary of your setup</CardDescription>
 					</CardHeader>
 					<CardContent className="space-y-4">
 						{Object.entries(assignedConfigs).map(([role, config]) => {
@@ -72,22 +72,22 @@ export function CompletionStep({ searchSpaceId }: CompletionStepProps) {
 									initial={{ opacity: 0, x: -10 }}
 									animate={{ opacity: 1, x: 0 }}
 									transition={{ delay: 0.3 + Object.keys(assignedConfigs).indexOf(role) * 0.1 }}
-									className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+									className="flex items-center justify-between p-3 bg-zinc-800/50 rounded-xl border border-zinc-700/50"
 								>
 									<div className="flex items-center gap-3">
-										<div className="p-2 bg-background rounded-md">
-											<IconComponent className="w-4 h-4" />
+										<div className="p-2 bg-violet-500/20 rounded-lg">
+											<IconComponent className="w-4 h-4 text-violet-400" />
 										</div>
 										<div>
-											<p className="font-medium">
+											<p className="font-medium text-white">
 												{roleDisplayNames[role as keyof typeof roleDisplayNames]}
 											</p>
-											<p className="text-sm text-muted-foreground">{config.name}</p>
+											<p className="text-sm text-zinc-400">{config.name}</p>
 										</div>
 									</div>
 									<div className="flex items-center gap-2">
-										<Badge variant="outline">{config.provider}</Badge>
-										<span className="text-sm text-muted-foreground">{config.model_name}</span>
+										<Badge variant="outline" className="bg-violet-500/20 text-violet-300 border-violet-500/30">{config.provider}</Badge>
+										<span className="text-sm text-zinc-500">{config.model_name}</span>
 									</div>
 								</motion.div>
 							);
@@ -102,23 +102,23 @@ export function CompletionStep({ searchSpaceId }: CompletionStepProps) {
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ delay: 0.6 }}
 			>
-				<Card className="border-primary/20 bg-primary/5">
+				<Card className="border-violet-500/30 bg-gradient-to-br from-violet-500/10 to-cyan-500/5">
 					<CardContent className="pt-6">
 						<div className="flex items-center gap-3 mb-4">
-							<div className="p-2 bg-primary rounded-md">
-								<ArrowRight className="w-4 h-4 text-primary-foreground" />
+							<div className="p-2 bg-gradient-to-r from-violet-600 to-violet-500 rounded-lg shadow-lg shadow-violet-500/25">
+								<ArrowRight className="w-4 h-4 text-white" />
 							</div>
-							<h3 className="text-lg font-semibold">Ready to Get Started?</h3>
+							<h3 className="text-lg font-semibold text-white">Ready to Get Started?</h3>
 						</div>
-						<p className="text-muted-foreground mb-4">
+						<p className="text-zinc-400 mb-4">
 							Click "Complete Setup" to enter your dashboard and start exploring!
 						</p>
 						<div className="flex flex-wrap gap-2 text-sm">
-							<Badge variant="secondary">
+							<Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">
 								✓ {llmConfigs.length} LLM provider{llmConfigs.length > 1 ? "s" : ""} configured
 							</Badge>
-							<Badge variant="secondary">✓ All roles assigned</Badge>
-							<Badge variant="secondary">✓ Ready to use</Badge>
+							<Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">✓ All roles assigned</Badge>
+							<Badge variant="secondary" className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">✓ Ready to use</Badge>
 						</div>
 					</CardContent>
 				</Card>

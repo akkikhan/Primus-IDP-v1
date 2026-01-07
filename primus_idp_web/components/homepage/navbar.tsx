@@ -28,7 +28,7 @@ export const Navbar = () => {
 	}, []);
 
 	return (
-		<div className="fixed top-1 left-0 right-0 z-[60] w-full">
+		<div className="fixed top-4 left-0 right-0 z-[60] w-full px-4">
 			<DesktopNav navItems={navItems} isScrolled={isScrolled} />
 			<MobileNav navItems={navItems} isScrolled={isScrolled} />
 		</div>
@@ -44,29 +44,29 @@ const DesktopNav = ({ navItems, isScrolled }: any) => {
 				setHovered(null);
 			}}
 			className={cn(
-				"mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex transition-all duration-300",
+				"mx-auto hidden w-full max-w-5xl flex-row items-center justify-between self-start rounded-2xl px-6 py-3 lg:flex transition-all duration-300",
 				isScrolled
-					? "bg-[#0A0A0F]/95 backdrop-blur-md border border-[#D36B3C]/30 shadow-lg shadow-[#A11218]/20"
+					? "glass shadow-xl shadow-violet-500/5 dark:shadow-violet-900/10"
 					: "bg-transparent border border-transparent"
 			)}
 		>
-			<div className="flex flex-row items-center gap-2">
-				<Logo className="h-8 w-8 rounded-md" />
-				<span className="text-[#E8C3A1] text-lg font-bold">Primus IDP</span>
-			</div>
-			<div className="hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2">
+			<Link href="/" className="flex flex-row items-center gap-2.5">
+				<Logo className="h-8 w-8 rounded-lg" />
+				<span className="text-zinc-900 dark:text-white text-lg font-bold">Primus IDP</span>
+			</Link>
+			<div className="hidden flex-1 flex-row items-center justify-center space-x-1 text-sm font-medium lg:flex">
 				{navItems.map((navItem: any, idx: number) => (
 					<Link
 						onMouseEnter={() => setHovered(idx)}
 						onMouseLeave={() => setHovered(null)}
-						className="relative px-4 py-2 text-[#7A7A75] hover:text-[#E8C3A1]"
+						className="relative px-4 py-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors"
 						key={`link=${idx}`}
 						href={navItem.link}
 					>
 						{hovered === idx && (
 							<motion.div
 								layoutId="hovered"
-								className="absolute inset-0 h-full w-full rounded-full bg-[#533025]"
+								className="absolute inset-0 h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-800"
 							/>
 						)}
 						<span className="relative z-20">{navItem.name}</span>
@@ -78,29 +78,29 @@ const DesktopNav = ({ navItems, isScrolled }: any) => {
 					href="https://discord.gg/ejRNvftDp9"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="hidden rounded-full p-2 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors md:flex items-center justify-center"
+					className="hidden rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors md:flex items-center justify-center"
 				>
-					<IconBrandDiscord className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
+					<IconBrandDiscord className="h-5 w-5 text-zinc-500 dark:text-zinc-400" />
 				</Link>
 				<Link
 					href="https://github.com/khanakkijpr-dot/Primus-IDP"
 					target="_blank"
 					rel="noopener noreferrer"
-					className="hidden rounded-full px-3 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors md:flex items-center gap-1.5"
+					className="hidden rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors md:flex items-center gap-1.5"
 				>
-					<IconBrandGithub className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
+					<IconBrandGithub className="h-5 w-5 text-zinc-500 dark:text-zinc-400" />
 					{loadingGithubStars ? (
-						<div className="w-6 h-5 dark:bg-neutral-800 animate-pulse"></div>
+						<div className="w-6 h-5 bg-zinc-200 dark:bg-zinc-800 rounded animate-pulse"></div>
 					) : (
-						<span className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
+						<span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
 							{githubStars}
 						</span>
 					)}
 				</Link>
 				<ThemeTogglerComponent />
 				<Link
-					href="/contact"
-					className="hidden rounded-full bg-[#3D2B1F] px-8 py-2 text-sm font-bold text-[#DDD5C7] shadow-[0px_-2px_0px_0px_rgba(196,167,125,0.4)_inset] md:block dark:bg-[#C4A77D] dark:text-[#1A1614]"
+					href="/register"
+					className="hidden rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 transition-all duration-300 md:block"
 				>
 					Get Started
 				</Link>
@@ -116,30 +116,30 @@ const MobileNav = ({ navItems, isScrolled }: any) => {
 	return (
 		<>
 			<motion.div
-				animate={{ borderRadius: open ? "4px" : "2rem" }}
+				animate={{ borderRadius: open ? "16px" : "16px" }}
 				key={String(open)}
 				className={cn(
-					"mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-4 py-2 lg:hidden transition-all duration-300",
+					"mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-4 py-3 lg:hidden transition-all duration-300 rounded-2xl",
 					isScrolled
-						? "bg-[#FDFBF7]/90 backdrop-blur-md border border-[#A89F91]/20 shadow-lg dark:bg-[#1A1614]/90 dark:border-[#5C524C]/50"
+						? "bg-white/90 dark:bg-zinc-950/90 backdrop-blur-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-lg"
 						: "bg-transparent border border-transparent"
 				)}
 			>
 				<div className="flex w-full flex-row items-center justify-between">
-					<div className="flex flex-row items-center gap-2">
-						<Logo className="h-8 w-8 rounded-md" />
-						<span className="text-[#3D2B1F] dark:text-[#DDD5C7] text-lg font-bold">Primus IDP</span>
-					</div>
+					<Link href="/" className="flex flex-row items-center gap-2">
+						<Logo className="h-8 w-8 rounded-lg" />
+						<span className="text-zinc-900 dark:text-white text-lg font-bold">Primus IDP</span>
+					</Link>
 					<button
 						type="button"
 						onClick={() => setOpen(!open)}
-						className="relative z-50 flex items-center justify-center p-2 -mr-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors touch-manipulation"
+						className="relative z-50 flex items-center justify-center p-2 -mr-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors touch-manipulation"
 						aria-label={open ? "Close menu" : "Open menu"}
 					>
 						{open ? (
-							<IconX className="h-6 w-6 text-black dark:text-white" />
+							<IconX className="h-6 w-6 text-zinc-700 dark:text-white" />
 						) : (
-							<IconMenu2 className="h-6 w-6 text-black dark:text-white" />
+							<IconMenu2 className="h-6 w-6 text-zinc-700 dark:text-white" />
 						)}
 					</button>
 				</div>
@@ -147,40 +147,42 @@ const MobileNav = ({ navItems, isScrolled }: any) => {
 				<AnimatePresence>
 					{open && (
 						<motion.div
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							className="absolute inset-x-0 top-16 z-20 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-[#FDFBF7]/95 backdrop-blur-md border border-[#A89F91]/20 shadow-lg px-4 py-8 dark:bg-[#1A1614]/95 dark:border-[#5C524C]/50"
+							initial={{ opacity: 0, y: -10 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -10 }}
+							className="absolute inset-x-4 top-20 z-20 flex w-auto flex-col items-start justify-start gap-3 rounded-2xl bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-xl px-4 py-6"
 						>
 							{navItems.map((navItem: any, idx: number) => (
 								<Link
 									key={`link=${idx}`}
 									href={navItem.link}
-									className="relative text-neutral-600 dark:text-neutral-300"
+									onClick={() => setOpen(false)}
+									className="w-full py-2 px-3 rounded-lg text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors font-medium"
 								>
-									<motion.span className="block">{navItem.name} </motion.span>
+									{navItem.name}
 								</Link>
 							))}
-							<div className="flex w-full items-center gap-2 pt-2">
+							<div className="w-full h-px bg-zinc-200 dark:bg-zinc-800 my-2" />
+							<div className="flex w-full items-center gap-2">
 								<Link
 									href="https://discord.gg/ejRNvftDp9"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center justify-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors touch-manipulation"
+									className="flex items-center justify-center rounded-lg p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors touch-manipulation"
 								>
-									<IconBrandDiscord className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
+									<IconBrandDiscord className="h-5 w-5 text-zinc-500 dark:text-zinc-400" />
 								</Link>
 								<Link
 									href="https://github.com/khanakkijpr-dot/Primus-IDP"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="flex items-center gap-1.5 rounded-lg px-3 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors touch-manipulation"
+									className="flex items-center gap-1.5 rounded-lg px-3 py-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors touch-manipulation"
 								>
-									<IconBrandGithub className="h-5 w-5 text-neutral-600 dark:text-neutral-300" />
+									<IconBrandGithub className="h-5 w-5 text-zinc-500 dark:text-zinc-400" />
 									{loadingGithubStars ? (
-										<div className="w-6 h-5 dark:bg-neutral-800 animate-pulse"></div>
+										<div className="w-6 h-5 bg-zinc-200 dark:bg-zinc-800 rounded animate-pulse"></div>
 									) : (
-										<span className="text-sm font-medium text-neutral-600 dark:text-neutral-300">
+										<span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
 											{githubStars}
 										</span>
 									)}
@@ -188,10 +190,11 @@ const MobileNav = ({ navItems, isScrolled }: any) => {
 								<ThemeTogglerComponent />
 							</div>
 							<Link
-								href="/contact"
-								className="w-full rounded-lg bg-[#3D2B1F] px-8 py-2 font-medium text-[#DDD5C7] shadow-[0px_-2px_0px_0px_rgba(196,167,125,0.4)_inset] dark:bg-[#C4A77D] dark:text-[#1A1614] text-center touch-manipulation"
+								href="/register"
+								onClick={() => setOpen(false)}
+								className="w-full mt-2 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 px-5 py-3 font-semibold text-white shadow-lg shadow-violet-500/25 text-center touch-manipulation transition-all duration-300"
 							>
-								Book a call
+								Get Started
 							</Link>
 						</motion.div>
 					)}
@@ -200,5 +203,3 @@ const MobileNav = ({ navItems, isScrolled }: any) => {
 		</>
 	);
 };
-
-

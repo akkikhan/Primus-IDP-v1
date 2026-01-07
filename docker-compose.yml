@@ -34,7 +34,7 @@ services:
 
   backend:
     build: ./primus_idp_backend
-    # image: ghcr.io/modsetter/primus_idp_backend:latest
+    # image: ghcr.io/khanakkijpr-dot/primus_idp_backend:latest
     ports:
       - "${BACKEND_PORT:-8000}:8000"
     volumes:
@@ -59,7 +59,7 @@ services:
   # Run these services separately in production
   # celery_worker:
   #   build: ./primus_idp_backend
-  #   # image: ghcr.io/modsetter/primus_idp_backend:latest
+  #   # image: ghcr.io/khanakkijpr-dot/primus_idp_backend:latest
   #   command: celery -A app.celery_app worker --loglevel=info --concurrency=1 --pool=solo
   #   volumes:
   #     - ./primus_idp_backend:/app
@@ -78,7 +78,7 @@ services:
 
   # celery_beat:
   #   build: ./primus_idp_backend
-  #   # image: ghcr.io/modsetter/primus_idp_backend:latest
+  #   # image: ghcr.io/khanakkijpr-dot/primus_idp_backend:latest
   #   command: celery -A app.celery_app beat --loglevel=info
   #   volumes:
   #     - ./primus_idp_backend:/app
@@ -97,7 +97,7 @@ services:
 
   # flower:
   #   build: ./primus_idp_backend
-  #   # image: ghcr.io/modsetter/primus_idp_backend:latest
+  #   # image: ghcr.io/khanakkijpr-dot/primus_idp_backend:latest
   #   command: celery -A app.celery_app flower --port=5555
   #   ports:
   #     - "${FLOWER_PORT:-5555}:5555"
@@ -114,7 +114,7 @@ services:
   frontend:
     build:
       context: ./primus_idp_web
-      # image: ghcr.io/modsetter/primus_idp_ui:latest
+      # image: ghcr.io/khanakkijpr-dot/primus_idp_ui:latest
       args:
         NEXT_PUBLIC_FASTAPI_BACKEND_URL: ${NEXT_PUBLIC_FASTAPI_BACKEND_URL:-http://localhost:8000}
         NEXT_PUBLIC_FASTAPI_BACKEND_AUTH_TYPE: ${NEXT_PUBLIC_FASTAPI_BACKEND_AUTH_TYPE:-LOCAL}

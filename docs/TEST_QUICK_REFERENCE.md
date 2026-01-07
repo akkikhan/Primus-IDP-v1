@@ -261,7 +261,7 @@ Location: `.vscode/tasks.json`
 - **Documentation**: https://www.primusidp.net/docs/
 - **GitHub**: https://github.com/khanakkijpr-dot/Primus-IDP
 - **Discord**: https://discord.gg/ejRNvftDp9
-- **Issues**: https://github.com/users/MODSetter/projects/2
+- **Issues**: https://github.com/khanakkijpr-dot/Primus-IDP/issues
 
 ---
 

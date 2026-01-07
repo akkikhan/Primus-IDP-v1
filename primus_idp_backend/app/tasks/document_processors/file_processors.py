@@ -398,6 +398,136 @@ async def add_received_file_document_using_docling(
         ) from e
 
 
+
+async def add_received_file_document_using_chandra(
+    session: AsyncSession,
+    file_name: str,
+    chandra_markdown_document: str,
+    chandra_metadata: dict,
+    search_space_id: int,
+    user_id: str,
+) -> Document | None:
+    """
+    Process and store document content parsed by Chandra.
+
+    Args:
+        session: Database session
+        file_name: Name of the processed file
+        chandra_markdown_document: Markdown content from Chandra parsing
+        chandra_metadata: Metadata from Chandra parsing
+        search_space_id: ID of the search space
+        user_id: ID of the user
+
+    Returns:
+        Document object if successful, None if failed
+    """
+    try:
+        file_in_markdown = chandra_markdown_document
+
+        # Generate unique identifier hash for this file
+        unique_identifier_hash = generate_unique_identifier_hash(
+            DocumentType.FILE, file_name, search_space_id
+        )
+
+        # Generate content hash
+        content_hash = generate_content_hash(file_in_markdown, search_space_id)
+
+        # Check if document with this unique identifier already exists
+        existing_document = await check_document_by_unique_identifier(
+            session, unique_identifier_hash
+        )
+
+        if existing_document:
+            # Document exists - check if content has changed
+            if existing_document.content_hash == content_hash:
+                logging.info(f"Document for file {file_name} unchanged. Skipping.")
+                return existing_document
+            else:
+                # Content has changed - update the existing document
+                logging.info(
+                    f"Content changed for file {file_name}. Updating document."
+                )
+
+        # Get user's long context LLM (needed for both create and update)
+        user_llm = await get_user_long_context_llm(session, user_id, search_space_id)
+        if not user_llm:
+            raise RuntimeError(
+                f"No long context LLM configured for user {user_id} in search space {search_space_id}"
+            )
+
+        # Generate summary using chunked processing for large documents
+        # We can reuse docling service's summary logic or create a generic one
+        # For now, let's use the generic generate_document_summary for simplicity
+        # or if it's large, we might need the chunked approach.
+        # Let's stick to the standard summary for now.
+        
+        document_metadata = {
+            "file_name": file_name,
+            "etl_service": "CHANDRA",
+            "document_type": "File Document",
+        }
+        
+        # Add Chandra specific metadata
+        if chandra_metadata:
+             document_metadata.update(chandra_metadata)
+
+        summary_content, summary_embedding = await generate_document_summary(
+            file_in_markdown, user_llm, document_metadata
+        )
+
+        # Process chunks
+        chunks = await create_document_chunks(file_in_markdown)
+
+        # Update or create document
+        if existing_document:
+            # Update existing document
+            existing_document.title = file_name
+            existing_document.content = summary_content
+            existing_document.content_hash = content_hash
+            existing_document.embedding = summary_embedding
+            existing_document.document_metadata = {
+                "FILE_NAME": file_name,
+                "ETL_SERVICE": "CHANDRA",
+                **chandra_metadata
+            }
+            existing_document.chunks = chunks
+
+            await session.commit()
+            await session.refresh(existing_document)
+            document = existing_document
+        else:
+            # Create new document
+            document = Document(
+                search_space_id=search_space_id,
+                title=file_name,
+                document_type=DocumentType.FILE,
+                document_metadata={
+                    "FILE_NAME": file_name,
+                    "ETL_SERVICE": "CHANDRA",
+                    **chandra_metadata
+                },
+                content=summary_content,
+                embedding=summary_embedding,
+                chunks=chunks,
+                content_hash=content_hash,
+                unique_identifier_hash=unique_identifier_hash,
+            )
+
+        session.add(document)
+        await session.commit()
+        await session.refresh(document)
+
+        return document
+    except SQLAlchemyError as db_error:
+        await session.rollback()
+        raise db_error
+    except Exception as e:
+        await session.rollback()
+        raise RuntimeError(
+            f"Failed to process file document using Chandra: {e!s}"
+        ) from e
+
+
 async def process_file_in_background(
     file_path: str,
     filename: str,
@@ -799,6 +929,80 @@ async def process_file_in_background(
                             "etl_service": "DOCLING",
                         },
                     )
+
+            elif app_config.ETL_SERVICE == "CHANDRA":
+                await task_logger.log_task_progress(
+                    log_entry,
+                    f"Processing file with Chandra OCR: {filename}",
+                    {
+                        "file_type": "document",
+                        "etl_service": "CHANDRA",
+                        "processing_stage": "processing",
+                    },
+                )
+
+                from app.services.chandra_service import ChandraService
+                import tempfile
+                import shutil
+                
+                # Chandra needs an output directory
+                # We'll use a temp directory for output
+                with tempfile.TemporaryDirectory() as temp_output_dir:
+                    chandra_service = ChandraService(model_method=app_config.CHANDRA_METHOD)
+                    
+                    # Process the document
+                    result = chandra_service.process_document(
+                        file_path=file_path,
+                        output_dir=temp_output_dir
+                    )
+                    
+                    # Clean up the input temp file
+                    try:
+                        os.unlink(file_path)
+                    except Exception as e:
+                        print("Error deleting temp file", e)
+                        pass
+
+                    await task_logger.log_task_progress(
+                        log_entry,
+                        f"Chandra processing completed, creating document: {filename}",
+                        {
+                            "processing_stage": "processing_complete",
+                            "content_length": len(result["markdown"]),
+                        },
+                    )
+
+                    # Process the document using our Chandra background task
+                    doc_result = await add_received_file_document_using_chandra(
+                        session,
+                        filename,
+                        chandra_markdown_document=result["markdown"],
+                        chandra_metadata=result["metadata"],
+                        search_space_id=search_space_id,
+                        user_id=user_id,
+                    )
+
+                    if doc_result:
+                        await task_logger.log_task_success(
+                            log_entry,
+                            f"Successfully processed file with Chandra: {filename}",
+                            {
+                                "document_id": doc_result.id,
+                                "content_hash": doc_result.content_hash,
+                                "file_type": "document",
+                                "etl_service": "CHANDRA",
+                            },
+                        )
+                    else:
+                        await task_logger.log_task_success(
+                            log_entry,
+                            f"Document already exists (duplicate): {filename}",
+                            {
+                                "duplicate_detected": True,
+                                "file_type": "document",
+                                "etl_service": "CHANDRA",
+                            },
+                        )
     except Exception as e:
         await session.rollback()
         await task_logger.log_task_failure(

@@ -32,21 +32,21 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 			icon: Brain,
 			title: t('long_context_llm_title'),
 			description: t('long_context_llm_desc'),
-			color: "bg-[#DDD5C7] text-[#3D2B1F] border-[#A89F91]",
+			color: "bg-indigo-500/20 text-indigo-300 border-indigo-500/30",
 			examples: t('long_context_llm_examples'),
 		},
 		fast: {
 			icon: Zap,
 			title: t('fast_llm_title'),
 			description: t('fast_llm_desc'),
-			color: "bg-[#A89F91]/20 text-[#5C524C] border-[#A89F91]",
+			color: "bg-violet-500/20 text-violet-300 border-violet-500/30",
 			examples: t('fast_llm_examples'),
 		},
 		strategic: {
 			icon: Bot,
 			title: t('strategic_llm_title'),
 			description: t('strategic_llm_desc'),
-			color: "bg-[#5C524C]/10 text-[#3D2B1F] border-[#5C524C]",
+			color: "bg-cyan-500/20 text-cyan-300 border-cyan-500/30",
 			examples: t('strategic_llm_examples'),
 		},
 	};
@@ -110,9 +110,11 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 	if (llmConfigs.length === 0) {
 		return (
 			<div className="flex flex-col items-center justify-center py-12">
-				<AlertCircle className="w-16 h-16 text-muted-foreground mb-4" />
-				<h3 className="text-lg font-semibold mb-2">{t('no_llm_configs_found')}</h3>
-				<p className="text-muted-foreground text-center">
+				<div className="w-16 h-16 rounded-2xl bg-zinc-800/50 flex items-center justify-center mb-4">
+					<AlertCircle className="w-8 h-8 text-zinc-500" />
+				</div>
+				<h3 className="text-lg font-semibold mb-2 text-white">{t('no_llm_configs_found')}</h3>
+				<p className="text-zinc-400 text-center">
 					{t('add_provider_before_roles')}
 				</p>
 			</div>
@@ -122,9 +124,9 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 	return (
 		<div className="space-y-6">
 			{/* Info Alert */}
-			<Alert>
-				<AlertCircle className="h-4 w-4" />
-				<AlertDescription>
+			<Alert className="bg-violet-500/10 border-violet-500/30 text-violet-200">
+				<AlertCircle className="h-4 w-4 text-violet-400" />
+				<AlertDescription className="text-zinc-300">
 					{t('assign_roles_instruction')}
 				</AlertDescription>
 			</Alert>
@@ -144,7 +146,7 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 							transition={{ delay: Object.keys(ROLE_DESCRIPTIONS).indexOf(key) * 0.1 }}
 						>
 							<Card
-								className={`border-l-4 ${currentAssignment ? "border-l-primary" : "border-l-muted"}`}
+								className={`border-l-4 bg-zinc-800/50 border-zinc-700/50 ${currentAssignment ? "border-l-violet-500" : "border-l-zinc-700"}`}
 							>
 								<CardHeader className="pb-3">
 									<div className="flex items-center justify-between">
@@ -153,20 +155,20 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 												<IconComponent className="w-5 h-5" />
 											</div>
 											<div>
-												<CardTitle className="text-lg">{role.title}</CardTitle>
-												<CardDescription className="mt-1">{role.description}</CardDescription>
+												<CardTitle className="text-lg text-white">{role.title}</CardTitle>
+												<CardDescription className="mt-1 text-zinc-400">{role.description}</CardDescription>
 											</div>
 										</div>
-										{currentAssignment && <CheckCircle className="w-5 h-5 text-green-500" />}
+										{currentAssignment && <CheckCircle className="w-5 h-5 text-emerald-400" />}
 									</div>
 								</CardHeader>
 								<CardContent className="space-y-4">
-									<div className="text-sm text-muted-foreground">
-										<strong>{t('use_cases')}:</strong> {role.examples}
+									<div className="text-sm text-zinc-400">
+										<strong className="text-zinc-300">{t('use_cases')}:</strong> {role.examples}
 									</div>
 
 									<div className="space-y-2">
-										<Label className="text-sm font-medium">{t('assign_llm_config')}:</Label>
+										<Label className="text-sm font-medium text-zinc-300">{t('assign_llm_config')}:</Label>
 										<Select
 											value={currentAssignment?.toString() || ""}
 											onValueChange={(value) => handleRoleAssignment(`${key}_llm_id`, value)}
@@ -180,11 +182,11 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 													.map((config) => (
 														<SelectItem key={config.id} value={config.id.toString()}>
 															<div className="flex items-center gap-2">
-																<Badge variant="outline" className="text-xs">
+																<Badge variant="outline" className="text-xs bg-violet-500/20 text-violet-300 border-violet-500/30">
 																	{config.provider}
 																</Badge>
-																<span>{config.name}</span>
-																<span className="text-muted-foreground">({config.model_name})</span>
+																<span className="text-zinc-200">{config.name}</span>
+																<span className="text-zinc-500">({config.model_name})</span>
 															</div>
 														</SelectItem>
 													))}
@@ -193,14 +195,14 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 									</div>
 
 									{assignedConfig && (
-										<div className="mt-3 p-3 bg-muted/50 rounded-lg">
+										<div className="mt-3 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
 											<div className="flex items-center gap-2 text-sm">
-												<Bot className="w-4 h-4" />
-												<span className="font-medium">{t('assigned')}:</span>
-												<Badge variant="secondary">{assignedConfig.provider}</Badge>
-												<span>{assignedConfig.name}</span>
+												<Bot className="w-4 h-4 text-violet-400" />
+												<span className="font-medium text-zinc-200">{t('assigned')}:</span>
+												<Badge variant="secondary" className="bg-violet-500/20 text-violet-300 border-violet-500/30">{assignedConfig.provider}</Badge>
+												<span className="text-zinc-300">{assignedConfig.name}</span>
 											</div>
-											<div className="text-xs text-muted-foreground mt-1">
+											<div className="text-xs text-zinc-500 mt-1">
 												{t('model')}: {assignedConfig.model_name}
 											</div>
 										</div>
@@ -215,7 +217,7 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 			{/* Status Indicator */}
 			{isAssignmentComplete && (
 				<div className="flex justify-center pt-4">
-					<div className="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-lg border border-green-200">
+					<div className="flex items-center gap-2 px-4 py-2 bg-emerald-500/10 text-emerald-400 rounded-xl border border-emerald-500/30">
 						<CheckCircle className="w-4 h-4" />
 						<span className="text-sm font-medium">{t('all_roles_assigned_saved')}</span>
 					</div>
@@ -224,7 +226,7 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 
 			{/* Progress Indicator */}
 			<div className="flex justify-center">
-				<div className="flex items-center gap-2 text-sm text-muted-foreground">
+				<div className="flex items-center gap-2 text-sm text-zinc-400">
 					<span>{t('progress')}:</span>
 					<div className="flex gap-1">
 						{Object.keys(ROLE_DESCRIPTIONS).map((key, _index) => (
@@ -232,13 +234,13 @@ export function AssignRolesStep({ searchSpaceId, onPreferencesUpdated }: AssignR
 								key={key}
 								className={`w-2 h-2 rounded-full ${
 									assignments[`${key}_llm_id` as keyof typeof assignments]
-										? "bg-primary"
-										: "bg-muted"
+										? "bg-violet-500"
+										: "bg-zinc-700"
 								}`}
 							/>
 						))}
 					</div>
-					<span>
+					<span className="text-zinc-300">
 						{t('roles_assigned', {
 							assigned: Object.values(assignments).filter(Boolean).length,
 							total: Object.keys(ROLE_DESCRIPTIONS).length

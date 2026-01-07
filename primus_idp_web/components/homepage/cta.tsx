@@ -1,129 +1,110 @@
 "use client";
-import { IconArrowRight, IconBrandGithub } from "@tabler/icons-react";
+import { IconArrowRight, IconBrandGithub, IconCheck, IconSparkles } from "@tabler/icons-react";
 import Link from "next/link";
-import type React from "react";
-import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
 
 export function CTAHomepage() {
-	return (
-		<section className="w-full grid grid-cols-1 md:grid-cols-2 my-20 md:my-20 justify-start relative z-20 max-w-7xl mx-auto bg-gradient-to-br from-[#0A0A0F] via-[#1A1518] to-[#533025] rounded-3xl overflow-hidden border border-[#D36B3C]/30">
-			<GridLineHorizontal className="top-0" offset="200px" />
-			<GridLineHorizontal className="bottom-0 top-auto" offset="200px" />
-			<GridLineVertical className="left-0" offset="80px" />
-			<GridLineVertical className="left-auto right-0" offset="80px" />
-			<div className="md:col-span-1 p-8 md:p-14">
-				<h2 className="text-left text-[#E8C3A1] text-xl md:text-3xl tracking-tight font-bold">
-					Ready to build your own{" "}
-					<span className="bg-gradient-to-r from-[#A7E4FF] to-[#E24632] bg-clip-text text-transparent">AI-powered knowledge base?</span>
-				</h2>
-				<p className="text-left text-[#7A7A75] mt-4 max-w-lg text-base md:text-lg">
-					Primus IDP is open source and free to self-host. Get started in minutes with Docker 
-					or deploy to your preferred cloud provider.
-				</p>
+	const benefits = [
+		"100% Open Source (MIT License)",
+		"Self-hosted & Privacy-first",
+		"Active community on Discord",
+	];
 
-				<div className="flex items-start sm:items-center flex-col sm:flex-row sm:gap-4 mt-8">
-					<Link href="/register">
-						<button
-							type="button"
-							className="flex space-x-2 items-center group text-base px-6 py-3 rounded-lg bg-gradient-to-r from-[#A7E4FF] to-[#A7E4FF]/80 text-[#0A0A0F] font-semibold hover:shadow-lg hover:shadow-[#A7E4FF]/30 transition-all duration-200"
+	return (
+		<section className="w-full my-20 md:my-28 relative z-20 max-w-6xl mx-auto px-6">
+			<motion.div 
+				initial={{ opacity: 0, y: 40 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6 }}
+				viewport={{ once: true }}
+				className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-950 border border-zinc-800/50"
+			>
+				{/* Background decorative elements */}
+				<div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[100px]" />
+				<div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/15 rounded-full blur-[100px]" />
+				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-purple-500/10 rounded-full blur-[80px]" />
+				
+				{/* Grid pattern overlay */}
+				<div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+				{/* Animated border glow */}
+				<div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-violet-500/20 via-transparent to-cyan-500/20 opacity-50" />
+
+				<div className="relative grid grid-cols-1 md:grid-cols-2 gap-8 p-8 md:p-12 lg:p-16">
+					{/* Left content */}
+					<div className="flex flex-col justify-center">
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ delay: 0.1 }}
+							viewport={{ once: true }}
+							className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-300 text-sm font-medium mb-6 w-fit"
 						>
-							<span>Get Started Free</span>
-							<IconArrowRight className="group-hover:translate-x-1 h-4 w-4 transition-transform duration-200" />
-						</button>
-					</Link>
-					<Link href="https://github.com/khanakkijpr-dot/Primus-IDP" target="_blank">
-						<button
-							type="button"
-							className="mt-4 sm:mt-0 flex space-x-2 items-center group text-base px-6 py-3 rounded-lg text-[#E8C3A1] border border-[#D36B3C]/50 hover:bg-[#D36B3C]/20 hover:border-[#D36B3C] transition-all duration-200"
-						>
-							<IconBrandGithub className="h-5 w-5" />
-							<span>Star on GitHub</span>
-						</button>
-					</Link>
+							<IconSparkles className="h-4 w-4" />
+							<span>Open Source & Free</span>
+						</motion.div>
+						
+						<h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+							Ready to build your own{" "}
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400">
+								AI-powered knowledge base?
+							</span>
+						</h2>
+						<p className="text-zinc-400 text-base md:text-lg mb-8 max-w-lg leading-relaxed">
+							Primus IDP is open source and free to self-host. Get started in minutes with Docker 
+							or deploy to your preferred cloud provider.
+						</p>
+
+						<div className="flex flex-col sm:flex-row gap-4">
+							<Link href="/register">
+								<motion.button
+									type="button"
+									whileHover={{ scale: 1.02 }}
+									whileTap={{ scale: 0.98 }}
+									className="group flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white font-semibold shadow-lg shadow-violet-500/30 transition-all duration-300"
+								>
+									<span>Get Started Free</span>
+									<IconArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+								</motion.button>
+							</Link>
+							<Link href="https://github.com/khanakkijpr-dot/Primus-IDP" target="_blank">
+								<motion.button
+									type="button"
+									whileHover={{ scale: 1.02 }}
+									whileTap={{ scale: 0.98 }}
+									className="flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium border border-zinc-700 hover:border-zinc-600 backdrop-blur-sm transition-all duration-300"
+								>
+									<IconBrandGithub className="h-5 w-5" />
+									<span>Star on GitHub</span>
+								</motion.button>
+							</Link>
+						</div>
+					</div>
+
+					{/* Right content - Benefits */}
+					<div className="flex flex-col justify-center md:border-l border-zinc-800/50 md:pl-12">
+						<div className="space-y-6">
+							{benefits.map((benefit, index) => (
+								<motion.div
+									key={benefit}
+									initial={{ opacity: 0, x: 20 }}
+									whileInView={{ opacity: 1, x: 0 }}
+									transition={{ delay: 0.2 + index * 0.1 }}
+									viewport={{ once: true }}
+									className="flex items-center gap-4 group"
+								>
+									<div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center border border-emerald-500/30 group-hover:border-emerald-400/50 transition-colors">
+										<IconCheck className="h-5 w-5 text-emerald-400" />
+									</div>
+									<span className="text-zinc-200 font-medium text-lg">{benefit}</span>
+								</motion.div>
+							))}
+						</div>
+					</div>
 				</div>
-			</div>
-			<div className="md:col-span-1 p-8 md:p-14 flex flex-col justify-center border-t md:border-t-0 md:border-l border-[#D36B3C]/30">
-				<div className="space-y-4">
-					<div className="flex items-center gap-3">
-						<div className="w-10 h-10 rounded-full bg-[#E24632]/20 flex items-center justify-center">
-							<span className="text-[#E24632]">✓</span>
-						</div>
-						<span className="text-[#E8C3A1]">100% Open Source (MIT License)</span>
-					</div>
-					<div className="flex items-center gap-3">
-						<div className="w-10 h-10 rounded-full bg-[#E24632]/20 flex items-center justify-center">
-							<span className="text-[#E24632]">✓</span>
-						</div>
-						<span className="text-[#E8C3A1]">Self-hosted & Privacy-first</span>
-					</div>
-					<div className="flex items-center gap-3">
-						<div className="w-10 h-10 rounded-full bg-[#E24632]/20 flex items-center justify-center">
-							<span className="text-[#E24632]">✓</span>
-						</div>
-						<span className="text-[#E8C3A1]">Active community on Discord</span>
-					</div>
-				</div>
-			</div>
+			</motion.div>
 		</section>
 	);
 }
-
-const GridLineHorizontal = ({ className, offset }: { className?: string; offset?: string }) => {
-	return (
-		<div
-			style={
-				{
-					"--background": "#ffffff",
-					"--color": "rgba(0, 0, 0, 0.2)",
-					"--height": "1px",
-					"--width": "5px",
-					"--fade-stop": "90%",
-					"--offset": offset || "200px", //-100px if you want to keep the line inside
-					"--color-dark": "rgba(255, 255, 255, 0.2)",
-					maskComposite: "exclude",
-				} as React.CSSProperties
-			}
-			className={cn(
-				"absolute w-[calc(100%+var(--offset))] h-[var(--height)] left-[calc(var(--offset)/2*-1)]",
-				"bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)]",
-				"[background-size:var(--width)_var(--height)]",
-				"[mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-				"[mask-composite:exclude]",
-				"z-30",
-				"dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-				className
-			)}
-		></div>
-	);
-};
-
-const GridLineVertical = ({ className, offset }: { className?: string; offset?: string }) => {
-	return (
-		<div
-			style={
-				{
-					"--background": "#ffffff",
-					"--color": "rgba(0, 0, 0, 0.2)",
-					"--height": "5px",
-					"--width": "1px",
-					"--fade-stop": "90%",
-					"--offset": offset || "150px", //-100px if you want to keep the line inside
-					"--color-dark": "rgba(255, 255, 255, 0.2)",
-					maskComposite: "exclude",
-				} as React.CSSProperties
-			}
-			className={cn(
-				"absolute h-[calc(100%+var(--offset))] w-[var(--width)] top-[calc(var(--offset)/2*-1)]",
-				"bg-[linear-gradient(to_bottom,var(--color),var(--color)_50%,transparent_0,transparent)]",
-				"[background-size:var(--width)_var(--height)]",
-				"[mask:linear-gradient(to_top,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_bottom,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-				"[mask-composite:exclude]",
-				"z-30",
-				"dark:bg-[linear-gradient(to_bottom,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-				className
-			)}
-		></div>
-	);
-};
 
 

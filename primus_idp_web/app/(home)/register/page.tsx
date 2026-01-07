@@ -135,15 +135,28 @@ export default function RegisterPage() {
 	};
 
 	return (
-		<div className="relative w-full overflow-hidden">
+		<div className="relative w-full min-h-screen overflow-hidden bg-zinc-950">
 			<AmbientBackground />
-			<div className="mx-auto flex h-screen max-w-lg flex-col items-center justify-center">
-				<Logo className="rounded-md" />
-				<h1 className="my-8 text-xl font-bold text-neutral-800 dark:text-neutral-100 md:text-4xl">
-					{t('create_account')}
-				</h1>
+			<div className="relative z-10 mx-auto flex min-h-screen max-w-lg flex-col items-center justify-center px-4 py-12">
+				{/* Premium Glass Card */}
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5 }}
+					className="w-full max-w-md rounded-2xl border border-zinc-800/50 bg-zinc-900/80 backdrop-blur-xl p-8 shadow-2xl shadow-black/20"
+				>
+					{/* Header */}
+					<div className="flex flex-col items-center mb-8">
+						<div className="p-3 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 border border-violet-500/20 mb-4">
+							<Logo className="h-10 w-10 rounded-lg" />
+						</div>
+						<h1 className="text-2xl font-bold text-white md:text-3xl">
+							{t('create_account')}
+						</h1>
+						<p className="mt-2 text-zinc-400 text-sm">Join Primus IDP today</p>
+					</div>
 
-				<div className="w-full max-w-md">
+					<div className="w-full">
 					<form onSubmit={handleSubmit} className="space-y-4">
 						{/* Enhanced Error Display */}
 						<AnimatePresence>
@@ -210,7 +223,7 @@ export default function RegisterPage() {
 						<div>
 							<label
 								htmlFor="email"
-								className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+								className="block text-sm font-medium text-zinc-300 mb-1.5"
 							>
 								{t('email')}
 							</label>
@@ -220,11 +233,12 @@ export default function RegisterPage() {
 								required
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
-								className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+								className={`block w-full rounded-xl border bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all duration-200 ${
 									error
-										? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
-										: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
+										? "border-red-500/50 focus:border-red-500 focus:ring-red-500/30"
+										: "border-zinc-700/50 focus:border-violet-500 focus:ring-violet-500/30"
 								}`}
+								placeholder="Enter your email"
 								disabled={isLoading}
 							/>
 						</div>
@@ -232,7 +246,7 @@ export default function RegisterPage() {
 						<div>
 							<label
 								htmlFor="password"
-								className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+								className="block text-sm font-medium text-zinc-300 mb-1.5"
 							>
 								{t('password')}
 							</label>
@@ -242,11 +256,12 @@ export default function RegisterPage() {
 								required
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
-								className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+								className={`block w-full rounded-xl border bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all duration-200 ${
 									error
-										? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
-										: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
+										? "border-red-500/50 focus:border-red-500 focus:ring-red-500/30"
+										: "border-zinc-700/50 focus:border-violet-500 focus:ring-violet-500/30"
 								}`}
+								placeholder="Create a password"
 								disabled={isLoading}
 							/>
 						</div>
@@ -254,7 +269,7 @@ export default function RegisterPage() {
 						<div>
 							<label
 								htmlFor="confirmPassword"
-								className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+								className="block text-sm font-medium text-zinc-300 mb-1.5"
 							>
 								{t('confirm_password')}
 							</label>
@@ -264,11 +279,12 @@ export default function RegisterPage() {
 								required
 								value={confirmPassword}
 								onChange={(e) => setConfirmPassword(e.target.value)}
-								className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+								className={`block w-full rounded-xl border bg-zinc-800/50 px-4 py-3 text-white placeholder-zinc-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-0 transition-all duration-200 ${
 									error
-										? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
-										: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
+										? "border-red-500/50 focus:border-red-500 focus:ring-red-500/30"
+										: "border-zinc-700/50 focus:border-violet-500 focus:ring-violet-500/30"
 								}`}
+								placeholder="Confirm your password"
 								disabled={isLoading}
 							/>
 						</div>
@@ -276,24 +292,40 @@ export default function RegisterPage() {
 						<button
 							type="submit"
 							disabled={isLoading}
-							className="w-full rounded-xl bg-gradient-to-r from-[#A11218] to-[#E24632] px-4 py-2 text-white shadow-lg hover:from-[#E24632] hover:to-[#A11218] focus:outline-none focus:ring-2 focus:ring-[#A11218] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300"
+							className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 px-4 py-3 text-white font-semibold shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300"
 						>
-							{isLoading ? t('creating_account_btn') : t('register')}
+							{isLoading ? (
+								<span className="flex items-center justify-center gap-2">
+									<svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+										<circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+										<path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+									</svg>
+									{t('creating_account_btn')}
+								</span>
+							) : t('register')}
 						</button>
 					</form>
 
-					<div className="mt-4 text-center text-sm">
-						<p className="text-[#533025] dark:text-[#E8C3A1]/70">
+					{/* Divider */}
+					<div className="mt-6 flex items-center gap-4">
+						<div className="flex-1 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+						<span className="text-zinc-500 text-xs">OR</span>
+						<div className="flex-1 h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent"></div>
+					</div>
+
+					<div className="mt-6 text-center text-sm">
+						<p className="text-zinc-400">
 							{t('already_have_account')}{" "}
 							<Link
 								href="/login"
-								className="font-medium text-[#A11218] hover:text-[#E24632] dark:text-[#A7E4FF] dark:hover:text-[#E24632]"
+								className="font-semibold text-violet-400 hover:text-violet-300 transition-colors"
 							>
 								{t('sign_in')}
 							</Link>
 						</p>
 					</div>
-				</div>
+					</div>
+				</motion.div>
 			</div>
 		</div>
 	);

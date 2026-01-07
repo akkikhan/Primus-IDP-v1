@@ -95,6 +95,10 @@ class Config:
         # LlamaCloud API Key
         LLAMA_CLOUD_API_KEY = os.getenv("LLAMA_CLOUD_API_KEY")
 
+    elif ETL_SERVICE == "CHANDRA":
+        # Chandra Configuration
+        CHANDRA_METHOD = os.getenv("CHANDRA_METHOD", "hf")
+
     # Firecrawl API Key
     FIRECRAWL_API_KEY = os.getenv("FIRECRAWL_API_KEY", None)
 

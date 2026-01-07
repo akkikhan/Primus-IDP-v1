@@ -34,7 +34,7 @@ const ROLE_DESCRIPTIONS = {
 		icon: Brain,
 		title: "Long Context LLM",
 		description: "Handles complex tasks requiring extensive context understanding and reasoning",
-		color: "bg-[#DDD5C7] text-[#3D2B1F] border-[#A89F91]",
+		color: "bg-indigo-100 text-indigo-700 border-indigo-300 dark:bg-indigo-900/30 dark:text-indigo-300 dark:border-indigo-700",
 		examples: "Document analysis, research synthesis, complex Q&A",
 		characteristics: ["Large context window", "Deep reasoning", "Complex analysis"],
 	},
@@ -42,7 +42,7 @@ const ROLE_DESCRIPTIONS = {
 		icon: Zap,
 		title: "Fast LLM",
 		description: "Optimized for quick responses and real-time interactions",
-		color: "bg-[#A89F91]/20 text-[#5C524C] border-[#A89F91]",
+		color: "bg-violet-100 text-violet-700 border-violet-300 dark:bg-violet-900/30 dark:text-violet-300 dark:border-violet-700",
 		examples: "Quick searches, simple questions, instant responses",
 		characteristics: ["Low latency", "Quick responses", "Real-time chat"],
 	},
@@ -50,7 +50,7 @@ const ROLE_DESCRIPTIONS = {
 		icon: Bot,
 		title: "Strategic LLM",
 		description: "Advanced reasoning for planning and strategic decision making",
-		color: "bg-[#5C524C]/10 text-[#3D2B1F] border-[#5C524C]",
+		color: "bg-slate-100 text-slate-700 border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-600",
 		examples: "Planning workflows, strategic analysis, complex problem solving",
 		characteristics: ["Strategic thinking", "Long-term planning", "Complex reasoning"],
 	},
@@ -177,8 +177,8 @@ export function LLMRoleManager({ searchSpaceId }: LLMRoleManagerProps) {
 			<div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
 				<div className="space-y-1">
 					<div className="flex items-center space-x-3">
-						<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3D2B1F]/10">
-							<Settings2 className="h-5 w-5 text-[#3D2B1F]" />
+						<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900/30">
+							<Settings2 className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
 						</div>
 						<div>
 							<h2 className="text-2xl font-bold tracking-tight">LLM Role Management</h2>
@@ -243,29 +243,29 @@ export function LLMRoleManager({ searchSpaceId }: LLMRoleManagerProps) {
 			{/* Stats Overview */}
 			{!isLoading && !hasError && (
 				<div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-					<Card className="border-l-4 border-l-[#3D2B1F]">
+					<Card className="border-l-4 border-l-indigo-500">
 						<CardContent className="p-6">
 							<div className="flex items-center justify-between space-x-4">
 								<div className="space-y-1">
 									<p className="text-3xl font-bold tracking-tight">{availableConfigs.length}</p>
 									<p className="text-sm font-medium text-muted-foreground">Available Models</p>
 								</div>
-								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#3D2B1F]/10">
-									<Bot className="h-6 w-6 text-[#3D2B1F]" />
+								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900/30">
+									<Bot className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
 								</div>
 							</div>
 						</CardContent>
 					</Card>
 
-					<Card className="border-l-4 border-l-[#5C524C]">
+					<Card className="border-l-4 border-l-violet-500">
 						<CardContent className="p-6">
 							<div className="flex items-center justify-between space-x-4">
 								<div className="space-y-1">
 									<p className="text-3xl font-bold tracking-tight">{assignedConfigIds.length}</p>
 									<p className="text-sm font-medium text-muted-foreground">Assigned Roles</p>
 								</div>
-								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#5C524C]/10">
-									<CheckCircle className="h-6 w-6 text-[#5C524C]" />
+								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-violet-100 dark:bg-violet-900/30">
+									<CheckCircle className="h-6 w-6 text-violet-600 dark:text-violet-400" />
 								</div>
 							</div>
 						</CardContent>

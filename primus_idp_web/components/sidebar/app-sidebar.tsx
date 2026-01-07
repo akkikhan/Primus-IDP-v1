@@ -206,18 +206,19 @@ export const AppSidebar = memo(function AppSidebar({
 	}, [RecentChats]);
 
 	return (
-		<Sidebar variant="inset" collapsible="icon" aria-label="Main navigation" {...props}>
+		<Sidebar variant="inset" collapsible="icon" aria-label="Main navigation" className="border-r border-zinc-800/50 bg-zinc-950" {...props}>
 			<SidebarHeader className="pb-2">
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<SidebarMenuButton size="lg" asChild aria-label="Go to home page">
+						<SidebarMenuButton size="lg" asChild aria-label="Go to home page" className="hover:bg-zinc-800/50">
 							<div className="flex items-center gap-3">
-								<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-9 items-center justify-center rounded-xl shadow-sm">
+								<div className="relative flex aspect-square size-9 items-center justify-center rounded-xl bg-gradient-to-br from-violet-600 to-violet-500 shadow-lg shadow-violet-500/20">
 									<Logo className="rounded-lg" />
+									<div className="absolute inset-0 rounded-xl bg-gradient-to-t from-transparent to-white/10" />
 								</div>
 								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="truncate font-semibold tracking-tight">Primus IDP</span>
-									<span className="truncate text-xs text-muted-foreground">beta v0.0.1</span>
+									<span className="truncate font-semibold tracking-tight text-white">Primus IDP</span>
+									<span className="truncate text-xs text-zinc-500">beta v0.0.1</span>
 								</div>
 							</div>
 						</SidebarMenuButton>
@@ -234,7 +235,7 @@ export const AppSidebar = memo(function AppSidebar({
 					</div>
 				)}
 			</SidebarContent>
-			<SidebarFooter className="pt-2 border-t border-border/40">
+			<SidebarFooter className="pt-2 border-t border-zinc-800/50">
 				<NavSecondary items={processedNavSecondary} className="mt-auto" />
 			</SidebarFooter>
 		</Sidebar>

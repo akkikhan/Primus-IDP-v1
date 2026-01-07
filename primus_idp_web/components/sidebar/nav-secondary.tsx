@@ -32,13 +32,13 @@ export function NavSecondary({
 
 	return (
 		<SidebarGroup {...props}>
-			<SidebarGroupLabel>{t('search_space')}</SidebarGroupLabel>
+			<SidebarGroupLabel className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{t('search_space')}</SidebarGroupLabel>
 			<SidebarMenu>
 				{memoizedItems.map((item, index) => (
 					<SidebarMenuItem key={`${item.title}-${index}`}>
-						<SidebarMenuButton asChild size="sm" aria-label={item.title}>
+						<SidebarMenuButton asChild size="sm" aria-label={item.title} className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 transition-colors">
 							<a href={item.url}>
-								<item.icon />
+								<item.icon className="h-4 w-4" />
 								<span>{item.title}</span>
 							</a>
 						</SidebarMenuButton>

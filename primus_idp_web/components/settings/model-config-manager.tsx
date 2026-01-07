@@ -191,8 +191,8 @@ export function ModelConfigManager({ searchSpaceId }: ModelConfigManagerProps) {
 			<div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
 				<div className="space-y-1">
 					<div className="flex items-center space-x-3">
-						<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#3D2B1F]/10">
-							<Settings2 className="h-5 w-5 text-[#3D2B1F]" />
+						<div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900/30">
+							<Settings2 className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
 						</div>
 						<div>
 							<h2 className="text-2xl font-bold tracking-tight">Model Configurations</h2>
@@ -239,15 +239,15 @@ export function ModelConfigManager({ searchSpaceId }: ModelConfigManagerProps) {
 			{/* Stats Overview */}
 			{!loading && !error && (
 				<div className="grid gap-4 md:grid-cols-3">
-					<Card className="border-l-4 border-l-[#3D2B1F]">
+					<Card className="border-l-4 border-l-indigo-500">
 						<CardContent className="p-6">
 							<div className="flex items-center justify-between space-x-4">
 								<div className="space-y-1">
 									<p className="text-3xl font-bold tracking-tight">{llmConfigs.length}</p>
 									<p className="text-sm font-medium text-muted-foreground">Total Configurations</p>
 								</div>
-								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#3D2B1F]/10">
-									<Bot className="h-6 w-6 text-[#3D2B1F]" />
+								<div className="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900/30">
+									<Bot className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
 								</div>
 							</div>
 						</CardContent>

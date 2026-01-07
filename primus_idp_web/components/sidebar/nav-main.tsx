@@ -59,7 +59,7 @@ export function NavMain({ items }: { items: NavItem[] }) {
 
 	return (
 		<SidebarGroup>
-			<SidebarGroupLabel>{translateTitle('Platform')}</SidebarGroupLabel>
+			<SidebarGroupLabel className="text-xs font-medium text-zinc-500 uppercase tracking-wider">{translateTitle('Platform')}</SidebarGroupLabel>
 			<SidebarMenu>
 				{memoizedItems.map((item, index) => {
 					const translatedTitle = translateTitle(item.title);
@@ -71,9 +71,10 @@ export function NavMain({ items }: { items: NavItem[] }) {
 									tooltip={translatedTitle}
 									isActive={item.isActive}
 									aria-label={`${translatedTitle}${item.items?.length ? " with submenu" : ""}`}
+									className="text-zinc-400 hover:text-white hover:bg-zinc-800/50 data-[active=true]:bg-violet-500/10 data-[active=true]:text-violet-400 data-[active=true]:border-l-2 data-[active=true]:border-violet-500 transition-all duration-200"
 								>
 									<a href={item.url}>
-										<item.icon />
+										<item.icon className="h-4 w-4" />
 										<span>{translatedTitle}</span>
 									</a>
 								</SidebarMenuButton>
@@ -82,20 +83,20 @@ export function NavMain({ items }: { items: NavItem[] }) {
 									<>
 										<CollapsibleTrigger asChild>
 											<SidebarMenuAction
-												className="data-[state=open]:rotate-90 transition-transform duration-200"
+												className="data-[state=open]:rotate-90 transition-transform duration-200 text-zinc-500 hover:text-zinc-300"
 												aria-label={`Toggle ${translatedTitle} submenu`}
 											>
-												<ChevronRight />
+												<ChevronRight className="h-4 w-4" />
 												<span className="sr-only">Toggle submenu</span>
 											</SidebarMenuAction>
 										</CollapsibleTrigger>
 										<CollapsibleContent className="data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:slide-in-from-top-2 duration-200">
-											<SidebarMenuSub>
+											<SidebarMenuSub className="border-l border-zinc-800/50 ml-3">
 												{item.items?.map((subItem, subIndex) => {
 													const translatedSubTitle = translateTitle(subItem.title);
 													return (
 														<SidebarMenuSubItem key={`${subItem.title}-${subIndex}`}>
-															<SidebarMenuSubButton asChild aria-label={translatedSubTitle}>
+															<SidebarMenuSubButton asChild aria-label={translatedSubTitle} className="text-zinc-500 hover:text-white hover:bg-zinc-800/30 transition-colors">
 																<a href={subItem.url}>
 																	<span>{translatedSubTitle}</span>
 																</a>

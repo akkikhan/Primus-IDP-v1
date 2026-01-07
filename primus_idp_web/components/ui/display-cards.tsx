@@ -15,12 +15,12 @@ interface DisplayCardProps {
 
 function DisplayCard({
 	className,
-	icon = <Sparkles className="size-4 text-[#DDD5C7]" />,
+	icon = <Sparkles className="size-4 text-indigo-200" />,
 	title = "Featured",
 	description = "Discover amazing content",
 	date = "Just now",
-	iconClassName = "text-[#3D2B1F]",
-	titleClassName = "text-[#3D2B1F]",
+	iconClassName = "text-indigo-600 dark:text-indigo-400",
+	titleClassName = "text-slate-900 dark:text-slate-100",
 }: DisplayCardProps) {
 	return (
 		<div
@@ -30,7 +30,7 @@ function DisplayCard({
 			)}
 		>
 			<div>
-				<span className="relative inline-block rounded-full bg-[#3D2B1F] p-1">{icon}</span>
+				<span className="relative inline-block rounded-full bg-indigo-600 dark:bg-indigo-500 p-1">{icon}</span>
 				<p className={cn("text-lg font-medium", titleClassName)}>{title}</p>
 			</div>
 			<p className="whitespace-nowrap text-lg">{description}</p>

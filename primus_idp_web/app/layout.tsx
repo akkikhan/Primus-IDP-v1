@@ -51,6 +51,10 @@ export const metadata: Metadata = {
 		"AI document assistant tools",
 		"AI-powered search assistant",
 	],
+	icons: {
+		icon: "/logo.png",
+		apple: "/logo.png",
+	},
 	openGraph: {
 		title: "Primus IDP – AI Research & Knowledge Management Assistant",
 		description:

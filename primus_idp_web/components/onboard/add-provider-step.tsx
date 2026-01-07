@@ -120,9 +120,9 @@ export function AddProviderStep({
 	return (
 		<div className="space-y-6">
 			{/* Info Alert */}
-			<Alert>
-				<AlertCircle className="h-4 w-4" />
-				<AlertDescription>
+			<Alert className="bg-violet-500/10 border-violet-500/30 text-violet-200">
+				<AlertCircle className="h-4 w-4 text-violet-400" />
+				<AlertDescription className="text-zinc-300">
 					{t('add_provider_instruction')}
 				</AlertDescription>
 			</Alert>
@@ -130,7 +130,7 @@ export function AddProviderStep({
 			{/* Existing Configurations */}
 			{llmConfigs.length > 0 && (
 				<div className="space-y-4">
-					<h3 className="text-lg font-semibold">{t('your_llm_configs')}</h3>
+					<h3 className="text-lg font-semibold text-white">{t('your_llm_configs')}</h3>
 					<div className="grid gap-4">
 						{llmConfigs.map((config) => (
 							<motion.div
@@ -139,16 +139,16 @@ export function AddProviderStep({
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -10 }}
 							>
-								<Card className="border-l-4 border-l-primary">
+								<Card className="border-l-4 border-l-violet-500 bg-zinc-800/50 border-zinc-700/50">
 									<CardContent className="pt-4">
 										<div className="flex items-center justify-between">
 											<div className="flex-1">
 												<div className="flex items-center gap-2 mb-2">
-													<Bot className="w-4 h-4" />
-													<h4 className="font-medium">{config.name}</h4>
-													<Badge variant="secondary">{config.provider}</Badge>
+													<Bot className="w-4 h-4 text-violet-400" />
+													<h4 className="font-medium text-white">{config.name}</h4>
+													<Badge variant="secondary" className="bg-violet-500/20 text-violet-300 border-violet-500/30">{config.provider}</Badge>
 												</div>
-												<p className="text-sm text-muted-foreground">
+												<p className="text-sm text-zinc-400">
 													{t('model')}: {config.model_name}
 													{config.language && ` • ${t('language')}: ${config.language}`}
 													{config.api_base && ` • ${t('base')}: ${config.api_base}`}
@@ -163,7 +163,7 @@ export function AddProviderStep({
 														onConfigDeleted?.();
 													}
 												}}
-												className="text-destructive hover:text-destructive"
+												className="text-rose-400 hover:text-rose-300 hover:bg-rose-500/10"
 											>
 												<Trash2 className="w-4 h-4" />
 											</Button>
@@ -178,24 +178,26 @@ export function AddProviderStep({
 
 			{/* Add New Provider */}
 			{!isAddingNew ? (
-				<Card className="border-dashed border-2 hover:border-primary/50 transition-colors">
+				<Card className="border-dashed border-2 border-zinc-700 hover:border-violet-500/50 transition-colors bg-zinc-800/30">
 					<CardContent className="flex flex-col items-center justify-center py-12">
-						<Plus className="w-12 h-12 text-muted-foreground mb-4" />
-						<h3 className="text-lg font-semibold mb-2">{t('add_provider_title')}</h3>
-						<p className="text-muted-foreground text-center mb-4">
+						<div className="w-16 h-16 rounded-2xl bg-violet-500/10 flex items-center justify-center mb-4">
+							<Plus className="w-8 h-8 text-violet-400" />
+						</div>
+						<h3 className="text-lg font-semibold mb-2 text-white">{t('add_provider_title')}</h3>
+						<p className="text-zinc-400 text-center mb-4">
 							{t('add_provider_subtitle')}
 						</p>
-						<Button onClick={() => setIsAddingNew(true)}>
+						<Button onClick={() => setIsAddingNew(true)} className="bg-gradient-to-r from-violet-600 to-violet-500 text-white hover:from-violet-500 hover:to-violet-400 shadow-lg shadow-violet-500/25">
 							<Plus className="w-4 h-4 mr-2" />
 							{t('add_provider_button')}
 						</Button>
 					</CardContent>
 				</Card>
 			) : (
-				<Card>
+				<Card className="bg-zinc-800/50 border-zinc-700/50">
 					<CardHeader>
-						<CardTitle>{t('add_new_llm_provider')}</CardTitle>
-						<CardDescription>
+						<CardTitle className="text-white">{t('add_new_llm_provider')}</CardTitle>
+						<CardDescription className="text-zinc-400">
 							{t('configure_new_provider')}
 						</CardDescription>
 					</CardHeader>
@@ -276,14 +278,14 @@ export function AddProviderStep({
 									required
 								/>
 								{selectedProvider && (
-									<p className="text-xs text-muted-foreground">
+									<p className="text-xs text-zinc-500">
 										{t('examples')}: {selectedProvider.example}
 									</p>
 								)}
 							</div>
 
 							<div className="space-y-2">
-								<Label htmlFor="api_key">
+								<Label htmlFor="api_key" className="text-zinc-300">
 									{formData.provider === "OLLAMA" ? t('api_key_optional') || "API Key (Optional)" : t('api_key_required')}
 								</Label>
 								<Input
@@ -293,21 +295,23 @@ export function AddProviderStep({
 									value={formData.api_key}
 									onChange={(e) => handleInputChange("api_key", e.target.value)}
 									required={formData.provider !== "OLLAMA"}
+									className="bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500/20"
 								/>
 								{formData.provider === "OLLAMA" && (
-									<p className="text-xs text-muted-foreground">
+									<p className="text-xs text-zinc-500">
 										Ollama does not require an API key
 									</p>
 								)}
 							</div>
 
 							<div className="space-y-2">
-								<Label htmlFor="api_base">{t('api_base_optional')}</Label>
+								<Label htmlFor="api_base" className="text-zinc-300">{t('api_base_optional')}</Label>
 								<Input
 									id="api_base"
 									placeholder={t('api_base_placeholder')}
 									value={formData.api_base}
 									onChange={(e) => handleInputChange("api_base", e.target.value)}
+									className="bg-zinc-800/50 border-zinc-700 text-white placeholder:text-zinc-500 focus:border-violet-500 focus:ring-violet-500/20"
 								/>
 							</div>
 
@@ -320,7 +324,7 @@ export function AddProviderStep({
 							</div>
 
 							<div className="flex gap-2 pt-4">
-								<Button type="submit" disabled={isSubmitting}>
+								<Button type="submit" disabled={isSubmitting} className="bg-gradient-to-r from-violet-600 to-violet-500 text-white hover:from-violet-500 hover:to-violet-400 shadow-lg shadow-violet-500/25">
 									{isSubmitting ? t('adding') : t('add_provider')}
 								</Button>
 								<Button
@@ -328,6 +332,7 @@ export function AddProviderStep({
 									variant="outline"
 									onClick={() => setIsAddingNew(false)}
 									disabled={isSubmitting}
+									className="bg-zinc-800/50 border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white"
 								>
 									{t('cancel')}
 								</Button>

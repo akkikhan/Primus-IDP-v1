@@ -2,8 +2,8 @@
 	"name": "primus-idp-browser-extension",
 	"displayName": "Primus IDP Browser Extension",
 	"version": "0.0.8",
-	"description": "Extension to collect Browsing History for Primus IDP.",
-	"author": "https://github.com/MODSetter",
+	"description": "Extension to collect Browsing History for Primus Knowledge Hub.",
+	"author": "https://github.com/khanakkijpr-dot",
 	"scripts": {
 		"dev": "plasmo dev",
 		"build": "plasmo build",

@@ -94,14 +94,25 @@ export function DashboardClientLayout({
 	// Show loading screen while checking onboarding status (only on first load)
 	if (!hasCheckedOnboarding && loading && !isOnboardingPage) {
 		return (
-			<div className="flex flex-col items-center justify-center min-h-screen space-y-4">
-				<Card className="w-[350px] bg-background/60 backdrop-blur-md rounded-2xl border-border/40 shadow-lg">
+			<div className="relative flex flex-col items-center justify-center min-h-screen">
+				{/* Premium Background */}
+				<div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" />
+				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(124,58,237,0.15),transparent_70%)]" />
+				
+				{/* Animated Orbs */}
+				<div className="absolute top-1/4 left-1/4 w-64 h-64 bg-violet-500/10 rounded-full blur-3xl animate-pulse" />
+				<div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+				
+				<Card className="relative z-10 w-[350px] bg-zinc-900/80 backdrop-blur-xl rounded-2xl border-zinc-800/50 shadow-2xl shadow-violet-500/5">
 					<CardHeader className="pb-2">
-						<CardTitle className="text-xl font-semibold">{t('loading_config')}</CardTitle>
-						<CardDescription className="text-muted-foreground">{t('checking_llm_prefs')}</CardDescription>
+						<CardTitle className="text-xl font-semibold text-white">{t('loading_config')}</CardTitle>
+						<CardDescription className="text-zinc-400">{t('checking_llm_prefs')}</CardDescription>
 					</CardHeader>
 					<CardContent className="flex justify-center py-6">
-						<Loader2 className="h-10 w-10 text-primary animate-spin" />
+						<div className="relative">
+							<div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-full blur-lg opacity-50 animate-pulse" />
+							<Loader2 className="relative h-10 w-10 text-violet-400 animate-spin" />
+						</div>
 					</CardContent>
 				</Card>
 			</div>
@@ -111,16 +122,20 @@ export function DashboardClientLayout({
 	// Show error screen if there's an error loading preferences (but not on onboarding page)
 	if (error && !hasCheckedOnboarding && !isOnboardingPage) {
 		return (
-			<div className="flex flex-col items-center justify-center min-h-screen space-y-4">
-				<Card className="w-[400px] bg-background/60 backdrop-blur-md rounded-2xl border-destructive/30 shadow-lg">
+			<div className="relative flex flex-col items-center justify-center min-h-screen">
+				{/* Premium Background */}
+				<div className="absolute inset-0 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950" />
+				<div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.1),transparent_70%)]" />
+				
+				<Card className="relative z-10 w-[400px] bg-zinc-900/80 backdrop-blur-xl rounded-2xl border-rose-500/30 shadow-2xl shadow-rose-500/10">
 					<CardHeader className="pb-2">
-						<CardTitle className="text-xl font-semibold text-destructive">
+						<CardTitle className="text-xl font-semibold text-rose-400">
 							{t('config_error')}
 						</CardTitle>
-						<CardDescription className="text-muted-foreground">{t('failed_load_llm_config')}</CardDescription>
+						<CardDescription className="text-zinc-400">{t('failed_load_llm_config')}</CardDescription>
 					</CardHeader>
 					<CardContent>
-						<p className="text-sm text-muted-foreground">{error}</p>
+						<p className="text-sm text-zinc-500">{error}</p>
 					</CardContent>
 				</Card>
 			</div>
@@ -135,12 +150,12 @@ export function DashboardClientLayout({
 				navSecondary={translatedNavSecondary}
 				navMain={translatedNavMain}
 			/>
-			<SidebarInset>
-				<header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
+			<SidebarInset className="bg-zinc-950">
+				<header className="sticky top-0 z-50 flex h-14 shrink-0 items-center gap-2 bg-zinc-950/90 backdrop-blur-xl border-b border-zinc-800/50">
 					<div className="flex items-center justify-between w-full gap-3 px-4">
 						<div className="flex items-center gap-3">
-							<SidebarTrigger className="-ml-1 rounded-lg hover:bg-muted/80 transition-colors" />
-							<Separator orientation="vertical" className="h-5 bg-border/50" />
+							<SidebarTrigger className="-ml-1 rounded-lg hover:bg-zinc-800/80 transition-colors text-zinc-400 hover:text-white" />
+							<Separator orientation="vertical" className="h-5 bg-zinc-800" />
 							<DashboardBreadcrumb />
 						</div>
 						<div className="flex items-center gap-2">

@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 interface Integration {
 	name: string;
@@ -57,8 +58,7 @@ function SemiCircleOrbit({ radius, centerX, centerY, count, iconSize, startIndex
 				<div
 					className="
             w-[800px] h-[800px] rounded-full 
-            bg-[radial-gradient(circle_at_center,rgba(161,18,24,0.15),transparent_70%)]
-            dark:bg-[radial-gradient(circle_at_center,rgba(167,228,255,0.15),transparent_70%)]
+            bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.2),transparent_70%)]
             blur-3xl 
             pointer-events-none
           "
@@ -84,8 +84,12 @@ function SemiCircleOrbit({ radius, centerX, centerY, count, iconSize, startIndex
 				const tooltipAbove = angle > 90;
 
 				return (
-					<div
+					<motion.div
 						key={index}
+						initial={{ opacity: 0, scale: 0.8 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						transition={{ delay: index * 0.05 }}
+						viewport={{ once: true }}
 						className="absolute flex flex-col items-center group"
 						style={{
 							left: `${centerX + x - iconSize / 2}px`,
@@ -93,29 +97,31 @@ function SemiCircleOrbit({ radius, centerX, centerY, count, iconSize, startIndex
 							zIndex: 5,
 						}}
 					>
-						<img
-							src={integration.icon}
-							alt={integration.name}
-							width={iconSize}
-							height={iconSize}
-							className="object-contain cursor-pointer transition-transform hover:scale-110"
-							style={{ minWidth: iconSize, minHeight: iconSize }} // fix accidental shrink
-						/>
+						<div className="p-2.5 rounded-xl bg-zinc-800/80 backdrop-blur-sm border border-zinc-700/50 shadow-lg shadow-black/20 hover:shadow-violet-500/20 hover:border-violet-500/50 transition-all duration-300 cursor-pointer hover:scale-110 group-hover:bg-zinc-700/80">
+							<img
+								src={integration.icon}
+								alt={integration.name}
+								width={iconSize}
+								height={iconSize}
+								className="object-contain"
+								style={{ minWidth: iconSize, minHeight: iconSize }}
+							/>
+						</div>
 
-						{/* Tooltip */}
+						{/* Premium Tooltip */}
 						<div
 							className={`absolute ${
-								tooltipAbove ? "bottom-[calc(100%+8px)]" : "top-[calc(100%+8px)]"
-							} hidden group-hover:block w-auto min-w-max rounded-lg bg-black px-3 py-1.5 text-xs text-white shadow-lg text-center whitespace-nowrap`}
+								tooltipAbove ? "bottom-[calc(100%+12px)]" : "top-[calc(100%+12px)]"
+							} hidden group-hover:block w-auto min-w-max rounded-lg bg-zinc-900/95 backdrop-blur-sm px-3 py-1.5 text-xs text-white shadow-xl shadow-black/30 text-center whitespace-nowrap border border-zinc-700/50`}
 						>
 							{integration.name}
 							<div
-								className={`absolute left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-black ${
-									tooltipAbove ? "top-full" : "bottom-full"
+								className={`absolute left-1/2 -translate-x-1/2 w-2.5 h-2.5 rotate-45 bg-zinc-900/95 border-zinc-700/50 ${
+									tooltipAbove ? "top-full -mt-1.5 border-r border-b" : "bottom-full -mb-1.5 border-l border-t"
 								}`}
 							></div>
 						</div>
-					</div>
+					</motion.div>
 				);
 			})}
 		</>
@@ -144,15 +150,37 @@ export default function ExternalIntegrations() {
 				: Math.max(32, baseWidth * 0.07);
 
 	return (
-		<section className="py-12 relative min-h-screen w-full overflow-visible">
-			<div className="relative flex flex-col items-center text-center z-10">
-				<span className="inline-block px-4 py-1.5 mb-4 text-sm font-medium bg-gradient-to-r from-[#A11218] to-[#E24632] dark:from-[#533025] dark:to-[#A11218]/50 text-[#E8C3A1] dark:text-[#E8C3A1] rounded-full">
+		<section className="py-20 md:py-28 relative min-h-screen w-full overflow-visible bg-transparent">
+			<div className="relative flex flex-col items-center text-center z-10 px-6">
+				<motion.span 
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-medium bg-violet-500/10 text-violet-400 rounded-full border border-violet-500/20 backdrop-blur-sm"
+				>
+					<span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
 					Connect Everything
-				</span>
-				<h1 className="my-6 text-4xl font-bold lg:text-6xl bg-gradient-to-r from-[#A11218] to-[#D36B3C] dark:from-[#A7E4FF] dark:to-[#E24632] bg-clip-text text-transparent">15+ Integrations</h1>
-				<p className="mb-12 max-w-2xl text-[#7A7A75] dark:text-[#7A7A75] lg:text-xl">
+				</motion.span>
+				<motion.h2 
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.1 }}
+					viewport={{ once: true }}
+					className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4"
+				>
+					<span className="bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
+						15+ Integrations
+					</span>
+				</motion.h2>
+				<motion.p 
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ delay: 0.2 }}
+					viewport={{ once: true }}
+					className="mb-12 max-w-2xl text-zinc-400 text-lg"
+				>
 					Connect your knowledge sources - Slack, Notion, GitHub, Gmail, and more. All indexed and searchable in one place.
-				</p>
+				</motion.p>
 
 				<div
 					className="relative overflow-visible"

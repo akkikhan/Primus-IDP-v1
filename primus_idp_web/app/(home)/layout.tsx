@@ -1,15 +1,20 @@
 "use client";
 
 import { Footer } from "@/components/homepage/footer";
-import { Navbar } from "@/components/homepage/navbar";
+import { SideNavigation } from "@/components/homepage/side-navigation";
 
 export default function HomePageLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900 dark:from-black dark:to-gray-900 dark:text-white overflow-x-hidden">
-			<Navbar />
-			{children}
-			<Footer />
-		</main>
+		<div className="relative min-h-screen bg-zinc-950 text-white overflow-x-hidden">
+			{/* Side Navigation with Hamburger Menu */}
+			<SideNavigation />
+			
+			{/* Main Content */}
+			<main className="relative">
+				{children}
+				<Footer />
+			</main>
+		</div>
 	);
 }
 

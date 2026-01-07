@@ -82,7 +82,7 @@ export default function TerminalDisplay({ message, open }: { message: Message; o
 				<div ref={bottomRef} className="h-64 overflow-y-auto p-4 space-y-1 bg-gray-900">
 					{events.map((event, index) => (
 						<div key={`${event.id}-${index}`} className="text-green-400">
-							<span className="text-[#A89F91]">$</span>
+							<span className="text-indigo-400">$</span>
 							<span className="text-yellow-400 ml-2">[{event.type || ""}]</span>
 							<span className="text-gray-300 ml-4 mt-1 pl-2 border-l-2 border-gray-600">
 								{event.text || ""}...

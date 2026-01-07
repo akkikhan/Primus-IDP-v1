@@ -112,7 +112,7 @@ function LoginContent() {
 			<AmbientBackground />
 			<div className="mx-auto flex h-screen max-w-lg flex-col items-center justify-center">
 				<Logo className="rounded-md" />
-				<h1 className="my-8 text-xl font-bold text-neutral-800 dark:text-neutral-100 md:text-4xl">
+				<h1 className="my-8 text-xl font-bold text-slate-900 dark:text-white md:text-4xl">
 					{t('sign_in')}
 				</h1>
 

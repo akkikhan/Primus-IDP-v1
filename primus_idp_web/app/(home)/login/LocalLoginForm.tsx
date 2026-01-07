@@ -113,7 +113,7 @@ export function LocalLoginForm() {
 
 	return (
 		<div className="w-full max-w-md">
-			<form onSubmit={handleSubmit} className="space-y-4">
+			<form onSubmit={handleSubmit} className="space-y-5">
 				{/* Error Display */}
 				<AnimatePresence>
 					{error && errorTitle && (
@@ -179,7 +179,7 @@ export function LocalLoginForm() {
 			<div>
 				<label
 					htmlFor="email"
-					className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+					className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5"
 				>
 					{t('email')}
 				</label>
@@ -189,19 +189,20 @@ export function LocalLoginForm() {
 					required
 					value={username}
 					onChange={(e) => setUsername(e.target.value)}
-					className={`mt-1 block w-full rounded-xl border px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+					className={`block w-full rounded-xl border px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white dark:bg-zinc-900 dark:text-white transition-all duration-300 ${
 						error
 							? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
-							: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
+							: "border-zinc-200 focus:border-violet-500 focus:ring-violet-500 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600"
 					}`}
 					disabled={isLoading}
+					placeholder="you@example.com"
 				/>
 			</div>
 
 			<div>
 				<label
 					htmlFor="password"
-					className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+					className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1.5"
 				>
 					{t('password')}
 				</label>
@@ -212,20 +213,21 @@ export function LocalLoginForm() {
 						required
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
-						className={`mt-1 block w-full rounded-xl border pr-10 px-3 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 dark:bg-[#1A1518] dark:text-white transition-colors ${
+						className={`block w-full rounded-xl border pr-12 px-4 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 bg-white dark:bg-zinc-900 dark:text-white transition-all duration-300 ${
 							error
 								? "border-red-300 focus:border-red-500 focus:ring-red-500 dark:border-red-700"
-								: "border-[#533025]/50 focus:border-[#A11218] focus:ring-[#A11218] dark:border-[#533025]"
+								: "border-zinc-200 focus:border-violet-500 focus:ring-violet-500 dark:border-zinc-700 hover:border-zinc-300 dark:hover:border-zinc-600"
 						}`}
 						disabled={isLoading}
+						placeholder="••••••••"
 					/>
 					<button
 						type="button"
 						onClick={() => setShowPassword((prev) => !prev)}
-						className="absolute inset-y-0 right-0 flex items-center pr-3 mt-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+						className="absolute inset-y-0 right-0 flex items-center pr-4 text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors"
 						aria-label={showPassword ? t('hide_password') : t('show_password')}
 					>
-						{showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+						{showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
 					</button>
 				</div>
 			</div>
@@ -233,19 +235,19 @@ export function LocalLoginForm() {
 		<button
 			type="submit"
 			disabled={isLoading}
-			className="w-full rounded-xl bg-gradient-to-r from-[#A11218] to-[#E24632] px-4 py-2 text-white shadow-lg hover:from-[#E24632] hover:to-[#A11218] focus:outline-none focus:ring-2 focus:ring-[#A11218] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300"
+			className="w-full rounded-xl bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 px-4 py-3.5 text-white font-semibold shadow-lg shadow-violet-500/25 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all duration-300"
 		>
 			{isLoading ? tCommon('loading') : t('sign_in')}
 		</button>
 		</form>
 
 		{authType === "LOCAL" && (
-			<div className="mt-4 text-center text-sm">
-				<p className="text-[#533025] dark:text-[#E8C3A1]/70">
+			<div className="mt-6 text-center text-sm">
+				<p className="text-zinc-600 dark:text-zinc-400">
 					{t('dont_have_account')}{" "}
 					<Link
 						href="/register"
-						className="font-medium text-[#A11218] hover:text-[#E24632] dark:text-[#A7E4FF] dark:hover:text-[#E24632]"
+						className="font-medium text-violet-600 hover:text-violet-500 dark:text-violet-400 dark:hover:text-violet-300 transition-colors"
 					>
 						{t('sign_up')}
 					</Link>

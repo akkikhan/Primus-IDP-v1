@@ -181,7 +181,7 @@ export default function PrivacyPolicy() {
 						contact us at:
 					</p>
 					<p className="mt-2">
-						<strong>Email:</strong> rohan@primusidp.com
+						<strong>Email:</strong> akki@primussoft.com
 					</p>
 				</section>
 			</div>

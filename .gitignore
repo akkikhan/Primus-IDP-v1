@@ -3,3 +3,6 @@ podcasts/
 .env
 node_modules/
 .ruff_cache/
+
+#Ignore insiders AI rules
+.github\instructions\codacy.instructions.md

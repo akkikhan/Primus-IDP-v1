@@ -10,88 +10,112 @@
 	--font-sans: var(--font-dm-sans);
 	--font-mono: var(--font-jetbrains-mono);
 	
-	/* Primus IDP Cinematic Brand Colors */
-	--color-primus-blood-red: #A11218;
-	--color-primus-crimson: #E24632;
-	--color-primus-skin-beige: #E8C3A1;
-	--color-primus-coffee: #533025;
-	--color-primus-midnight: #0A0A0F;
-	--color-primus-steel-blue: #A7E4FF;
-	--color-primus-burnt-orange: #D36B3C;
-	--color-primus-grey: #7A7A75;
+	/* ═══════════════════════════════════════════════════════════════
+	   PRIMUS IDP - ELITE DESIGN SYSTEM
+	   Inspired by: Linear, Vercel, Stripe, Raycast
+	   Modern • Premium • Sophisticated
+	   ═══════════════════════════════════════════════════════════════ */
+	
+	/* Primary Gradient: Electric Violet to Cyan */
+	--color-primus-violet-400: #A78BFA;
+	--color-primus-violet-500: #8B5CF6;
+	--color-primus-violet-600: #7C3AED;
+	
+	/* Accent: Vibrant Cyan */
+	--color-primus-cyan-400: #22D3EE;
+	--color-primus-cyan-500: #06B6D4;
+	
+	/* Success: Neon Green */
+	--color-primus-green-400: #4ADE80;
+	--color-primus-green-500: #22C55E;
+	
+	/* Premium Grays */
+	--color-primus-gray-50: #FAFAFA;
+	--color-primus-gray-100: #F4F4F5;
+	--color-primus-gray-200: #E4E4E7;
+	--color-primus-gray-300: #D4D4D8;
+	--color-primus-gray-400: #A1A1AA;
+	--color-primus-gray-500: #71717A;
+	--color-primus-gray-600: #52525B;
+	--color-primus-gray-700: #3F3F46;
+	--color-primus-gray-800: #27272A;
+	--color-primus-gray-900: #18181B;
+	--color-primus-gray-950: #09090B;
 }
 
 :root {
-	--background: #F5EDE6;
-	--foreground: #0A0A0F;
+	/* Light Mode - Clean & Bright */
+	--background: #FFFFFF;
+	--foreground: #09090B;
 	--card: #FFFFFF;
-	--card-foreground: #0A0A0F;
+	--card-foreground: #09090B;
 	--popover: #FFFFFF;
-	--popover-foreground: #0A0A0F;
-	--primary: #A11218;
-	--primary-foreground: #F5EDE6;
-	--secondary: #E8C3A1;
-	--secondary-foreground: #533025;
-	--muted: #E8C3A1;
-	--muted-foreground: #533025;
-	--accent: #A7E4FF;
-	--accent-foreground: #0A0A0F;
-	--destructive: #E24632;
-	--destructive-foreground: #F5EDE6;
-	--border: #D4C4B5;
-	--input: #D4C4B5;
-	--ring: #A11218;
-	--chart-1: #A11218;
-	--chart-2: #E24632;
-	--chart-3: #D36B3C;
-	--chart-4: #A7E4FF;
-	--chart-5: #533025;
-	--radius: 1rem;
-	--sidebar: #F5EDE6;
-	--sidebar-foreground: #0A0A0F;
-	--sidebar-primary: #A11218;
-	--sidebar-primary-foreground: #F5EDE6;
-	--sidebar-accent: #E8C3A1;
-	--sidebar-accent-foreground: #533025;
-	--sidebar-border: #D4C4B5;
-	--sidebar-ring: #A11218;
-	--syntax-bg: #E8C3A1;
+	--popover-foreground: #09090B;
+	--primary: #7C3AED;
+	--primary-foreground: #FFFFFF;
+	--secondary: #F4F4F5;
+	--secondary-foreground: #18181B;
+	--muted: #F4F4F5;
+	--muted-foreground: #71717A;
+	--accent: #06B6D4;
+	--accent-foreground: #FFFFFF;
+	--destructive: #EF4444;
+	--destructive-foreground: #FFFFFF;
+	--border: #E4E4E7;
+	--input: #E4E4E7;
+	--ring: #7C3AED;
+	--chart-1: #7C3AED;
+	--chart-2: #06B6D4;
+	--chart-3: #F59E0B;
+	--chart-4: #22C55E;
+	--chart-5: #EC4899;
+	--radius: 0.75rem;
+	--sidebar: #FAFAFA;
+	--sidebar-foreground: #09090B;
+	--sidebar-primary: #7C3AED;
+	--sidebar-primary-foreground: #FFFFFF;
+	--sidebar-accent: #F4F4F5;
+	--sidebar-accent-foreground: #7C3AED;
+	--sidebar-border: #E4E4E7;
+	--sidebar-ring: #7C3AED;
+	--syntax-bg: #F4F4F5;
 }
 
 .dark {
-	--background: #0A0A0F;
-	--foreground: #E8C3A1;
-	--card: #1A1518;
-	--card-foreground: #E8C3A1;
-	--popover: #1A1518;
-	--popover-foreground: #E8C3A1;
-	--primary: #A7E4FF;
-	--primary-foreground: #0A0A0F;
-	--secondary: #533025;
-	--secondary-foreground: #E8C3A1;
-	--muted: #533025;
-	--muted-foreground: #7A7A75;
-	--accent: #E24632;
-	--accent-foreground: #0A0A0F;
-	--destructive: #E24632;
-	--destructive-foreground: #0A0A0F;
-	--border: #3D2A24;
-	--input: #3D2A24;
-	--ring: #A7E4FF;
-	--chart-1: #A7E4FF;
-	--chart-2: #E24632;
-	--chart-3: #D36B3C;
-	--chart-4: #A11218;
-	--chart-5: #E8C3A1;
-	--sidebar: #0A0A0F;
-	--sidebar-foreground: #E8C3A1;
-	--sidebar-primary: #A7E4FF;
-	--sidebar-primary-foreground: #0A0A0F;
-	--sidebar-accent: #533025;
-	--sidebar-accent-foreground: #E8C3A1;
-	--sidebar-border: #3D2A24;
-	--sidebar-ring: #A7E4FF;
-	--syntax-bg: #1A1518;
+	/* Dark Mode - Rich & Immersive */
+	--background: #09090B;
+	--foreground: #FAFAFA;
+	--card: #18181B;
+	--card-foreground: #FAFAFA;
+	--popover: #18181B;
+	--popover-foreground: #FAFAFA;
+	--primary: #A78BFA;
+	--primary-foreground: #09090B;
+	--secondary: #27272A;
+	--secondary-foreground: #FAFAFA;
+	--muted: #27272A;
+	--muted-foreground: #A1A1AA;
+	--accent: #22D3EE;
+	--accent-foreground: #09090B;
+	--destructive: #F87171;
+	--destructive-foreground: #09090B;
+	--border: #27272A;
+	--input: #27272A;
+	--ring: #A78BFA;
+	--chart-1: #A78BFA;
+	--chart-2: #22D3EE;
+	--chart-3: #FBBF24;
+	--chart-4: #4ADE80;
+	--chart-5: #F472B6;
+	--sidebar: #09090B;
+	--sidebar-foreground: #FAFAFA;
+	--sidebar-primary: #A78BFA;
+	--sidebar-primary-foreground: #09090B;
+	--sidebar-accent: #27272A;
+	--sidebar-accent-foreground: #A78BFA;
+	--sidebar-border: #27272A;
+	--sidebar-ring: #A78BFA;
+	--syntax-bg: #18181B;
 }
 
 @theme inline {
@@ -139,27 +163,38 @@
 	}
 	body {
 		@apply bg-background text-foreground;
+		font-feature-settings: "rlig" 1, "calt" 1;
 	}
+	
+	/* Glassmorphism Utilities */
+	.glass {
+		@apply bg-zinc-950/70 backdrop-blur-lg border border-white/10;
+	}
+	
+	.glass-card {
+		@apply bg-zinc-900/50 backdrop-blur-md border border-white/5 shadow-xl;
+	}
+
 	:root {
 		--sidebar-background: 0 0% 98%;
 		--sidebar-foreground: 240 5.3% 26.1%;
-		--sidebar-primary: 240 5.9% 10%;
+		--sidebar-primary: 262 83% 58%;
 		--sidebar-primary-foreground: 0 0% 98%;
 		--sidebar-accent: 240 4.8% 95.9%;
 		--sidebar-accent-foreground: 240 5.9% 10%;
 		--sidebar-border: 220 13% 91%;
-		--sidebar-ring: 217.2 91.2% 59.8%;
+		--sidebar-ring: 262 83% 58%;
 	}
 
 	.dark {
 		--sidebar-background: 240 5.9% 10%;
 		--sidebar-foreground: 240 4.8% 95.9%;
-		--sidebar-primary: 224.3 76.3% 48%;
+		--sidebar-primary: 262 83% 58%;
 		--sidebar-primary-foreground: 0 0% 100%;
 		--sidebar-accent: 240 3.7% 15.9%;
 		--sidebar-accent-foreground: 240 4.8% 95.9%;
 		--sidebar-border: 240 3.7% 15.9%;
-		--sidebar-ring: 217.2 91.2% 59.8%;
+		--sidebar-ring: 262 83% 58%;
 	}
 }
 

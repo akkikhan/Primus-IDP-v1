@@ -216,7 +216,7 @@ export default function TermsOfService() {
 					<h2 className="text-2xl font-semibold mb-4">12. Contact Us</h2>
 					<p>If you have any questions about these Terms, please contact us at:</p>
 					<p className="mt-2">
-						<strong>Email:</strong> rohan@primusidp.com
+						<strong>Email:</strong> akki@primussoft.com
 					</p>
 				</section>
 			</div>

@@ -13,7 +13,7 @@ export const useGithubStars = () => {
 			try {
 				setError(null);
 
-				const response = await fetch(`https://api.github.com/repos/MODSetter/Primus IDP`, {
+				const response = await fetch(`https://api.github.com/repos/khanakkijpr-dot/Primus-IDP`, {
 					signal: abortController.signal,
 				});
 

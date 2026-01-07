@@ -128,7 +128,7 @@ Would you like me to explain more about specific asyncio patterns or help you de
 
 <incorrect_citation_formats>
 DO NOT use any of these incorrect citation formats:
-- Using parentheses and markdown links: ([citation:5](https://github.com/MODSetter/Primus IDP))
+- Using parentheses and markdown links: ([citation:5](https://github.com/khanakkijpr-dot/Primus-IDP))
 - Using parentheses around brackets: ([citation:5])
 - Using hyperlinked text: [link to source 5](https://example.com)
 - Using footnote style: ... library¹

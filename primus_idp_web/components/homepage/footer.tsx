@@ -2,9 +2,9 @@
 import {
 	IconBrandDiscord,
 	IconBrandGithub,
-	IconBrandLinkedin,
-	IconBrandTwitter,
+	IconBrandX,
 } from "@tabler/icons-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import type React from "react";
@@ -31,82 +31,105 @@ export function Footer() {
 	];
 
 	return (
-		<div className="border-t border-[#D36B3C]/30 px-8 py-20 w-full relative overflow-hidden bg-gradient-to-b from-transparent via-[#0A0A0F] to-[#1A1518]">
-			<div className="max-w-7xl mx-auto text-sm text-[#7A7A75] justify-between items-start md:px-8">
-				<div className="flex flex-col items-center justify-center w-full relative">
-					<div className="mr-0 md:mr-4 md:flex mb-4">
-						<div className="flex items-center gap-2">
-							<Image src="/logo.svg" alt="Primus IDP" width={32} height={32} className="rounded-lg" />
-							<span className="font-bold text-xl bg-gradient-to-r from-[#A7E4FF] to-[#E24632] bg-clip-text text-transparent">Primus IDP</span>
-						</div>
-					</div>
-					<p className="text-center text-[#7A7A75] max-w-md mb-6">
-						Your own localized AI research assistant with RAG capabilities. Self-hosted, privacy-first, and fully customizable.
-					</p>
+		<footer className="relative border-t border-zinc-200/50 dark:border-zinc-800/50 px-6 py-20 w-full bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-black overflow-hidden">
+			{/* Background decoration */}
+			<div className="absolute inset-0 overflow-hidden pointer-events-none">
+				<div className="absolute -top-40 left-1/4 w-80 h-80 bg-violet-500/5 rounded-full blur-3xl" />
+				<div className="absolute -bottom-40 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+			</div>
 
-					<ul className="transition-colors flex sm:flex-row flex-col hover:text-text-neutral-800 text-[#7A7A75] list-none gap-4 flex-wrap justify-center">
+			<div className="max-w-5xl mx-auto relative z-10">
+				<div className="flex flex-col items-center justify-center w-full">
+					{/* Logo & Description */}
+					<motion.div 
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
+						viewport={{ once: true }}
+						className="flex items-center gap-3 mb-4"
+					>
+						<div className="relative">
+							<div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-purple-500 rounded-xl blur-sm opacity-50" />
+							<Image src="/logo.svg" alt="Primus IDP" width={40} height={40} className="rounded-xl relative" />
+						</div>
+						<span className="font-bold text-2xl bg-gradient-to-r from-zinc-900 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent">Primus IDP</span>
+					</motion.div>
+					<motion.p 
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5, delay: 0.1 }}
+						viewport={{ once: true }}
+						className="text-center text-zinc-600 dark:text-zinc-400 max-w-md mb-10 leading-relaxed"
+					>
+						Your personal AI research assistant with RAG capabilities. Self-hosted, privacy-first, and fully customizable.
+					</motion.p>
+
+					{/* Navigation Links */}
+					<motion.ul 
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5, delay: 0.2 }}
+						viewport={{ once: true }}
+						className="flex flex-wrap justify-center gap-8 mb-10"
+					>
 						{pages.map((page) => (
-							<li key={`pages-${page.title}`} className="list-none">
-								<Link className="transition-colors hover:text-[#A7E4FF]" href={page.href}>
+							<li key={`pages-${page.title}`}>
+								<Link 
+									className="text-sm text-zinc-600 dark:text-zinc-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors font-medium relative group" 
+									href={page.href}
+								>
 									{page.title}
+									<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-500 to-purple-500 group-hover:w-full transition-all duration-300" />
 								</Link>
 							</li>
 						))}
-					</ul>
+					</motion.ul>
 
-					<GridLineHorizontal className="max-w-7xl mx-auto mt-8" />
+					{/* Divider */}
+					<div className="w-full max-w-lg h-px bg-gradient-to-r from-transparent via-zinc-300 dark:via-zinc-700 to-transparent mb-10" />
 				</div>
-				<div className="flex sm:flex-row flex-col justify-between mt-8 items-center w-full">
-					<p className="text-[#7A7A75] dark:text-[#7A7A75] mb-8 sm:mb-0">
-						&copy; {new Date().getFullYear()} Primus IDP. Open Source under MIT License.
+
+				{/* Bottom Section */}
+				<motion.div 
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.3 }}
+					viewport={{ once: true }}
+					className="flex sm:flex-row flex-col justify-between items-center w-full gap-6"
+				>
+					<p className="text-sm text-zinc-500 dark:text-zinc-500">
+						&copy; {new Date().getFullYear()} Primus Knowledge Hub. Open Source under MIT License.
 					</p>
-					<div className="flex gap-4">
-						<Link href="https://x.com/mod_setter" target="_blank" rel="noopener noreferrer" className="hover:text-[#A7E4FF] dark:hover:text-[#E24632] transition-colors">
-							<IconBrandTwitter className="h-6 w-6" />
+					<div className="flex gap-3">
+						<Link 
+							href="https://github.com/khanakkijpr-dot/Primus-IDP" 
+							target="_blank" 
+							rel="noopener noreferrer" 
+							className="group w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-purple-600 hover:border-transparent hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300"
+						>
+							<IconBrandGithub className="h-5 w-5" />
 						</Link>
-						<Link href="https://www.linkedin.com/in/rohan-verma-sde/" target="_blank" rel="noopener noreferrer" className="hover:text-[#A7E4FF] dark:hover:text-[#E24632] transition-colors">
-							<IconBrandLinkedin className="h-6 w-6" />
+						<Link 
+							href="https://discord.gg/ejRNvftDp9" 
+							target="_blank" 
+							rel="noopener noreferrer" 
+							className="group w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-purple-600 hover:border-transparent hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300"
+						>
+							<IconBrandDiscord className="h-5 w-5" />
 						</Link>
-						<Link href="https://github.com/khanakkijpr-dot/Primus-IDP" target="_blank" rel="noopener noreferrer" className="hover:text-[#A7E4FF] dark:hover:text-[#E24632] transition-colors">
-							<IconBrandGithub className="h-6 w-6" />
-						</Link>
-						<Link href="https://discord.gg/ejRNvftDp9" target="_blank" rel="noopener noreferrer" className="hover:text-[#A7E4FF] dark:hover:text-[#E24632] transition-colors">
-							<IconBrandDiscord className="h-6 w-6" />
+						<Link 
+							href="https://twitter.com/primusidp" 
+							target="_blank" 
+							rel="noopener noreferrer" 
+							className="group w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-purple-600 hover:border-transparent hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300"
+						>
+							<IconBrandX className="h-5 w-5" />
 						</Link>
 					</div>
-				</div>
+				</motion.div>
 			</div>
-		</div>
+		</footer>
 	);
 }
-
-const GridLineHorizontal = ({ className, offset }: { className?: string; offset?: string }) => {
-	return (
-		<div
-			style={
-				{
-					"--background": "#ffffff",
-					"--color": "rgba(0, 0, 0, 0.2)",
-					"--height": "1px",
-					"--width": "5px",
-					"--fade-stop": "90%",
-					"--offset": offset || "200px", //-100px if you want to keep the line inside
-					"--color-dark": "rgba(255, 255, 255, 0.2)",
-					maskComposite: "exclude",
-				} as React.CSSProperties
-			}
-			className={cn(
-				"w-[calc(100%+var(--offset))] h-[var(--height)]",
-				"bg-[linear-gradient(to_right,var(--color),var(--color)_50%,transparent_0,transparent)]",
-				"[background-size:var(--width)_var(--height)]",
-				"[mask:linear-gradient(to_left,var(--background)_var(--fade-stop),transparent),_linear-gradient(to_right,var(--background)_var(--fade-stop),transparent),_linear-gradient(black,black)]",
-				"[mask-composite:exclude]",
-				"z-30",
-				"dark:bg-[linear-gradient(to_right,var(--color-dark),var(--color-dark)_50%,transparent_0,transparent)]",
-				className
-			)}
-		></div>
-	);
-};
 
 

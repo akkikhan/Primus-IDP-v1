@@ -12,10 +12,6 @@
 # Primus IDP
 While tools like NotebookLM and Perplexity are impressive and highly effective for conducting research on any topic/query, Primus IDP elevates this capability by integrating with your personal knowledge base. It is a highly customizable AI research agent, connected to external sources such as Search Engines (SearxNG, Tavily, LinkUp), Slack, Linear, Jira, ClickUp, Confluence, Gmail, Notion, YouTube, GitHub, Discord, Airtable, Google Calendar, Luma, Elasticsearch and more to come.
 
-<div align="center">
-<a href="https://trendshift.io/repositories/13606" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13606" alt="MODSetter%2FPrimusIDP | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
-</div>
-
 
 # Video 
 
@@ -134,7 +130,7 @@ Join the [Primus IDP Discord](https://discord.gg/ejRNvftDp9) and help shape the 
 Stay up to date with our development progress and upcoming features!  
 Check out our public roadmap and contribute your ideas or feedback:
 
-**View the Roadmap:** [Primus IDP Roadmap on GitHub Projects](https://github.com/users/MODSetter/projects/2)
+**View the Roadmap:** [Primus IDP Roadmap on GitHub Projects](https://github.com/users/khanakkijpr-dot/projects/2)
 
 
 ## How to get started?
@@ -280,16 +276,6 @@ Contributions are very welcome! A contribution can be as small as a ⭐ or even 
 Fine-tuning the Backend is always desired.
 
 For detailed contribution guidelines, please see our [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
-## Star History
-
-<a href="https://www.star-history.com/#MODSetter/Primus IDP&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=MODSetter/Primus IDP&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=MODSetter/Primus IDP&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=MODSetter/Primus IDP&type=Date" />
- </picture>
-</a>
 
 ---
 ---

@@ -17,7 +17,7 @@ There are 3 main ways to contribute:
 
 ### ✅ 1. Pick From the Roadmap
 We maintain a public roadmap with well-scoped issues and features you can work on:  
-🔗 [Primus IDP GitHub Project Roadmap](https://github.com/users/MODSetter/projects/2)
+🔗 [Primus IDP GitHub Project Roadmap](https://github.com/users/khanakkijpr-dot/projects/2)
 
 > 💡 **Tip**: Look for tasks in `Backlog` or `Ready` status.
 
@@ -51,8 +51,8 @@ Want to fix it? Go for it! Just link the issue in your PR.
 ### Quick Start
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/MODSetter/Primus IDP.git
-   cd Primus IDP
+   git clone https://github.com/khanakkijpr-dot/Primus-IDP.git
+   cd Primus-IDP
    ```
 
 2. **Choose your setup method**:

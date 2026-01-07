@@ -267,7 +267,7 @@ export default function ConnectorsPage() {
 				}}
 				className="mb-12 text-center"
 			>
-				<h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-[#3D2B1F] to-[#5C524C] bg-clip-text text-transparent">
+				<h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
 					{t('title')}
 				</h1>
 				<p className="text-muted-foreground mt-3 text-lg max-w-2xl mx-auto">
