@@ -7,8 +7,10 @@ router = APIRouter()
 # Core routes needed for the web UI shell should remain available even when running in
 # PRIMUS_MINIMAL_STARTUP mode (for example small instances or quick bind scenarios).
 from .search_spaces_routes import router as search_spaces_router
+from .llm_config_routes import router as llm_config_router
 
 router.include_router(search_spaces_router)
+router.include_router(llm_config_router)
 
 if os.getenv("PRIMUS_MINIMAL_STARTUP", "").strip().lower() in ("1", "true", "yes"):
     # Keep imports minimal so the API can bind quickly on small instances.
@@ -26,7 +28,6 @@ else:
     from .google_gmail_add_connector_route import (
         router as google_gmail_add_connector_router,
     )
-    from .llm_config_routes import router as llm_config_router
     from .logs_routes import router as logs_router
     from .luma_add_connector_route import router as luma_add_connector_router
     from .podcasts_routes import router as podcasts_router
@@ -40,6 +41,5 @@ else:
     router.include_router(google_gmail_add_connector_router)
     router.include_router(airtable_add_connector_router)
     router.include_router(luma_add_connector_router)
-    router.include_router(llm_config_router)
     router.include_router(logs_router)
 
