@@ -1,8 +1,6 @@
 "use client";
 import {
-	IconBrandDiscord,
 	IconBrandGithub,
-	IconBrandX,
 } from "@tabler/icons-react";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -108,22 +106,6 @@ export function Footer() {
 							className="group w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-purple-600 hover:border-transparent hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300"
 						>
 							<IconBrandGithub className="h-5 w-5" />
-						</Link>
-						<Link 
-							href="https://discord.gg/ejRNvftDp9" 
-							target="_blank" 
-							rel="noopener noreferrer" 
-							className="group w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-purple-600 hover:border-transparent hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300"
-						>
-							<IconBrandDiscord className="h-5 w-5" />
-						</Link>
-						<Link 
-							href="https://twitter.com/primusidp" 
-							target="_blank" 
-							rel="noopener noreferrer" 
-							className="group w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:text-white hover:bg-gradient-to-r hover:from-violet-600 hover:to-purple-600 hover:border-transparent hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-300"
-						>
-							<IconBrandX className="h-5 w-5" />
 						</Link>
 					</div>
 				</motion.div>

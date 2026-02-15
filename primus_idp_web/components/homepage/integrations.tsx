@@ -18,7 +18,6 @@ const INTEGRATIONS: Integration[] = [
 
 	// Communication
 	{ name: "Slack", icon: "https://cdn.simpleicons.org/slack/4A154B" },
-	{ name: "Discord", icon: "https://cdn.simpleicons.org/discord/5865F2" },
 	{ name: "Gmail", icon: "https://cdn.simpleicons.org/gmail/EA4335" },
 
 	// Project Management
@@ -97,7 +96,7 @@ function SemiCircleOrbit({ radius, centerX, centerY, count, iconSize, startIndex
 							zIndex: 5,
 						}}
 					>
-						<div className="p-2.5 rounded-xl bg-zinc-800/80 backdrop-blur-sm border border-zinc-700/50 shadow-lg shadow-black/20 hover:shadow-violet-500/20 hover:border-violet-500/50 transition-all duration-300 cursor-pointer hover:scale-110 group-hover:bg-zinc-700/80">
+						<div className="p-2 rounded-xl bg-zinc-800/80 backdrop-blur-sm border border-zinc-700/50 shadow-lg shadow-black/20 hover:shadow-violet-500/20 hover:border-violet-500/50 transition-all duration-300 cursor-pointer hover:scale-110 group-hover:bg-zinc-700/80">
 							<img
 								src={integration.icon}
 								alt={integration.name}
@@ -138,19 +137,20 @@ export default function ExternalIntegrations() {
 		return () => window.removeEventListener("resize", updateSize);
 	}, []);
 
-	const baseWidth = Math.min(size.width * 0.8, 700);
+	// Keep the orbit compact so the section doesn't introduce huge vertical whitespace.
+	const baseWidth = Math.min(size.width * 0.8, 560);
 	const centerX = baseWidth / 2;
 	const centerY = baseWidth * 0.5;
 
 	const iconSize =
 		size.width < 480
-			? Math.max(24, baseWidth * 0.05)
+			? Math.max(20, baseWidth * 0.045)
 			: size.width < 768
-				? Math.max(28, baseWidth * 0.06)
-				: Math.max(32, baseWidth * 0.07);
+				? Math.max(22, baseWidth * 0.05)
+				: Math.max(24, baseWidth * 0.055);
 
 	return (
-		<section className="py-20 md:py-28 relative min-h-screen w-full overflow-visible bg-transparent">
+		<section className="py-16 md:py-20 relative w-full overflow-visible bg-transparent">
 			<div className="relative flex flex-col items-center text-center z-10 px-6">
 				<motion.span 
 					initial={{ opacity: 0, y: 20 }}
@@ -182,10 +182,7 @@ export default function ExternalIntegrations() {
 					Connect your knowledge sources - Slack, Notion, GitHub, Gmail, and more. All indexed and searchable in one place.
 				</motion.p>
 
-				<div
-					className="relative overflow-visible"
-					style={{ width: baseWidth, height: baseWidth * 0.7, paddingBottom: "100px" }}
-				>
+				<div className="relative overflow-visible" style={{ width: baseWidth, height: baseWidth * 0.6 }}>
 					<SemiCircleOrbit
 						radius={baseWidth * 0.22}
 						centerX={centerX}

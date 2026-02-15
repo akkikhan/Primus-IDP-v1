@@ -21,7 +21,7 @@ export function useSearchSpaces() {
 			try {
 				setLoading(true);
 				const response = await fetch(
-					`${process.env.NEXT_PUBLIC_FASTAPI_BACKEND_URL}/api/v1/searchspaces`,
+					`${process.env.NEXT_PUBLIC_FASTAPI_BACKEND_URL}/api/v1/searchspaces/`,
 					{
 						headers: {
 							Authorization: `Bearer ${localStorage.getItem("primus_idp_bearer_token")}`,
@@ -31,8 +31,22 @@ export function useSearchSpaces() {
 				);
 
 				if (!response.ok) {
-					toast.error("Not authenticated");
-					throw new Error("Not authenticated");
+					let detail: string | undefined;
+					try {
+						const body = await response.json();
+						detail = body?.detail || body?.message;
+					} catch {
+						// ignore
+					}
+
+					if (response.status === 401 || response.status === 403) {
+						toast.error("Not authenticated");
+						throw new Error("Not authenticated");
+					}
+
+					const msg = detail || `Failed to fetch search spaces (${response.status})`;
+					toast.error(msg);
+					throw new Error(msg);
 				}
 
 				const data = await response.json();
@@ -54,7 +68,7 @@ export function useSearchSpaces() {
 		setLoading(true);
 		try {
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_FASTAPI_BACKEND_URL}/api/v1/searchspaces`,
+				`${process.env.NEXT_PUBLIC_FASTAPI_BACKEND_URL}/api/v1/searchspaces/`,
 				{
 					headers: {
 						Authorization: `Bearer ${localStorage.getItem("primus_idp_bearer_token")}`,
@@ -64,8 +78,22 @@ export function useSearchSpaces() {
 			);
 
 			if (!response.ok) {
-				toast.error("Not authenticated");
-				throw new Error("Not authenticated");
+				let detail: string | undefined;
+				try {
+					const body = await response.json();
+					detail = body?.detail || body?.message;
+				} catch {
+					// ignore
+				}
+
+				if (response.status === 401 || response.status === 403) {
+					toast.error("Not authenticated");
+					throw new Error("Not authenticated");
+				}
+
+				const msg = detail || `Failed to fetch search spaces (${response.status})`;
+				toast.error(msg);
+				throw new Error(msg);
 			}
 
 			const data = await response.json();

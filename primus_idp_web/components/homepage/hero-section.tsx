@@ -238,7 +238,7 @@ export function HeroSection() {
 			{/* ═══════════════════════════════════════════════════════════════
 			    MAIN CONTENT (SPLIT LAYOUT)
 			    ═══════════════════════════════════════════════════════════════ */}
-			<div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full max-w-7xl">
+			<div className="relative z-10 hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full max-w-7xl">
 				{/* LEFT COLUMN: TEXT & CTA */}
 				<div className="flex flex-col items-start text-left">
 					{/* Announcement Badge */}
@@ -335,22 +335,22 @@ export function HeroSection() {
 				</motion.div>
 			</div>
 
-			{/* Floating decorative elements (Retained but repositioned) */}
+			{/* Floating decorative elements (only on very large screens) */}
 			<motion.div
 				initial={{ opacity: 0, scale: 0.8 }}
 				animate={{ opacity: 1, scale: 1 }}
 				transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-				className="absolute right-[12%] top-[20%] hidden xl:block"
+				className="absolute right-[12%] top-[20%] hidden 2xl:block"
 			>
 				<div className="relative group">
 					<div className="absolute inset-0 bg-gradient-to-br from-violet-600 to-purple-600 rounded-2xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity" />
-					<div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-2xl shadow-violet-500/25">
-						<Brain className="w-8 h-8 text-white" />
+					<div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-2xl shadow-violet-500/20">
+						<Brain className="w-7 h-7 text-white" />
 					</div>
 					<motion.div
 						animate={{ y: [0, -8, 0] }}
 						transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-						className="absolute -bottom-3 -right-3 w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 shadow-lg shadow-emerald-500/30 flex items-center justify-center"
+						className="absolute -bottom-3 -right-3 w-7 h-7 rounded-full bg-gradient-to-br from-emerald-400 to-green-500 shadow-lg shadow-emerald-500/25 flex items-center justify-center"
 					>
 						<Sparkles className="w-4 h-4 text-white" />
 					</motion.div>
@@ -361,12 +361,12 @@ export function HeroSection() {
 				initial={{ opacity: 0, scale: 0.8 }}
 				animate={{ opacity: 1, scale: 1 }}
 				transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-				className="absolute left-[10%] top-[35%] hidden xl:block"
+				className="absolute left-[10%] top-[35%] hidden 2xl:block"
 			>
 				<div className="relative group">
 					<div className="absolute inset-0 bg-gradient-to-br from-cyan-500 to-sky-500 rounded-xl blur-lg opacity-50 group-hover:opacity-70 transition-opacity" />
-					<div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center shadow-xl shadow-cyan-500/25">
-						<Search className="w-6 h-6 text-white" />
+					<div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-sky-500 flex items-center justify-center shadow-xl shadow-cyan-500/20">
+						<Search className="w-5 h-5 text-white" />
 					</div>
 				</div>
 			</motion.div>
@@ -375,10 +375,10 @@ export function HeroSection() {
 				initial={{ opacity: 0, scale: 0.8 }}
 				animate={{ opacity: 1, scale: 1 }}
 				transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
-				className="absolute right-[15%] bottom-[30%] hidden xl:block"
+				className="absolute right-[15%] bottom-[30%] hidden 2xl:block"
 			>
-				<div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/25">
-					<MessageSquare className="w-5 h-5 text-white" />
+				<div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/20">
+					<MessageSquare className="w-4 h-4 text-white" />
 				</div>
 			</motion.div>
 
@@ -386,6 +386,7 @@ export function HeroSection() {
 			    MAIN CONTENT
 			    ═══════════════════════════════════════════════════════════════ */}
 
+			<div className="lg:hidden flex flex-col items-center text-center">
 			{/* Announcement Badge */}
 			<motion.div
 				initial={{ opacity: 0, y: 20 }}
@@ -466,6 +467,8 @@ export function HeroSection() {
 			{/* ═══════════════════════════════════════════════════════════════
 			    FEATURE CARDS
 			    ═══════════════════════════════════════════════════════════════ */}
+			</div>
+
 			<motion.div
 				initial={{ opacity: 0, y: 40 }}
 				animate={{ opacity: 1, y: 0 }}

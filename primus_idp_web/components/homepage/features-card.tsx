@@ -41,7 +41,7 @@ export function FeaturesCards() {
 		{
 			icon: Globe,
 			title: "15+ Integrations",
-			description: "Connect Slack, Notion, GitHub, Gmail, Discord, Jira, Confluence, and more. All your knowledge in one place.",
+			description: "Connect Slack, Notion, GitHub, Gmail, Jira, Confluence, and more. All your knowledge in one place.",
 			gradient: "from-rose-500 to-red-600",
 			glowColor: "rose",
 		},

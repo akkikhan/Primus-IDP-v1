@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { I18nProvider } from "@/components/providers/I18nProvider";
 
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3100").replace(/\/$/, "");
+
 const dmSans = DM_Sans({
 	subsets: ["latin"],
 	weight: ["300", "400", "500", "600", "700"],
@@ -23,7 +25,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-	title: "Primus IDP – Customizable AI Research & Knowledge Management Assistant",
+	metadataBase: new URL(SITE_URL),
+	title: "Primus IDP - Customizable AI Research & Knowledge Management Assistant",
 	description:
 		"Primus IDP is an AI-powered research assistant that integrates with tools like Notion, GitHub, Slack, and more to help you efficiently manage, search, and chat with your documents. Generate podcasts, perform hybrid search, and unlock insights from your knowledge base.",
 	keywords: [
@@ -52,41 +55,28 @@ export const metadata: Metadata = {
 		"AI-powered search assistant",
 	],
 	icons: {
-		icon: "/logo.png",
-		apple: "/logo.png",
+		icon: [
+			{ url: "/logo.svg", type: "image/svg+xml" },
+			"/favicon.ico",
+		],
+		apple: "/icon-128.png",
 	},
 	openGraph: {
-		title: "Primus IDP – AI Research & Knowledge Management Assistant",
+		title: "Primus IDP - AI Research & Knowledge Management Assistant",
 		description:
 			"Connect your documents and tools like Notion, Slack, GitHub, and more to your private AI assistant. Primus IDP offers powerful search, document chat, podcast generation, and RAG APIs to enhance your workflow.",
-		url: "https://Primus IDP.net",
+		url: SITE_URL,
 		siteName: "Primus IDP",
 		type: "website",
 		images: [
 			{
-				url: "https://Primus IDP.net/og-image.png",
+				url: "/og-image.png",
 				width: 1200,
 				height: 630,
 				alt: "Primus IDP AI Research Assistant",
 			},
 		],
 		locale: "en_US",
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Primus IDP – AI Assistant for Research & Knowledge Management",
-		description:
-			"Have your own NotebookLM or Perplexity, but better. Primus IDP connects external tools, allows chat with your documents, and generates fast, high-quality podcasts.",
-		creator: "https://Primus IDP.net",
-		site: "https://Primus IDP.net",
-		images: [
-			{
-				url: "https://Primus IDP.net/og-image-twitter.png",
-				width: 1200,
-				height: 630,
-				alt: "Primus IDP AI Assistant Preview",
-			},
-		],
 	},
 };
 

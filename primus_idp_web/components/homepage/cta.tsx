@@ -7,11 +7,11 @@ export function CTAHomepage() {
 	const benefits = [
 		"100% Open Source (MIT License)",
 		"Self-hosted & Privacy-first",
-		"Active community on Discord",
+		"Built for teams and individuals",
 	];
 
 	return (
-		<section className="w-full my-20 md:my-28 relative z-20 max-w-6xl mx-auto px-6">
+		<section className="w-full my-16 md:my-20 relative z-20 max-w-6xl mx-auto px-6">
 			<motion.div 
 				initial={{ opacity: 0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}

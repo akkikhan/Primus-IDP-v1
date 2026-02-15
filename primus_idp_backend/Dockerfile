@@ -26,16 +26,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN update-ca-certificates
 RUN pip install --upgrade certifi pip-system-certs
 
-# Copy requirements
-COPY pyproject.toml .
-COPY uv.lock .
-
 # Install PyTorch based on architecture
 RUN if [ "$(uname -m)" = "x86_64" ]; then \
-        pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121; \
+        pip install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu; \
     else \
         pip install --no-cache-dir torch torchvision torchaudio; \
     fi
+
+# Copy requirements (after torch so dependency edits don't force re-downloading torch)
+COPY pyproject.toml .
+COPY uv.lock .
 
 # Install python dependencies
 RUN pip install --no-cache-dir uv && \

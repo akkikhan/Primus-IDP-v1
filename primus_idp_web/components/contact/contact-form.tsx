@@ -99,7 +99,8 @@ export function ContactFormGridWithDetails() {
 					</Link>
 				</div>
 				<div className="div relative mt-20 flex w-[600px] flex-shrink-0 -translate-x-10 items-center justify-center [perspective:800px] [transform-style:preserve-3d] sm:-translate-x-0 lg:-translate-x-32">
-					<Pin className="h-30 w-85 top-0 left-0" />
+					{/* Approximate marker for India on the equirectangular world map */}
+					<Pin className="left-[72%] top-[42%] -translate-x-1/2 -translate-y-1/2" />
 
 					<Image
 						src="/contact/world.svg"
@@ -214,7 +215,7 @@ const Pin = ({ className }: { className?: string }) => {
 		>
 			<div className="h-full w-full">
 				<div className="absolute inset-x-0 top-0 z-20 mx-auto inline-block w-fit rounded-lg bg-slate-200 px-2 py-1 text-xs font-normal text-slate-700 dark:bg-slate-800 dark:text-white">
-					We are here
+					India
 					<span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-indigo-500/0 via-indigo-500/90 to-indigo-500/0 transition-opacity duration-500"></span>
 				</div>
 

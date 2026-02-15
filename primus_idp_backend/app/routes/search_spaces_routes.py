@@ -11,6 +11,9 @@ router = APIRouter()
 
 
 @router.post("/searchspaces/", response_model=SearchSpaceRead)
+@router.post("/searchspaces", response_model=SearchSpaceRead, include_in_schema=False)
+@router.post("/search-spaces/", response_model=SearchSpaceRead, include_in_schema=False)
+@router.post("/search-spaces", response_model=SearchSpaceRead, include_in_schema=False)
 async def create_search_space(
     search_space: SearchSpaceCreate,
     session: AsyncSession = Depends(get_async_session),
@@ -32,6 +35,9 @@ async def create_search_space(
 
 
 @router.get("/searchspaces/", response_model=list[SearchSpaceRead])
+@router.get("/searchspaces", response_model=list[SearchSpaceRead], include_in_schema=False)
+@router.get("/search-spaces/", response_model=list[SearchSpaceRead], include_in_schema=False)
+@router.get("/search-spaces", response_model=list[SearchSpaceRead], include_in_schema=False)
 async def read_search_spaces(
     skip: int = 0,
     limit: int = 200,
@@ -53,6 +59,21 @@ async def read_search_spaces(
 
 
 @router.get("/searchspaces/{search_space_id}", response_model=SearchSpaceRead)
+@router.get(
+    "/searchspaces/{search_space_id}/",
+    response_model=SearchSpaceRead,
+    include_in_schema=False,
+)
+@router.get(
+    "/search-spaces/{search_space_id}",
+    response_model=SearchSpaceRead,
+    include_in_schema=False,
+)
+@router.get(
+    "/search-spaces/{search_space_id}/",
+    response_model=SearchSpaceRead,
+    include_in_schema=False,
+)
 async def read_search_space(
     search_space_id: int,
     session: AsyncSession = Depends(get_async_session),
@@ -73,6 +94,21 @@ async def read_search_space(
 
 
 @router.put("/searchspaces/{search_space_id}", response_model=SearchSpaceRead)
+@router.put(
+    "/searchspaces/{search_space_id}/",
+    response_model=SearchSpaceRead,
+    include_in_schema=False,
+)
+@router.put(
+    "/search-spaces/{search_space_id}",
+    response_model=SearchSpaceRead,
+    include_in_schema=False,
+)
+@router.put(
+    "/search-spaces/{search_space_id}/",
+    response_model=SearchSpaceRead,
+    include_in_schema=False,
+)
 async def update_search_space(
     search_space_id: int,
     search_space_update: SearchSpaceUpdate,
@@ -99,6 +135,21 @@ async def update_search_space(
 
 
 @router.delete("/searchspaces/{search_space_id}", response_model=dict)
+@router.delete(
+    "/searchspaces/{search_space_id}/",
+    response_model=dict,
+    include_in_schema=False,
+)
+@router.delete(
+    "/search-spaces/{search_space_id}",
+    response_model=dict,
+    include_in_schema=False,
+)
+@router.delete(
+    "/search-spaces/{search_space_id}/",
+    response_model=dict,
+    include_in_schema=False,
+)
 async def delete_search_space(
     search_space_id: int,
     session: AsyncSession = Depends(get_async_session),

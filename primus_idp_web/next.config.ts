@@ -5,8 +5,16 @@ import createNextIntlPlugin from 'next-intl/plugin';
 // Create the next-intl plugin
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
+// Next.js output modes like "standalone" rely on output tracing that may require
+// symlink creation. Only enable an output mode when explicitly requested.
+const envOutput = process.env.NEXT_OUTPUT?.trim();
+const output =
+	envOutput === "standalone" || envOutput === "export"
+		? (envOutput as NextConfig["output"])
+		: undefined;
+
 const nextConfig: NextConfig = {
-	output: "standalone",
+	output,
 	typescript: {
 		ignoreBuildErrors: true,
 	},

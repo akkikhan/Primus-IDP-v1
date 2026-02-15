@@ -21,7 +21,7 @@ const demoPlans = [
 		],
 		description: "Open source version with powerful features",
 		buttonText: "Get Started",
-		href: "/docs",
+		href: "/register",
 		isPopular: true,
 	},
 	{

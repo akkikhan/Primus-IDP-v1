@@ -1,6 +1,5 @@
 "use client";
 import { 
-	IconBrandDiscord, 
 	IconBrandGithub, 
 	IconMenu2, 
 	IconX,
@@ -71,15 +70,15 @@ export const SideNavigation = () => {
 				onClick={() => setIsOpen(true)}
 				className={cn(
 					"fixed top-6 left-6 z-[100] flex items-center justify-center w-14 h-14 rounded-2xl transition-all duration-300",
-					"bg-zinc-900/90 backdrop-blur-xl border border-zinc-800/50",
-					"shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:shadow-[0_0_60px_rgba(124,58,237,0.25)]",
+					"bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl border border-zinc-200/60 dark:border-zinc-800/50",
+					"shadow-[0_0_40px_rgba(124,58,237,0.10)] hover:shadow-[0_0_60px_rgba(124,58,237,0.20)]",
 					"hover:border-violet-500/30 group",
 					isOpen && "pointer-events-none opacity-0"
 				)}
 				aria-label="Open navigation menu"
 			>
 				<div className="relative">
-					<IconMenu2 className="w-6 h-6 text-zinc-300 group-hover:text-white transition-colors" />
+					<IconMenu2 className="w-6 h-6 text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors" />
 					{/* Glow effect */}
 					<div className="absolute inset-0 w-6 h-6 bg-violet-500/30 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
 				</div>
@@ -119,7 +118,7 @@ export const SideNavigation = () => {
 						className="fixed top-0 left-0 z-[120] h-full w-[320px] max-w-[85vw] flex flex-col"
 					>
 						{/* Premium Glass Panel */}
-						<div className="relative h-full bg-zinc-950/95 backdrop-blur-2xl border-r border-zinc-800/50">
+						<div className="relative h-full bg-white/95 dark:bg-zinc-950/95 backdrop-blur-2xl border-r border-zinc-200/60 dark:border-zinc-800/50">
 							{/* Gradient glow on left edge */}
 							<div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-violet-500 via-purple-500 to-cyan-500 opacity-60" />
 							
@@ -130,7 +129,7 @@ export const SideNavigation = () => {
 							{/* ═══════════════════════════════════════════════════════════════
 							    HEADER
 							    ═══════════════════════════════════════════════════════════════ */}
-							<div className="relative flex items-center justify-between p-6 border-b border-zinc-800/50">
+							<div className="relative flex items-center justify-between p-6 border-b border-zinc-200/60 dark:border-zinc-800/50">
 								<Link 
 									href="/" 
 									onClick={() => setIsOpen(false)}
@@ -141,16 +140,16 @@ export const SideNavigation = () => {
 										<div className="absolute inset-0 bg-violet-500/30 rounded-xl blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
 									</div>
 									<div className="flex flex-col">
-										<span className="text-lg font-bold text-white">Primus IDP</span>
-										<span className="text-xs text-zinc-500">AI Research Agent</span>
+										<span className="text-lg font-bold text-zinc-900 dark:text-white">Primus IDP</span>
+										<span className="text-xs text-zinc-600 dark:text-zinc-500">AI Research Agent</span>
 									</div>
 								</Link>
 								<button
 									onClick={() => setIsOpen(false)}
-									className="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 transition-all group"
+									className="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 transition-all group dark:bg-zinc-800/50 dark:hover:bg-zinc-800 dark:border-zinc-700/50"
 									aria-label="Close navigation menu"
 								>
-									<IconX className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+									<IconX className="w-5 h-5 text-zinc-600 group-hover:text-zinc-900 transition-colors dark:text-zinc-400 dark:group-hover:text-white" />
 								</button>
 							</div>
 
@@ -188,9 +187,9 @@ export const SideNavigation = () => {
 							{/* ═══════════════════════════════════════════════════════════════
 							    FOOTER
 							    ═══════════════════════════════════════════════════════════════ */}
-							<div className="relative p-4 border-t border-zinc-800/50">
+							<div className="relative p-4 border-t border-zinc-200/60 dark:border-zinc-800/50">
 								<div className="flex items-center justify-between mb-4">
-									<span className="text-sm text-zinc-500">Theme</span>
+									<span className="text-sm text-zinc-600 dark:text-zinc-500">Theme</span>
 									<ThemeTogglerComponent />
 								</div>
 								<Link
@@ -240,16 +239,16 @@ const NavItem = ({
 			<Link
 				href={item.link}
 				onClick={onClose}
-				className="group relative flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-zinc-800/50 transition-all"
+				className="group relative flex items-center gap-4 px-4 py-3.5 rounded-xl hover:bg-zinc-100 transition-all dark:hover:bg-zinc-800/50"
 			>
 				{/* Icon container with glow */}
-				<div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-800/80 border border-zinc-700/50 group-hover:border-violet-500/30 group-hover:bg-violet-500/10 transition-all">
-					<Icon className="w-5 h-5 text-zinc-400 group-hover:text-violet-400 transition-colors" />
+				<div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-zinc-100 border border-zinc-200 group-hover:border-violet-500/30 group-hover:bg-violet-500/10 transition-all dark:bg-zinc-800/80 dark:border-zinc-700/50">
+					<Icon className="w-5 h-5 text-zinc-600 group-hover:text-violet-600 transition-colors dark:text-zinc-400 dark:group-hover:text-violet-400" />
 					<div className="absolute inset-0 bg-violet-500/20 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity" />
 				</div>
 				
 				{/* Label */}
-				<span className="text-zinc-300 group-hover:text-white font-medium transition-colors">
+				<span className="text-zinc-800 group-hover:text-zinc-900 font-medium transition-colors dark:text-zinc-300 dark:group-hover:text-white">
 					{item.name}
 				</span>
 				
@@ -274,25 +273,16 @@ const SocialLinks = () => {
 	return (
 		<div className="flex gap-2">
 			<Link
-				href="https://discord.gg/ejRNvftDp9"
-				target="_blank"
-				rel="noopener noreferrer"
-				className="flex-1 group relative flex items-center justify-center gap-2 py-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 hover:border-indigo-500/30 hover:bg-indigo-500/10 transition-all"
-			>
-				<IconBrandDiscord className="w-5 h-5 text-zinc-400 group-hover:text-indigo-400 transition-colors" />
-				<span className="text-sm text-zinc-400 group-hover:text-white transition-colors">Discord</span>
-			</Link>
-			<Link
 				href="https://github.com/khanakkijpr-dot/Primus-IDP"
 				target="_blank"
 				rel="noopener noreferrer"
-				className="flex-1 group relative flex items-center justify-center gap-2 py-3 rounded-xl bg-zinc-800/50 border border-zinc-700/50 hover:border-zinc-500/30 hover:bg-zinc-700/50 transition-all"
+				className="flex-1 group relative flex items-center justify-center gap-2 py-3 rounded-xl bg-zinc-100 border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-200 transition-all dark:bg-zinc-800/50 dark:border-zinc-700/50 dark:hover:border-zinc-500/30 dark:hover:bg-zinc-700/50"
 			>
-				<IconBrandGithub className="w-5 h-5 text-zinc-400 group-hover:text-white transition-colors" />
+				<IconBrandGithub className="w-5 h-5 text-zinc-600 group-hover:text-zinc-900 transition-colors dark:text-zinc-400 dark:group-hover:text-white" />
 				{loadingGithubStars ? (
-					<div className="w-8 h-4 bg-zinc-700 rounded animate-pulse" />
+					<div className="w-8 h-4 bg-zinc-300 rounded animate-pulse dark:bg-zinc-700" />
 				) : (
-					<span className="text-sm text-zinc-400 group-hover:text-white transition-colors">
+					<span className="text-sm text-zinc-600 group-hover:text-zinc-900 transition-colors dark:text-zinc-400 dark:group-hover:text-white">
 						{githubStars}
 					</span>
 				)}

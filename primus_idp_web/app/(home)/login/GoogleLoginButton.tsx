@@ -31,7 +31,7 @@ export function GoogleLoginButton() {
 	return (
 		<div className="relative w-full overflow-hidden">
 			<AmbientBackground />
-			<div className="mx-auto flex h-screen max-w-lg flex-col items-center justify-center">
+			<div className="relative z-10 mx-auto flex h-screen max-w-lg flex-col items-center justify-center">
 				<Logo className="rounded-md" />
 				<h1 className="my-8 text-xl font-bold text-slate-900 dark:text-white md:text-4xl">
 					{t('welcome_back')}

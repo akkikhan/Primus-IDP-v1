@@ -178,7 +178,7 @@ class Document(BaseModel, TimestampMixin):
     content = Column(Text, nullable=False)
     content_hash = Column(String, nullable=False, index=True, unique=True)
     unique_identifier_hash = Column(String, nullable=True, index=True, unique=True)
-    embedding = Column(Vector(config.embedding_model_instance.dimension))
+    embedding = Column(Vector(config.EMBEDDING_DIMENSION))
 
     search_space_id = Column(
         Integer, ForeignKey("searchspaces.id", ondelete="CASCADE"), nullable=False
@@ -193,7 +193,7 @@ class Chunk(BaseModel, TimestampMixin):
     __tablename__ = "chunks"
 
     content = Column(Text, nullable=False)
-    embedding = Column(Vector(config.embedding_model_instance.dimension))
+    embedding = Column(Vector(config.EMBEDDING_DIMENSION))
 
     document_id = Column(
         Integer, ForeignKey("documents.id", ondelete="CASCADE"), nullable=False

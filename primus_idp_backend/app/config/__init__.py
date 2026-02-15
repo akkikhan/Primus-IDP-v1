@@ -1,10 +1,9 @@
 import os
 import shutil
 from pathlib import Path
+from typing import Any
 
-from chonkie import AutoEmbeddings, CodeChunker, RecursiveChunker
 from dotenv import load_dotenv
-from rerankers import Reranker
 
 # Get the base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -65,21 +64,75 @@ class Config:
 
     # Chonkie Configuration | Edit this to your needs
     EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
-    embedding_model_instance = AutoEmbeddings.get_embeddings(EMBEDDING_MODEL)
-    chunker_instance = RecursiveChunker(
-        chunk_size=getattr(embedding_model_instance, "max_seq_length", 512)
-    )
-    code_chunker_instance = CodeChunker(
-        chunk_size=getattr(embedding_model_instance, "max_seq_length", 512)
-    )
+    # Used by the DB schema (pgvector) and avoids forcing model downloads at import-time.
+    # For sentence-transformers/all-MiniLM-L6-v2 this should be 384.
+    EMBEDDING_DIMENSION = int(os.getenv("EMBEDDING_DIMENSION", "384"))
+
+    def __init__(self) -> None:
+        # Heavy model objects are initialized lazily so the API can start quickly.
+        self._embedding_model_instance: Any | None = None
+        self._chunker_instance: Any | None = None
+        self._code_chunker_instance: Any | None = None
+        self._reranker_instance: Any | None = None
+
+    @property
+    def embedding_model_instance(self):
+        if self._embedding_model_instance is None:
+            if not self.EMBEDDING_MODEL:
+                raise ValueError("EMBEDDING_MODEL must be set")
+
+            # Import on demand to keep API startup fast and avoid import-time side effects.
+            from chonkie import AutoEmbeddings
+
+            emb = AutoEmbeddings.get_embeddings(self.EMBEDDING_MODEL)
+
+            # Validation: PGVector has a practical upper bound in this project.
+            dim = getattr(emb, "dimension", None)
+            if dim is not None and dim > 2000:
+                raise ValueError(
+                    f"Embedding dimension for Model: {self.EMBEDDING_MODEL} "
+                    f"has {dim} dimensions, which exceeds the maximum of 2000 allowed by PGVector."
+                )
+
+            self._embedding_model_instance = emb
+
+        return self._embedding_model_instance
+
+    @property
+    def chunker_instance(self):
+        if self._chunker_instance is None:
+            from chonkie import RecursiveChunker
+
+            max_len = getattr(self.embedding_model_instance, "max_seq_length", 512)
+            self._chunker_instance = RecursiveChunker(chunk_size=max_len)
+        return self._chunker_instance
+
+    @property
+    def code_chunker_instance(self):
+        if self._code_chunker_instance is None:
+            from chonkie import CodeChunker
+
+            max_len = getattr(self.embedding_model_instance, "max_seq_length", 512)
+            self._code_chunker_instance = CodeChunker(chunk_size=max_len)
+        return self._code_chunker_instance
 
     # Reranker's Configuration | Pinecode, Cohere etc. Read more at https://github.com/AnswerDotAI/rerankers?tab=readme-ov-file#usage
     RERANKERS_MODEL_NAME = os.getenv("RERANKERS_MODEL_NAME")
     RERANKERS_MODEL_TYPE = os.getenv("RERANKERS_MODEL_TYPE")
-    reranker_instance = Reranker(
-        model_name=RERANKERS_MODEL_NAME,
-        model_type=RERANKERS_MODEL_TYPE,
-    )
+
+    @property
+    def reranker_instance(self):
+        if self._reranker_instance is None:
+            if not self.RERANKERS_MODEL_NAME or not self.RERANKERS_MODEL_TYPE:
+                return None
+
+            from rerankers import Reranker
+
+            self._reranker_instance = Reranker(
+                model_name=self.RERANKERS_MODEL_NAME,
+                model_type=self.RERANKERS_MODEL_TYPE,
+            )
+        return self._reranker_instance
 
     # OAuth JWT
     SECRET_KEY = os.getenv("SECRET_KEY")
@@ -111,18 +164,6 @@ class Config:
     STT_SERVICE = os.getenv("STT_SERVICE")
     STT_SERVICE_API_BASE = os.getenv("STT_SERVICE_API_BASE")
     STT_SERVICE_API_KEY = os.getenv("STT_SERVICE_API_KEY")
-
-    # Validation Checks
-    # Check embedding dimension
-    if (
-        hasattr(embedding_model_instance, "dimension")
-        and embedding_model_instance.dimension > 2000
-    ):
-        raise ValueError(
-            f"Embedding dimension for Model: {EMBEDDING_MODEL} "
-            f"has {embedding_model_instance.dimension} dimensions, which "
-            f"exceeds the maximum of 2000 allowed by PGVector."
-        )
 
     @classmethod
     def get_settings(cls):

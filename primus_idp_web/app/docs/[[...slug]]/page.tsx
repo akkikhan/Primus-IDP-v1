@@ -1,10 +1,44 @@
-// Temporarily using a simple redirect until Fumadocs/Zod compatibility is resolved
-// The AI SDK requires Zod v3 while Fumadocs v15+ requires Zod v4
-import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function Page() {
-	// Redirect to external docs until compatibility is fixed
-	redirect("https://www.primusidp.net/docs/");
+	// Fumadocs is currently disabled in `app/docs/layout.tsx`.
+	// Do not redirect to an external domain (it can be misconfigured / NXDOMAIN).
+	// Provide an internal, working placeholder instead.
+	return (
+		<div className="mx-auto max-w-4xl px-6 py-16">
+			<h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
+				Documentation
+			</h1>
+			<p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400">
+				Docs are being refreshed. For now, use the repository docs and deployment guides.
+			</p>
+
+			<div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
+				<Link
+					href="https://github.com/khanakkijpr-dot/Primus-IDP"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950/40 dark:hover:border-zinc-700"
+				>
+					<div className="text-sm font-semibold text-zinc-900 dark:text-white">
+						GitHub Repository
+					</div>
+					<div className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+						Readme, releases, and issues.
+					</div>
+				</Link>
+				<Link
+					href="/contact"
+					className="rounded-2xl border border-zinc-200 bg-white/70 p-5 shadow-sm backdrop-blur hover:border-zinc-300 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-950/40 dark:hover:border-zinc-700"
+				>
+					<div className="text-sm font-semibold text-zinc-900 dark:text-white">Contact</div>
+					<div className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+						Need help deploying or customizing Primus IDP?
+					</div>
+				</Link>
+			</div>
+		</div>
+	);
 }
 
 export const dynamic = 'force-dynamic';
